@@ -13,8 +13,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <h1 ref={boxRef}>Home Page Animation 🚀</h1>
+    <div className="bg-red-900 h-screen">
+      <h1 className="#text=-xl font-bold text-white" ref={boxRef}>
+        Home Page Animation 🚀
+      </h1>
     </div>
   );
 }

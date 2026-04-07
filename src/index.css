@@ -1,111 +1,192 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  /* default using */
+  --color-background: #f8fafc;
+  /* Snow White */
+  --color-surface: #ffffff;
+  /* Pure White */
+  --color-foreground: #0f172a;
+  /* Midnight Navy */
+  --color-primary: #4f46e5;
+  /* using for body text full black */
+  --color-button: #000000;
+  /* Digital Lavender (Pantone 2025) */
+  --color-secondary: #10b981;
+  /* Verdant Green */
+  --color-accent: #ec4899;
+  /* Cyber Fuchsia */
+  --color-success: #22c55e;
+  /* Emerald Growth */
+  --color-warning: #f59e0b;
+  /* Golden Hour */
+  --color-danger: #ef4444;
+  /* Coral Alert */
+  --color-info: #3b82f6;
+  /* Trust Blue */
+  --color-muted: #64748b;
+  /* Stone Gray */
+  /* shadow */
+  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  --list: rgba(185, 175, 175, 0.568);
+  --list-possitive: #ddd8d8a1;
+
+  /* Dark using */
+  --color-background-dark: #020617;
+  /* Cosmic Black */
+  --color-surface-dark: #111827;
+  /* Twilight Blue */
+  --color-foreground-dark: #e2e8f0;
+  /* Starlight White */
+  --color-primary-dark: #e64813;
+  /* Holographic Lilac */
+  --color-secondary-dark: #34d399;
+  /* Bio-Luminous */
+  --color-accent-dark: #f472b6;
+  /* Neon Pink */
+  --color-success-dark: #86efac;
+  /* Mint Fresh */
+  --color-warning-dark: #fcd34d;
+  /* Amber Glow */
+  --color-danger-dark: #fca5a5;
+  /* Soft Coral */
+  --color-info-dark: #93c5fd;
+  /* Sky Pulse */
+  --color-muted-dark: #94a3b8;
+  /* using for body text full black */
+  --color-button-dark: #ffffff;
+  /* Moon Dust */
+  /* shadow */
+  --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
+
+  --list-dark: #5b82c0;
+  --list-possitive-dark: #3177e980;
+
+  /* new theme implement */
+
+  /* Header / Sidebar */
+  --header-sidebar: #e2e8f0;
+  --header-sidebar-dark: #020617;
+
+  /* very dark navy */
+
+  /* Main body */
+  --body: #f8fafc;
+  /* slightly lighter than header */
+  --body-dark: #1e293b;
+  /* slightly lighter than header */
+
+  /* Cards */
+  --card: #ffffff;
+  /* subtle contrast for cards */
+  --card-dark: #111827;
+  /* subtle contrast for cards */
+
+  /* Borders / lines */
+  --border: #cbd5e1;
+  --border-dark: #334155;
+
+  /* Text colors */
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --text-dark: #e5e7eb;
+  --text-muted-dark: #9ca3af;
+
+  /* Interactive hover */
+  --hover: #f1f5f9;
+  --hover-dark: #334155;
+  /* new theme implemnt declaration done */
+
+  /* text format and size */
+
+  /* Page Title (Main Heading) */
+  --title-size: 1.875rem;
+  /* 30px */
+  --title-line-height: 2.25rem;
+  /* 36px */
+  --title-weight: 600;
+
+  /* Section Title */
+  --section-title-size: 1.5rem;
+  /* 24px */
+  --section-title-line-height: 2rem;
+  /* 32px */
+  --section-title-weight: 700;
+
+  /* subtitle */
+  --subtitle-size: 1rem;
+  /* 16px */
+  --subtitle-line-height: 1.5rem;
+  /* 24px */
+  --subtitle-weight: 400;
+
+  /* Small Subtitle / Meta Text */
+  --subtitle-small-size: 0.875rem;
+  /* 14px */
+  --subtitle-small-line-height: 1.25rem;
+  /* 20px */
+  --subtitle-small-weight: 400;
+
+  /* text format and size end */
+
+}
+
+@tailwind utilities;
+
+
+
+
+/* width */
+.scrollbar-thin {
+  overflow: auto;
+}
+
+/* scrollbar size */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* track */
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 14px;
+}
+
+/* thumb — REAL rounded */
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: var(--pick);
+  border-radius: 14px;
+
+}
+
+/* hover */
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+
+@keyframes toastIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+@keyframes toastOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
   }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
 }
