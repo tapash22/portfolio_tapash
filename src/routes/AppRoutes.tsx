@@ -1,25 +1,18 @@
 import { BrowserRouter, useRoutes } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { Suspense } from "react";
+import { routeConfig } from "./routeConfig";
 import { Layout } from "../componants/layout/Layout";
-
-const Home = lazy(() => import("../pages/Home"));
-const About = lazy(() => import("../pages/About"));
-const ScenePage = lazy(() => import("../pages/ScenePage"));
-const Experience = lazy(() => import("../pages/Experience"));
-const Projects = lazy(() => import("../pages/Projects"));
 
 function AppRoutesElement() {
   const routes = useRoutes([
     {
       path: "/",
       element: <Layout />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: "about", element: <About /> },
-        { path: "experience", element: <Experience /> },
-        { path: "projects", element: <Projects /> },
-        { path: "scene", element: <ScenePage /> },
-      ],
+      children: routeConfig.map((route) =>
+        route.index
+          ? { index: true, element: <route.component /> }
+          : { path: route.path, element: <route.component /> },
+      ),
     },
   ]);
 

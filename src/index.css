@@ -1,144 +1,15 @@
 @import "tailwindcss";
 
-
 @theme {
-  /* default using */
   --sidebar-background: #2a2a2a;
   --main-background: #191919;
   --card-background: #222;
-  --border-color: #5px solid hsla(0, 0%, 40%, .6);
-  --pricing-header: #000;
-  --foreground: #fff;
-  --muted: #ccc;
+  --border-color: hsla(0, 0%, 40%, .6);
+  /* ✅ fixed */
+  --foreground: #ffffff;
+  --muted: #cccccc;
   --avatar-background: #202020;
   --button-color: #333;
-  /* Snow White */
-  --color-surface: #ffffff;
-  /* Pure White */
-  --color-foreground: #0f172a;
-  /* Midnight Navy */
-  --color-primary: #4f46e5;
-  /* using for body text full black */
-  --color-button: #000000;
-  /* Digital Lavender (Pantone 2025) */
-  --color-secondary: #10b981;
-  /* Verdant Green */
-  --color-accent: #ec4899;
-  /* Cyber Fuchsia */
-  --color-success: #22c55e;
-  /* Emerald Growth */
-  --color-warning: #f59e0b;
-  /* Golden Hour */
-  --color-danger: #ef4444;
-  /* Coral Alert */
-  --color-info: #3b82f6;
-  /* Trust Blue */
-  --color-muted: #64748b;
-  /* Stone Gray */
-  /* shadow */
-  --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.24);
-
-  --list: rgba(185, 175, 175, 0.568);
-  --list-possitive: #ddd8d8a1;
-
-  /* Dark using */
-  --color-background-dark: #020617;
-  /* Cosmic Black */
-  --color-surface-dark: #111827;
-  /* Twilight Blue */
-  --color-foreground-dark: #e2e8f0;
-  /* Starlight White */
-  --color-primary-dark: #e64813;
-  /* Holographic Lilac */
-  --color-secondary-dark: #34d399;
-  /* Bio-Luminous */
-  --color-accent-dark: #f472b6;
-  /* Neon Pink */
-  --color-success-dark: #86efac;
-  /* Mint Fresh */
-  --color-warning-dark: #fcd34d;
-  /* Amber Glow */
-  --color-danger-dark: #fca5a5;
-  /* Soft Coral */
-  --color-info-dark: #93c5fd;
-  /* Sky Pulse */
-  --color-muted-dark: #94a3b8;
-  /* using for body text full black */
-  --color-button-dark: #ffffff;
-  /* Moon Dust */
-  /* shadow */
-  --shadow-dark: 0 0 8px 2px rgba(148, 163, 184, 0.5);
-
-  --list-dark: #5b82c0;
-  --list-possitive-dark: #3177e980;
-
-  /* new theme implement */
-
-  /* Header / Sidebar */
-  --header-sidebar: #e2e8f0;
-  --header-sidebar-dark: #020617;
-
-  /* very dark navy */
-
-  /* Main body */
-  --body: #f8fafc;
-  /* slightly lighter than header */
-  --body-dark: #1e293b;
-  /* slightly lighter than header */
-
-  /* Cards */
-  --card: #ffffff;
-  /* subtle contrast for cards */
-  --card-dark: #111827;
-  /* subtle contrast for cards */
-
-  /* Borders / lines */
-  --border: #cbd5e1;
-  --border-dark: #334155;
-
-  /* Text colors */
-  --text: #1f2937;
-  --text-muted: #6b7280;
-  --text-dark: #e5e7eb;
-  --text-muted-dark: #9ca3af;
-
-  /* Interactive hover */
-  --hover: #f1f5f9;
-  --hover-dark: #334155;
-  /* new theme implemnt declaration done */
-
-  /* text format and size */
-
-  /* Page Title (Main Heading) */
-  --title-size: 1.875rem;
-  /* 30px */
-  --title-line-height: 2.25rem;
-  /* 36px */
-  --title-weight: 600;
-
-  /* Section Title */
-  --section-title-size: 1.5rem;
-  /* 24px */
-  --section-title-line-height: 2rem;
-  /* 32px */
-  --section-title-weight: 700;
-
-  /* subtitle */
-  --subtitle-size: 1rem;
-  /* 16px */
-  --subtitle-line-height: 1.5rem;
-  /* 24px */
-  --subtitle-weight: 400;
-
-  /* Small Subtitle / Meta Text */
-  --subtitle-small-size: 0.875rem;
-  /* 14px */
-  --subtitle-small-line-height: 1.25rem;
-  /* 20px */
-  --subtitle-small-weight: 400;
-
-  /* text format and size end */
-
 }
 
 @tailwind utilities;
@@ -148,14 +19,40 @@
   --sidebar: var(--sidebar-background);
   --card: var(--card-background);
   --border: var(--border-color);
-  --pricing-header: var(--pricing-header);
-  --foreground: var(--foreground);
-  --muted: var(--muted);
-  --avatar-background: var(--avatar-background);
-  --button-color: var(--button-color);
+
+  /* ✅ DIRECT values (NO self reference) */
+  --foreground: #ffffff;
+  --muted: #cccccc;
+  --avatar-background: #202020;
+  --button-color: #333;
 }
 
+/* sidebar */
+.link {
+  position: relative;
+  display: inline-block;
+}
 
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* sidebar end */
 
 
 /* width */

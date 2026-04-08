@@ -20,7 +20,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-red-900 h-screen">
+    <div className="w-full h-full">
       <h1 className="#text=-xl font-bold text-white" ref={boxRef}>
         Home Page Animation OLD 🚀
       </h1>
