@@ -33,11 +33,12 @@
   display: inline-block;
 }
 
+/* animated underline */
 .link::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: -3px;
   width: 100%;
   height: 2px;
   background: currentColor;
@@ -47,7 +48,14 @@
   transition: transform 0.3s ease;
 }
 
+/* hover animation */
 .link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ✅ active state stays visible */
+.active-link::after {
   transform: scaleX(1);
   transform-origin: left;
 }
