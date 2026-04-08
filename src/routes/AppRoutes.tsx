@@ -1,21 +1,37 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
-import About from "../pages/About";
-import ScenePage from "../pages/ScenePage";
-import { Experience } from "../pages/Experience";
-import { Projects } from "../pages/Projects";
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import { lazy, Suspense } from "react";
+import { Layout } from "../componants/layout/Layout";
+
+const Home = lazy(() => import("../pages/Home"));
+const About = lazy(() => import("../pages/About"));
+const ScenePage = lazy(() => import("../pages/ScenePage"));
+const Experience = lazy(() => import("../pages/Experience"));
+const Projects = lazy(() => import("../pages/Projects"));
+
+function AppRoutesElement() {
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "about", element: <About /> },
+        { path: "experience", element: <Experience /> },
+        { path: "projects", element: <Projects /> },
+        { path: "scene", element: <ScenePage /> },
+      ],
+    },
+  ]);
+
+  return routes;
+}
 
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/experience" element={<Experience />} />
-        <Route path="/projects" element={<Projects />} />
-
-        <Route path="/scene" element={<ScenePage />} />
-      </Routes>
+      <Suspense fallback={<div className="text-white">Loading...</div>}>
+        <AppRoutesElement />
+      </Suspense>
     </BrowserRouter>
   );
 }

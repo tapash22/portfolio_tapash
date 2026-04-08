@@ -3,7 +3,15 @@
 
 @theme {
   /* default using */
-  --color-background: #f8fafc;
+  --sidebar-background: #2a2a2a;
+  --main-background: #191919;
+  --card-background: #222;
+  --border-color: #5px solid hsla(0, 0%, 40%, .6);
+  --pricing-header: #000;
+  --foreground: #fff;
+  --muted: #ccc;
+  --avatar-background: #202020;
+  --button-color: #333;
   /* Snow White */
   --color-surface: #ffffff;
   /* Pure White */
@@ -134,6 +142,18 @@
 }
 
 @tailwind utilities;
+
+:root {
+  --background: var(--main-background);
+  --sidebar: var(--sidebar-background);
+  --card: var(--card-background);
+  --border: var(--border-color);
+  --pricing-header: var(--pricing-header);
+  --foreground: var(--foreground);
+  --muted: var(--muted);
+  --avatar-background: var(--avatar-background);
+  --button-color: var(--button-color);
+}
 
 
 
