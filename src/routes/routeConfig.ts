@@ -13,3 +13,12 @@ export const routeConfig = [
   { path: "projects", title: "Projects", component: Projects },
   { path: "scene", title: "Scene", component: ScenePage },
 ];
+
+export const routeIndexMap = routeConfig.reduce(
+  (acc, route, index) => {
+    const path = route.index ? "/" : `/${route.path}`;
+    acc[path] = index;
+    return acc;
+  },
+  {} as Record<string, number>,
+);

@@ -1,7 +1,16 @@
-import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { routeConfig } from "../../routes/routeConfig";
 
-export function SideBar() {
+type Props = {
+  handleNavigation: (path: string) => void;
+};
+
+export function SideBar({ handleNavigation }: Props) {
+  const location = useLocation();
+
+  // FIX: define active route checker
+  const isActiveRoute = (path: string) => location.pathname === path;
+
   return (
     <div className="w-full h-screen flex justify-start items-center p-5 bg-(--sidebar)">
       <div className="flex flex-col ">
@@ -14,19 +23,17 @@ export function SideBar() {
             const to = route.index ? "/" : `/${route.path}`;
 
             return (
-              <NavLink
+              <button
                 key={i}
-                to={to}
-                className={({ isActive }) =>
-                  `link transition-colors ${
-                    isActive
-                      ? "text-(--foreground) active-link"
-                      : "text-(--muted) hover:text-(--foreground)"
-                  }`
-                }
+                onClick={() => handleNavigation(to)}
+                className={`link text-left transition-colors ${
+                  isActiveRoute(to)
+                    ? "text-(--foreground) active-link"
+                    : "text-(--muted) hover:text-(--foreground)"
+                }`}
               >
                 {route.title}
-              </NavLink>
+              </button>
             );
           })}
         </ul>
