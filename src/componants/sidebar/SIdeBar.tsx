@@ -12,7 +12,7 @@ export function SideBar({ handleNavigation }: Props) {
   const isActiveRoute = (path: string) => location.pathname === path;
 
   return (
-    <div className="w-full h-screen flex justify-start items-center p-5 bg-(--sidebar)">
+    <div className="w-72 h-screen flex justify-start items-center p-5 bg-(--sidebar) shadow-(--shadow) z-50 ">
       <div className="flex flex-col ">
         <h1 className="text-4xl font-bold text-start px-5 italic text-(--foreground)">
           T
