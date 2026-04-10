@@ -4,6 +4,8 @@ import { useLayoutEffect, useRef } from "react";
 import { pageEnter, pageExit } from "../../animations/pageTransition";
 import { routeIndexMap } from "../../routes/routeConfig";
 import gsap from "gsap";
+import { SocialMediaList } from "../list/SocialMediaList";
+import { socialMediaLinkList } from "../../storage/data/social-media-links";
 
 export function Layout() {
   const location = useLocation();
@@ -66,12 +68,24 @@ export function Layout() {
     <div className="h-screen w-full flex overflow-hidden bg-(--background)">
       <SideBar handleNavigation={handleNavigation} />
 
-      <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-thin ">
+      <div
+        ref={scrollRef}
+        className="flex-1 flex-col relative overflow-y-auto scrollbar-thin "
+      >
         <div ref={pageRef} className="w-full min-h-full">
           <Outlet
           // context={{
           //   handleNavigation,
           // }}
+          />
+        </div>
+        <div className="absolute bottom-0 right-0 w-full h-auto p-3 flex-1 ">
+          <SocialMediaList
+            socailMediaItems={socialMediaLinkList}
+            listDirection="row"
+            iconColor="foreground"
+            iconSize={24}
+            backgroundColor="sidebar"
           />
         </div>
       </div>

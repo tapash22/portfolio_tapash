@@ -12,6 +12,8 @@
   --avatar-background: #202020;
   --button-color: #333;
   --shadow: 0 0 8px 2px rgba(148, 163, 184, 0.5);
+  /* --neon-color: oklch(78.9% 0.154 211.53); */
+  --neon-color: rgb(0 240 255);
 }
 
 @tailwind utilities;
@@ -28,7 +30,8 @@
   --muted: #cccccc;
   --avatar-background: #202020;
   --button-color: #333;
-  --box-shadow: var(--shadow)
+  --box-shadow: var(--shadow);
+  --neon: var(--neon-color)
 }
 
 .image-class {

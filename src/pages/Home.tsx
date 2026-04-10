@@ -42,6 +42,7 @@ export default function Home() {
           Contact Me
         </button>
       </div>
+
       <div
         className="absolute left-0  w-full h-full flex justify-end items-cente p-3  z-0 
               bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-50"
