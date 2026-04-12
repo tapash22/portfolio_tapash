@@ -1,4 +1,4 @@
-import { BrowserRouter, useRoutes } from "react-router-dom";
+import { useRoutes } from "react-router-dom";
 import { Suspense } from "react";
 import { routeConfig } from "./routeConfig";
 import { Layout } from "../componants/layout/Layout";
@@ -21,10 +21,10 @@ function AppRoutesElement() {
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<div className="text-white">Loading...</div>}>
-        <AppRoutesElement />
-      </Suspense>
-    </BrowserRouter>
+    // <BrowserRouter>
+    <Suspense fallback={<div className="text-white">Loading...</div>}>
+      <AppRoutesElement />
+    </Suspense>
+    // </BrowserRouter>
   );
 }

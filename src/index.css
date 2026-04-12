@@ -114,6 +114,128 @@
   background-color: var(--scrollbar-thumb-hover);
 }
 
+.leaderboard-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  padding: 40px;
+  min-height: 100vh;
+}
+
+/* layout */
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* card */
+.card {
+  width: 180px;
+  background: #1e1e1e;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px 16px 30px;
+  color: white;
+  position: relative;
+  transition: 0.3s;
+  overflow: visible;
+}
+
+/* 🏆 Trophy */
+.trophy {
+  position: absolute;
+  top: -40px;
+  left: 80%;
+  transform: translateX(-50%);
+  font-size: 28px;
+
+  /* ✅ better glow (not pure white blur) */
+  filter: drop-shadow(0 6px 10px rgba(255, 215, 0, 0.35));
+
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Avatar floating above card */
+.avatar-wrapper {
+  position: absolute;
+  top: -105px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  /* ✅ soft neutral shadow instead of white */
+  /* filter: drop-shadow(0 12px 10px rgba(0, 0, 0, 0.35)); */
+}
+
+/* 🛡 Shield shape */
+.shield {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.35);
+  width: 85px;
+  height: 85px;
+  background: linear-gradient(145deg, #4f46e5, #9333ea);
+  clip-path: polygon(50% 0%,
+      90% 20%,
+      100% 60%,
+      50% 100%,
+      0% 60%,
+      10% 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  padding: 6px;
+}
+
+/* avatar inside shield */
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* rank */
+.rank {
+  margin-top: 60px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* name */
+.name {
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+/* score */
+.score {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* winner glow */
+.winner {
+  background: linear-gradient(135deg, #4f46e5, #9333ea);
+  box-shadow: 0 0 30px rgba(147, 51, 234, 0.6);
+  transform: scale(1.08);
+}
+
+/* trophy animation */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+
 
 @keyframes toastIn {
   0% {
