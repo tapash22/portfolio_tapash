@@ -79,7 +79,7 @@ export function Layout() {
           // }}
           />
         </div>
-        <div className="absolute bottom-0 right-0 w-full h-auto p-3 flex-1 ">
+        <div className="absolute bottom-0 right-0 w-full h-auto flex-1 ">
           <SocialMediaList
             socailMediaItems={socialMediaLinkList}
             listDirection="row"

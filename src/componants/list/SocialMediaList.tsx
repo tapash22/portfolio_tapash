@@ -72,7 +72,7 @@ export function SocialMediaList({
   const resolvedIconColor = resolveColor(iconColor);
   return (
     <div
-      className={`w-full h-auto p-5 flex justify-center items-center drop-shadow-2xl opacity-90`}
+      className={`w-full h-auto p-1 flex justify-center items-center drop-shadow-2xl opacity-90`}
       style={{ background: resolvedBackground }}
     >
       {socailMediaItems && socailMediaItems?.length > 0 && (

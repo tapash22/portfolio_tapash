@@ -1,122 +1,97 @@
 import gsap from "gsap";
-import React, { Suspense, useEffect, useRef, useState } from "react";
-import { OrbitControls, ContactShadows, Environment } from "@react-three/drei";
-
-import LeaderBoardCard from "../componants/card/LeaderBoardCard";
-import { Canvas } from "@react-three/fiber";
+import type { IconType } from "react-icons";
+import { GrTestDesktop, GrSupport } from "react-icons/gr";
+import { BsLaptop } from "react-icons/bs";
+import { IoColorPaletteOutline } from "react-icons/io5";
+import { MdOutlineVerified } from "react-icons/md";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+// import LeaderBoardCard from "../componants/card/LeaderBoardCard";
 // import LeaderBoardScene from "../componants/card/LeaderBoardScene";
 // import LeaderBoardScene from "../componants/card/LeaderBoardScene";
-import image from "../assets/images/yy.png";
-
-export type LeaderItem = {
-  rank: number;
-  name: string;
-  avatar: string;
-  score: number;
-  isWinner?: boolean;
-};
+// import image from "../assets/images/yy.png";
 
 export default function Experience() {
-  const leaders: LeaderItem[] = [
+  const services = [
     {
-      rank: 2,
-      name: "Fariha Sultana",
-      avatar: image,
-      score: 40200,
+      id: 1,
+      title: "Web Design",
+      icon: GrTestDesktop,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
     },
     {
-      rank: 1,
-      name: "Tania Akhter S.",
-      avatar: image,
-      score: 50449,
-      isWinner: true,
+      id: 2,
+      title: "Web Development",
+      icon: BsLaptop,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
     },
     {
-      rank: 3,
-      name: "Pranta Chandra",
-      avatar: image,
-      score: 30526,
+      id: 3,
+      title: "Creative Design",
+      icon: IoColorPaletteOutline,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
+    },
+    {
+      id: 4,
+      title: "Responsive Design",
+      icon: HiOutlineDevicePhoneMobile,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
+    },
+    {
+      id: 5,
+      title: "Branding Identity",
+      icon: MdOutlineVerified,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
+    },
+    {
+      id: 6,
+      title: "24/Support",
+      icon: GrSupport,
+      description:
+        "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
     },
   ];
-
-  const [animatedScores, setAnimatedScores] = useState<Record<number, number>>({
-    1: 0,
-    2: 0,
-    3: 0,
-  });
-  const sceneRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!sceneRef.current) return;
-
-    const ctx = gsap.context(() => {
-      // 1. Scene Entrance Animation
-      gsap.fromTo(
-        sceneRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-      );
-
-      // 2. Score Counter Animation
-      leaders.forEach((leader) => {
-        gsap.to(
-          {},
-          {
-            duration: 2,
-            onUpdate: function () {
-              const progress = this.progress();
-              setAnimatedScores((prev) => ({
-                ...prev,
-                [leader.rank]: Math.floor(leader.score * progress),
-              }));
-            },
-          },
-        );
-      });
-    }, sceneRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div
-      ref={sceneRef}
-      style={{
-        width: "30vw",
-        height: "30vh",
-        backgroundImage: `url(${image})`, // Correct syntax for variables
-        backgroundSize: "cover", // Ensures the image fills the area
-        backgroundPosition: "center", // Centers the background
-        overflow: "hidden",
-        position: "relative",
-      }}
-    >
-      <Canvas camera={{ position: [0, 3, 8], fov: 45 }} shadows>
-        <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} />
-        <Environment preset="city" />
+    <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
+      <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 ">
+        <div className="w-full flex flex-col justify-center items-center">
+          <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
+            What I am Expert In
+          </h1>
 
-        {/* Suspense prevents the "Hide" issue while textures load */}
-        <Suspense fallback={null}>
-          <group position={[0, -2.0, -0.9]}>
-            {leaders.map((leader) => {
-              const xPos =
-                leader.rank === 1 ? 0 : leader.rank === 2 ? -2.5 : 2.5;
-              return (
-                <LeaderBoardCard
-                  key={leader.rank}
-                  item={leader}
-                  animatedScore={animatedScores[leader.rank]}
-                  position={[xPos, 0, 0]}
-                />
-              );
-            })}
-          </group>
-        </Suspense>
-
-        <ContactShadows opacity={0.4} scale={15} blur={2.5} far={4.5} />
-        <OrbitControls enableZoom={false} enablePan={false} />
-      </Canvas>
+          <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
+            My Service
+          </h1>
+        </div>
+        <div className="w-full h-auto p-3 grid grid-cols-3 gap-5 ">
+          {services.map((info) => {
+            const Icon: IconType = info.icon;
+            return (
+              <div
+                key={info.id}
+                className="flex flex-col  p-6 bg-(--sidebar) w-full space-y-3 opacity-85 "
+              >
+                <div className="w-24 h-24 rounded-full flex justify-center items-center bg-(--box)">
+                  <Icon size={40} className="text-(--button-color)" />
+                </div>
+                <h3 className="text-xl font-bold tracking-wide text-(--muted)">
+                  {info.title}
+                </h3>
+                <p className="text-sm font-normal text-(--foreground) tracking-wide">
+                  {info.description}
+                </p>
+                <button className="bg-(--button-color) text-(--foreground) text-sm font-normal tracking-wider ring-2 ring-(--border) w-1/3  py-2 rounded-full uppercase ">
+                  Read More
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

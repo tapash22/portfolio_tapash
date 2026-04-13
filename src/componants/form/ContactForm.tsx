@@ -50,7 +50,7 @@ export function ContactForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col space-y-4 w-full max-w-4xl bg-(--background) p-8 opacity-90 "
+        className="flex flex-col space-y-4 w-full h-full max-w-4xl bg-(--background) p-8 my-2 opacity-90 "
       >
         <div className="flex justify-between items-center w-full h-auto p-2 space-x-3 ">
           <input
