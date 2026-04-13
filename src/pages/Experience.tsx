@@ -67,7 +67,7 @@ export default function Experience() {
             My Service
           </h1>
         </div>
-        <div className="w-full h-auto p-3 grid grid-cols-3 gap-5 ">
+        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
           {services.map((info) => {
             const Icon: IconType = info.icon;
             return (
