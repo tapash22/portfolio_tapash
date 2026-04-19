@@ -11,12 +11,16 @@ export default function About() {
   };
   return (
     <div className="w-full h-screen flex items-center bg-(--sidebar)">
+      {/* left sectection */}
       <div className="w-1/2 h-auto p-8 flex justify-center items-center   ">
         <img
           src={image}
           className="w-fit h-auto rounded-xl shadow-(--shadow) scale-75 "
         />
       </div>
+      {/* left sectection end */}
+
+      {/* right sectection */}
       <div className="w-1/2 h-auto p-5 flex flex-col justify-start space-y-5">
         <div className="w-14 h-14 rounded-lg p-2 flex justify-center items-center bg-(--box) ">
           <PiDesktop size={40} />
@@ -49,6 +53,7 @@ export default function About() {
           More About
         </button>
       </div>
+      {/* right sectection end */}
     </div>
   );
 }

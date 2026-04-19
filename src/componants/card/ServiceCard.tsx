@@ -56,7 +56,7 @@ export function ServiceCard({ item }: ServiceCardProps) {
         </div>
       </div>
 
-      <div className="space-y-7">
+      <div className="space-y-5">
         <h3 className="text-xl font-bold tracking-wide text-(--muted)">
           {item.title}
         </h3>

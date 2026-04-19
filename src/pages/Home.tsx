@@ -23,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-screen flex items-center relative  bg-(--background)">
+      {/* left sectection */}
       <div
         ref={boxRef}
         className="relative z-10 w-1/2 flex flex-col space-y-5 px-5 "
@@ -42,13 +43,16 @@ export default function Home() {
           Contact Me
         </button>
       </div>
+      {/* left sectection end */}
 
+      {/* right sectection */}
       <div
         className="absolute left-0  w-full h-full flex justify-end items-cente p-3  z-0 
               bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-90"
       >
         <img src={image} className="object-cover  backdrop-brightness-90  " />
       </div>
+      {/* right sectection end */}
     </div>
   );
 }
