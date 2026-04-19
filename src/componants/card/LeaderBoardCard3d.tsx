@@ -1,5 +1,5 @@
 import { Html } from "@react-three/drei";
-import { type LeaderItem } from "../../pages/Experience";
+import { type LeaderItem } from "../../pages/Service";
 
 type Props = {
   item: LeaderItem;

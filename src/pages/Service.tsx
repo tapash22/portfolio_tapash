@@ -1,10 +1,10 @@
-import gsap from "gsap";
-import type { IconType } from "react-icons";
 import { GrTestDesktop, GrSupport } from "react-icons/gr";
 import { BsLaptop } from "react-icons/bs";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { MdOutlineVerified } from "react-icons/md";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { ServiceCard } from "../componants/card/ServiceCard";
+
 // import LeaderBoardCard from "../componants/card/LeaderBoardCard";
 // import LeaderBoardScene from "../componants/card/LeaderBoardScene";
 // import LeaderBoardScene from "../componants/card/LeaderBoardScene";
@@ -55,6 +55,7 @@ export default function Experience() {
         "One way to categorize the activities is in terms of the professional’s area of expertise such as competitive analysis, corporate strategy.",
     },
   ];
+
   return (
     <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
       <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 ">
@@ -68,28 +69,9 @@ export default function Experience() {
           </h1>
         </div>
         <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
-          {services.map((info) => {
-            const Icon: IconType = info.icon;
-            return (
-              <div
-                key={info.id}
-                className="flex flex-col  p-6 bg-(--sidebar) w-full space-y-3 opacity-85 "
-              >
-                <div className="w-24 h-24 rounded-full flex justify-center items-center bg-(--box)">
-                  <Icon size={40} className="text-(--button-color)" />
-                </div>
-                <h3 className="text-xl font-bold tracking-wide text-(--muted)">
-                  {info.title}
-                </h3>
-                <p className="text-sm font-normal text-(--foreground) tracking-wide">
-                  {info.description}
-                </p>
-                <button className="bg-(--button-color) text-(--foreground) text-sm font-normal tracking-wider ring-2 ring-(--border) w-1/3  py-2 rounded-full uppercase ">
-                  Read More
-                </button>
-              </div>
-            );
-          })}
+          {services.map((info) => (
+            <ServiceCard key={info.id} item={info} />
+          ))}
         </div>
       </div>
     </div>

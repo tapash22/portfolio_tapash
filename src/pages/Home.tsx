@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
+    <div className="w-full h-screen flex items-center relative  bg-(--background)">
       <div
         ref={boxRef}
         className="relative z-10 w-1/2 flex flex-col space-y-5 px-5 "

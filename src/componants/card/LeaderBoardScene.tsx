@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 import LeaderBoardCard3d from "./LeaderBoardCard3d";
-import type { LeaderItem } from "../../pages/Experience";
+import type { LeaderItem } from "../../pages/Service";
 import { Suspense } from "react";
 
 type Props = {

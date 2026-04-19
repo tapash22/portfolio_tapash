@@ -1,4 +1,4 @@
-import { type LeaderItem } from "../../pages/Experience";
+import { type LeaderItem } from "../../pages/Service";
 import * as THREE from "three";
 import { Text, useTexture } from "@react-three/drei";
 import { useEffect, useLayoutEffect, useMemo } from "react";
