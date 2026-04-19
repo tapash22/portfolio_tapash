@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import { PiDesktop } from "react-icons/pi";
 // import image from "../assets/images/tapash.png";
-import image from "../assets/images/y.png";
+import image from "../assets/images/about.png";
 
 export default function About() {
   // const [showDialog, setShowDialog] = useState(false);

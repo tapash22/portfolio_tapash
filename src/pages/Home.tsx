@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 // import { fadeInUp } from "../animations/gsap";
 import { useNavigate } from "react-router-dom";
-import image from "../assets/images/yy.png";
+import image from "../assets/images/home.png";
 
 export default function Home() {
   const boxRef = useRef<HTMLHeadingElement | null>(null);
@@ -17,7 +17,7 @@ export default function Home() {
     gsap.fromTo(
       boxRef.current,
       { opacity: 0, x: -100 },
-      { opacity: 1, x: 100, duration: 1, ease: "power3.out" },
+      { opacity: 1, x: 200, duration: 1, ease: "power3.out" },
     );
   }, []);
 
@@ -45,7 +45,7 @@ export default function Home() {
 
       <div
         className="absolute left-0  w-full h-full flex justify-end items-cente p-3  z-0 
-              bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-50"
+              bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-90"
       >
         <img src={image} className="object-cover  backdrop-brightness-90  " />
       </div>
