@@ -1,96 +1,72 @@
-import { GrTestDesktop, GrSupport } from "react-icons/gr";
-import { BsLaptop } from "react-icons/bs";
-import { IoColorPaletteOutline } from "react-icons/io5";
-import { MdOutlineVerified } from "react-icons/md";
-import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { useEffect, useRef, useState } from "react";
 import { ServiceCard } from "../componants/card/ServiceCard";
-
-// import LeaderBoardCard from "../componants/card/LeaderBoardCard";
-// import LeaderBoardScene from "../componants/card/LeaderBoardScene";
-// import LeaderBoardScene from "../componants/card/LeaderBoardScene";
-// import image from "../assets/images/yy.png";
+import { services } from "../storage/data/services";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import service1 from "../assets/images/services/service1.jpg";
+import service2 from "../assets/images/services/service2.jpg";
+import service3 from "../assets/images/services/service3.jpg";
+import type { ServiceType } from "../storage/type/data-type";
+import gsap from "gsap";
 
 export default function Experience() {
-  const services = [
-    {
-      id: 1,
-      title: "Web Design",
-      icon: GrTestDesktop,
-      description:
-        "Designing visually appealing and user-friendly interfaces with a focus on layout, color theory, and modern UI/UX principles.",
-      brief: `
-          Web design is more than just creating visually appealing layouts—it is about crafting meaningful user experiences that communicate your brand effectively. A well-designed website combines aesthetics with usability, ensuring visitors can navigate effortlessly while staying engaged. From typography and color schemes to spacing and visual hierarchy, every element plays a crucial role in shaping perception.
-          Our approach to web design focuses on user-centered design principles. We analyze user behavior, understand target audiences, and design interfaces that are both intuitive and functional. Whether it’s a landing page or a full-scale platform, the goal is always clarity, accessibility, and impact.
-          We also emphasize modern trends such as minimalism, dark mode compatibility, and interactive elements to keep your website fresh and competitive. By combining creativity with strategic thinking, we ensure your website not only looks great but also delivers measurable results.
-          Ultimately, great web design builds trust, strengthens brand identity, and improves user engagement. It is the foundation of your digital presence and a key driver of success in today’s online world.
-              `,
-    },
-    {
-      id: 2,
-      title: "Web Development",
-      icon: BsLaptop,
-      description:
-        "Building fast, scalable, and maintainable web applications using modern technologies and best development practices.",
-      brief: `
-        Web development is the backbone of any successful digital product. It transforms design concepts into fully functional, high-performing applications. Our development process focuses on building scalable, secure, and efficient systems that meet both user expectations and business goals.
-        We use modern frameworks and technologies to create fast-loading, responsive, and dynamic web applications. Clean code architecture and best practices ensure maintainability and long-term performance. Whether it’s a simple website or a complex web app, we prioritize reliability and speed.
-        Performance optimization is a key part of our workflow. From minimizing load times to optimizing assets and ensuring smooth interactions, we focus on delivering seamless user experiences. Security is also a priority, with proper validation, authentication, and data protection strategies in place.
-        By combining technical expertise with problem-solving skills, we deliver solutions that are robust, flexible, and future-ready. Our goal is to build digital products that not only work flawlessly but also grow with your business needs.
-            `,
-    },
-    {
-      id: 3,
-      title: "Creative Design",
-      icon: IoColorPaletteOutline,
-      description:
-        "Crafting unique and engaging designs that communicate ideas effectively through creativity, branding, and visual storytelling.",
-      brief: `
-        Creative design is about bringing ideas to life through originality and visual storytelling. It goes beyond standard layouts to create unique and memorable experiences that capture attention and communicate messages effectively.
-        We focus on blending creativity with strategy. Every design decision is aligned with your brand identity and business objectives. From illustrations and graphics to motion elements, we create visuals that resonate with your audience and stand out in a crowded digital space.
-        Consistency is a key factor in creative design. Maintaining a unified style across all platforms helps build recognition and trust. We ensure that every element—from icons to color palettes—works together harmoniously.
-        Our goal is to create designs that are not only visually impressive but also meaningful. By combining artistic creativity with user-focused thinking, we deliver solutions that inspire, engage, and leave a lasting impression.
-            `,
-    },
-    {
-      id: 4,
-      title: "Responsive Design",
-      icon: HiOutlineDevicePhoneMobile,
-      description:
-        "Ensuring seamless user experience across all devices by creating layouts that adapt perfectly to different screen sizes.",
-      brief: `
-        Responsive design ensures that your website delivers a seamless experience across all devices, from desktops to smartphones. With users accessing content on various screen sizes, adaptability is no longer optional—it is essential.
-        We design layouts that automatically adjust to different resolutions and orientations. This includes flexible grids, scalable images, and media queries that ensure consistent performance across devices. The result is a smooth and intuitive experience, regardless of how users access your site.
-        Mobile-first design is a core part of our approach. By prioritizing smaller screens, we ensure faster loading times and better usability. This also improves search engine rankings, as responsiveness is a key factor in SEO.
-        A responsive website enhances user satisfaction, reduces bounce rates, and increases engagement. It ensures your content is accessible to everyone, everywhere. By focusing on adaptability and performance, we help you create a future-proof digital presence.
-    `,
-    },
-    {
-      id: 5,
-      title: "Branding Identity",
-      icon: MdOutlineVerified,
-      description:
-        "Developing strong brand identities with consistent visuals, logos, and messaging to create a lasting impression.",
-      brief: `
-        Branding identity is the visual and emotional representation of your business. It defines how your audience perceives you and plays a crucial role in building trust and recognition.
-        We create cohesive brand identities that reflect your values and vision. This includes logo design, typography, color systems, and visual guidelines that ensure consistency across all platforms. A strong brand identity makes your business memorable and sets you apart from competitors.
-        Our process involves understanding your target audience and market positioning. We design with purpose, ensuring every element communicates your message clearly and effectively. Consistency across digital and physical touchpoints reinforces your brand presence.
-        A well-crafted brand identity not only enhances credibility but also builds long-term relationships with your audience. It is the foundation of your marketing strategy and a key driver of business growth.
-            `,
-    },
-    {
-      id: 6,
-      title: "24/Support",
-      icon: GrSupport,
-      description:
-        "Providing reliable and continuous support to ensure smooth operation, quick issue resolution, and client satisfaction.",
-      brief: `
-          Reliable support is essential for maintaining a smooth and efficient digital experience. Our 24/7 support service ensures that your systems run without interruption and that any issues are resolved quickly.
-          We provide continuous monitoring and assistance to address technical challenges, bugs, and performance issues. Our team is always ready to respond, minimizing downtime and ensuring your operations remain stable.
-          Proactive maintenance is a key part of our support strategy. Regular updates, performance checks, and security monitoring help prevent problems before they occur. This ensures your website or application stays optimized and secure at all times.
-          Our goal is to provide peace of mind. With dedicated support, you can focus on your business while we handle the technical side. Reliable assistance builds trust and ensures long-term success for your digital products.
-              `,
-    },
-  ];
+  const [openDialog, setOpenDialog] = useState(false);
+  const [item, setItem] = useState<ServiceType | null>(null);
+
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  const handleDialog = (value: ServiceType) => {
+    setOpenDialog(true);
+    setItem(value);
+    console.log(value);
+  };
+
+  const closeDialog = () => {
+    setOpenDialog(false);
+  };
+
+  // GSAP animation
+  useEffect(() => {
+    if (!dialogRef.current || !wrapperRef.current) return;
+
+    if (openDialog) {
+      gsap.set(wrapperRef.current, { pointerEvents: "auto" });
+
+      gsap.fromTo(
+        wrapperRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.3 },
+      );
+
+      gsap.fromTo(
+        dialogRef.current,
+        { scale: 0.7, opacity: 0, y: 80 },
+        {
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power3.out",
+        },
+      );
+    } else {
+      gsap.to(dialogRef.current, {
+        scale: 0.7,
+        opacity: 0,
+        y: 80,
+        duration: 0.4,
+        ease: "power3.in",
+      });
+
+      gsap.to(wrapperRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        onComplete: () => {
+          gsap.set(wrapperRef.current, { pointerEvents: "none" });
+        },
+      });
+    }
+  }, [openDialog]);
 
   return (
     <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
@@ -109,10 +85,67 @@ export default function Experience() {
         {/* body sectection */}
         <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
           {services.map((info) => (
-            <ServiceCard key={info.id} item={info} />
+            <ServiceCard
+              key={info.id}
+              item={info}
+              onClick={() => handleDialog(info)}
+            />
           ))}
         </div>
         {/* body sectection end */}
+      </div>
+      <div
+        ref={wrapperRef}
+        className="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-0"
+      >
+        {/* 🔥 Glass Background */}
+        <div
+          className="absolute inset-0 bg-black/30 backdrop-blur-md"
+          onClick={closeDialog}
+        />
+
+        {/* Dialog */}
+        <div
+          ref={dialogRef}
+          className="relative w-2/3 h-3/4 p-7 flex flex-col space-y-3  backdrop-blur-xl ring-2 ring-(--border) rounded-xl shadow-xl"
+        >
+          {/* Header */}
+          <div className="flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-white">{item?.title}</h2>
+            <button onClick={closeDialog} className="cursor-pointer">
+              <IoCloseCircleOutline size={30} className="text-white" />
+            </button>
+          </div>
+
+          {/* Body (scrollable) */}
+          <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
+            <div className="w-full h-64 overflow-hidden">
+              <img
+                src={service1}
+                className="w-full h-full object-cover rounded-md"
+              />
+            </div>
+
+            <p className="text-white/80 text-lg leading-7">
+              {item?.description}
+            </p>
+
+            <div className="grid grid-cols-2 gap-3">
+              <img
+                src={service2}
+                className="w-full h-48 object-cover rounded-md"
+              />
+              <img
+                src={service3}
+                className="w-full h-48 object-cover rounded-md"
+              />
+            </div>
+
+            <p className="text-white/80 text-lg leading-7 text-justify">
+              {item?.brief}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

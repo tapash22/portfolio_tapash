@@ -98,20 +98,20 @@
 
 /* track */
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
+  background: var(--foreground);
   border-radius: 14px;
 }
 
 /* thumb — REAL rounded */
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: var(--pick);
+  background-color: var(--sidebar);
   border-radius: 14px;
 
 }
 
 /* hover */
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: var(--scrollbar-thumb-hover);
+  background-color: var(--box-color);
 }
 
 .leaderboard-wrapper {

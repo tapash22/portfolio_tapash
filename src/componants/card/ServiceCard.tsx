@@ -1,10 +1,12 @@
 import { useRef } from "react";
 import gsap from "gsap";
+import type { ServiceType } from "../../storage/type/data-type";
 interface ServiceCardProps {
-  item: any;
+  item: ServiceType;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export function ServiceCard({ item }: ServiceCardProps) {
+export function ServiceCard({ item, onClick }: ServiceCardProps) {
   const orbitRef = useRef<HTMLDivElement | null>(null);
   const animation = useRef<gsap.core.Tween | null>(null);
 
@@ -42,7 +44,7 @@ export function ServiceCard({ item }: ServiceCardProps) {
         className="relative w-24 h-24 rounded-full flex justify-center items-center 
                       ring-1 ring-(--muted)"
       >
-        <Icon size={40} className="text-(--foreground) z-10" />
+        <Icon size={40} className="text-(--foreground) " />
 
         <div
           ref={orbitRef}
@@ -65,8 +67,9 @@ export function ServiceCard({ item }: ServiceCardProps) {
         </p>
         <button
           className="bg-(--button-color) text-(--foreground) text-sm tracking-wider 
-                            ring-2 ring-(--border) w-1/3 py-2 rounded-full uppercase z-40
+                            ring-2 ring-(--border) w-1/3 py-2 rounded-full uppercase z-10
                             hover:opacity-60 cursor-pointer"
+          onClick={onClick}
         >
           Read More
         </button>

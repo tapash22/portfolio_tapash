@@ -9,8 +9,12 @@ export interface SocialMediaItem {
 
 export type SocialMediaItems = SocialMediaItem[];
 
-// export interface Step {
-//   title: string;
-//   content: string;
-//   targetRef: RefObject<HTMLElement | null>;
-// }
+export interface ServiceType {
+  id: number | null;
+  title: string;
+  icon: IconType;
+  description: string;
+  brief: string;
+}
+
+export type ServiceTypes = ServiceType[];
