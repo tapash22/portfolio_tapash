@@ -12,9 +12,11 @@ export type SocialMediaItems = SocialMediaItem[];
 export interface ServiceType {
   id: number | null;
   title: string;
-  icon: IconType;
+  icon?: IconType;
   description: string;
-  brief: string;
+  brief?: string;
+  link?: string;
+  image?: string;
 }
 
 export type ServiceTypes = ServiceType[];

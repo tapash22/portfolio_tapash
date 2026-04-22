@@ -119,7 +119,7 @@ export default function Experience() {
 
           {/* Body (scrollable) */}
           <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
-            <div className="w-full h-64 overflow-hidden">
+            <div className="w-full h-72 overflow-hidden">
               <img
                 src={service1}
                 className="w-full h-full object-cover rounded-md"
@@ -133,11 +133,11 @@ export default function Experience() {
             <div className="grid grid-cols-2 gap-3">
               <img
                 src={service2}
-                className="w-full h-48 object-cover rounded-md"
+                className="w-full h-52 object-cover rounded-md"
               />
               <img
                 src={service3}
-                className="w-full h-48 object-cover rounded-md"
+                className="w-full h-52 object-cover rounded-md"
               />
             </div>
 
