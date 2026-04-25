@@ -2,7 +2,6 @@ import { protFolioDeatils } from "../storage/data/portfolio-data";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { Dialog } from "../componants/dialog/Dialog";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import service1 from "../assets/images/services/service1.jpg";
 import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
@@ -25,6 +24,7 @@ export default function Projects() {
 
   return (
     <div className="w-full h-screen relative flex items-center overflow-hidden bg-(--background)">
+      {/* main content */}
       <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 overflow-y-auto scrollbar-thin">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-center items-center">
@@ -63,13 +63,15 @@ export default function Projects() {
         {/* pricing header end */}
 
         {/* pricing body */}
-        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        <div className="w-full h-auto px-10 py-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
 
         {/* pricing body end */}
 
         {/* body sectection end */}
       </div>
+      {/* main content end*/}
 
+      {/* dialog */}
       <Dialog open={openDialog} onClose={closeDialog}>
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -123,6 +125,7 @@ export default function Projects() {
           </p>
         </div>
       </Dialog>
+      {/* dialog end*/}
     </div>
   );
 }
