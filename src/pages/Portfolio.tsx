@@ -1,11 +1,12 @@
-import { protFolioDeatils } from "../storage/data/portfolio-data";
+import { protFolioDeatils, pricingPlans } from "../storage/data/portfolio-data";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { Dialog } from "../componants/dialog/Dialog";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { PricingCard } from "../componants/card/PricingCard";
 
 export default function Projects() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -22,52 +23,71 @@ export default function Projects() {
     setOpenDialog(false);
   };
 
+  useEffect(() => {
+    if (openDialog) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [openDialog]);
+
   return (
-    <div className="w-full h-screen relative flex items-center overflow-hidden bg-(--background)">
+    <div className="w-full h-screen relative flex flex-col bg-(--background)">
       {/* main content */}
-      <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 overflow-y-auto scrollbar-thin">
-        {/* header sectection */}
-        <div className="w-full flex flex-col justify-center items-center">
-          <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
-            Portfolio
-          </h1>
+      <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
+        {/* portfolio section */}
+        <div className="">
+          {/* header sectection */}
+          <div className="w-full flex flex-col justify-center items-center">
+            <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
+              Portfolio
+            </h1>
 
-          <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
-            Latest Project
-          </h1>
+            <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
+              Latest Project
+            </h1>
+          </div>
+          {/* header sectection end */}
+
+          {/* body sectection */}
+          <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {protFolioDeatils.map((portfolio) => (
+              <PortfolioCard
+                key={portfolio.id}
+                portfolio={portfolio}
+                onClick={() => handleClick(portfolio)}
+              />
+            ))}
+          </div>
         </div>
-        {/* header sectection end */}
+        {/* portfolio section end*/}
 
-        {/* body sectection */}
-        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {protFolioDeatils.map((portfolio) => (
-            <PortfolioCard
-              key={portfolio.id}
-              portfolio={portfolio}
-              onClick={() => handleClick(portfolio)}
-            />
-          ))}
+        {/* pricing section */}
+        <div className="p-10">
+          {/* pricing header */}
+          <div className="w-full flex flex-col justify-center items-center py-5">
+            <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
+              Our Pricing
+            </h1>
+
+            <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
+              Pricing Table
+            </h1>
+          </div>
+          {/* pricing header end */}
+
+          {/* pricing body */}
+          <div className="w-full h-auto px-10 py-5 flex flex-row justify-center items-center space-x-8">
+            {pricingPlans.map((pricingPlan) => {
+              return (
+                <PricingCard key={pricingPlan.id} pricingPlan={pricingPlan} />
+              );
+            })}
+          </div>
+          {/* pricing body end */}
         </div>
 
-        {/* pricing header */}
-
-        <div className="w-full flex flex-col justify-center items-center">
-          <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
-            Our Pricing
-          </h1>
-
-          <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
-            Pricing Table
-          </h1>
-        </div>
-        {/* pricing header end */}
-
-        {/* pricing body */}
-        <div className="w-full h-auto px-10 py-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-        {/* pricing body end */}
-
-        {/* body sectection end */}
+        {/* pricing section end*/}
       </div>
       {/* main content end*/}
 
