@@ -7,16 +7,16 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
   return (
     <div
       key={pricingPlan.id}
-      className={`relative w-full max-w-80 pt-14 transition-transform duration-500 group ${
+      className={`relative w-full max-w-92 pt-16 pb-5 transition-transform duration-500 group ${
         pricingPlan.highlight ? "scale-105" : "scale-100"
       }`}
     >
       {/* Top Floating Icon Circle */}
       <div
-        className={`absolute top-0 left-1/2 -translate-x-1/2 rounded-full flex items-center justify-center ring-1 ring-(--border) border-[#121212] z-30 ${
+        className={`absolute top-0 left-1/2 -translate-x-1/2 rounded-full flex items-center justify-center shadow-xl ring-1 z-20  ${
           pricingPlan.highlight
-            ? "bg-(--neon-color) w-28 h-28"
-            : "bg-(--sidebar) w-24 h-24"
+            ? "bg-(--neon-color) w-28 h-28  ring-(--foreground)"
+            : "bg-(--sidebar) w-24 h-24 ring-(--border) "
         }`}
       >
         <span
@@ -29,11 +29,11 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
       </div>
 
       {/* Moving Border Wrapper */}
-      <div className="relative p-0.5 rounded-[55px] overflow-hidden transition-all duration-500 ease-out hover:-translate-y-3">
+      <div className="relative p-0.5 rounded-[55px] overflow-hidden transition-all duration-500 ease-out hover:-translate-y-2">
         {/* 360° Rotating Beam Layer */}
         <div className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
           <div
-            className="absolute top-1/2 left-1/2 w-[150%] h-[150%] animate-border-spin"
+            className="absolute top-1/2 left-1/2 w-[150%] h-[150%]"
             style={{
               background: `conic-gradient(from 0deg, transparent 0deg, transparent 280deg, var(--box-shadow) 360deg)`,
             }}
@@ -45,13 +45,13 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
           className={`
           relative z-10 bg-[#1c1c1c] rounded-[54px] overflow-hidden flex flex-col items-center pb-12 shadow-xl space-y-5
           border cursor-pointer transition-all duration-500
-          ${pricingPlan.highlight ? "border-(--box-shadow)" : "border-(--border)"} 
+          ${pricingPlan.highlight ? "border-(--neon-color)" : "border-(--border)"} 
           group-hover:border-transparent group-hover:shadow-(--box-shadow)
         `}
         >
           {/* Header Section */}
           <div
-            className={`w-full pt-20 pb-10 flex justify-center ${
+            className={`w-full p-12 flex justify-center ${
               pricingPlan.highlight ? "bg-(--neon-color)" : "bg-(--sidebar)"
             }`}
           >
@@ -73,11 +73,11 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
           </div>
 
           {/* Features List */}
-          <ul className="w-full px-8 mb-4">
+          <ul className="w-full px-5">
             {pricingPlan.features.map((feature, idx) => (
               <li
                 key={idx}
-                className="py-4 text-(--foreground) text-sm text-center border-t tracking-wide border-(--border) last:border-b whitespace-nowrap"
+                className="py-4 text-(--foreground) text-sm text-center border-t duration-200 transition-all tracking-wide hover:tracking-wider border-(--border) last:border-b whitespace-nowrap "
               >
                 {feature}
               </li>

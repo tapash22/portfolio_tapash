@@ -41,6 +41,9 @@ export type BlogType = {
   author: string;
   date: string;
   description: string;
+  prerequisites: string[];
+  installation: string;
+  usage: string;
   content: string;
   cover: string;
 };

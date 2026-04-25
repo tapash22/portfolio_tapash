@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { blogs } from "../storage/data/blog-data";
 import type { BlogType } from "../storage/type/data-type";
-import BlogCard from "../componants/card/BlogCard";
+import { BlogCard } from "../componants/card/BlogCard";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { Dialog } from "../componants/dialog/Dialog";
 
-export function Blog() {
+export default function Blog() {
   const [openDialog, setOpenDialog] = useState(false);
-  const [selected, setSelected] = useState<BlogType | null>(null);
+  const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
 
-  //show selected blog into dialog with details
-  const handleOpenDialog = (item: BlogType) => {
-    setSelected(item);
+  //show selectedBlog blog into dialog with details
+  const handleOpenDialog = (blog: BlogType) => {
+    setSelectedBlog(blog);
     setOpenDialog(true);
   };
 
@@ -21,9 +21,9 @@ export function Blog() {
   };
 
   return (
-    <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
+    <div className="w-full h-screen flex flex-col relative bg-(--background)">
       {/* main content */}
-      <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 ">
+      <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-center items-center">
           <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -42,7 +42,7 @@ export function Blog() {
             return (
               <BlogCard
                 key={blog.id}
-                item={blog}
+                blog={blog}
                 onClick={() => handleOpenDialog(blog)}
               />
             );
@@ -56,7 +56,9 @@ export function Blog() {
       <Dialog open={openDialog} onClose={closeDialog}>
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">{selected?.title}</h2>
+          <h2 className="text-2xl font-bold text-white">
+            {selectedBlog?.title}
+          </h2>
           <button onClick={closeDialog} className="cursor-pointer">
             <IoCloseCircleOutline size={30} className="text-white" />
           </button>
@@ -65,26 +67,100 @@ export function Blog() {
 
         {/* Body */}
         <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
-          <div className="w-full h-72 overflow-hidden my-2">
-            <img
-              src={selected?.cover}
-              className="w-full h-full object-cover rounded-md"
-            />
-          </div>
-          <p className="text-white/80 text-lg leading-7">
-            {selected?.description}
-          </p>
-          <div className="w-full h-auto px-10 py-3 flex justify-center items-center">
-            <div className="w-full h-auto p-4 ring-1 ring-(--border) flex justify-center items-center rounded-full bg-(--sidebar)">
-              <p className="text-lg font-medium tracking-wide text-(--foreground) w-full text-justify">
-                {selected?.content}
+          <article className="w-full px-4 py-10 ">
+            {/* --- Header Section --- */}
+            <div className="mb-8">
+              <h1 className="text-4xl font-bold text-(--foreground) mb-4">
+                {selectedBlog?.title}
+              </h1>
+              <p className="text-xl text-(--foreground) italic mb-6">
+                {selectedBlog?.subtitle}
+              </p>
+
+              <div className="flex items-center text-sm text-(--foreground)">
+                <span className="font-medium text-(--foreground)">
+                  By {selectedBlog?.author}
+                </span>
+                <span className="mx-2 h-4 border-l border-(--border)" />
+                <span>{selectedBlog?.date}</span>
+              </div>
+            </div>
+
+            {/* --- Cover Image --- */}
+            <div className="w-full h-auto rounded-2xl overflow-hidden bg-(--background)">
+              <img
+                src={selectedBlog?.cover}
+                alt={selectedBlog?.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+
+            {/* --- Content Body --- */}
+            <div className="prose prose-invert">
+              <p className="whitespace-pre-line leading-relaxed text-lg text-(--foreground)">
+                {selectedBlog?.content}
               </p>
             </div>
-          </div>
 
-          <p className="text-white/80 text-lg leading-7 text-justify">
-            {selected?.content}
-          </p>
+            <hr className="border-(--border) my-5" />
+
+            {/* --- Beginner's Guide Section --- */}
+            <section className="bg-muted/30 rounded-3xl p-8 border border-(--border) space-y-5">
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-(--foreground)">
+                🚀 Beginner's Guide
+              </h2>
+
+              {/* Prerequisites */}
+              <div className="mb-6">
+                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground) mb-3">
+                  Prerequisites
+                </h3>
+                <ul className="flex flex-col flex-wrap gap-2">
+                  {selectedBlog?.prerequisites.map((pkg, index) => (
+                    <li
+                      key={index}
+                      className="px-3 space-x-1  text-(--foreground) rounded-full text-sm"
+                    >
+                      <span className="font-bold text-sm">{index + 1}.</span>{" "}
+                      <span>{pkg}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Installation */}
+              <div className="space-y-3">
+                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground) ">
+                  Installation
+                </h3>
+                <div className="bg-black p-4 rounded-xl flex justify-between items-center group">
+                  <code className="text-green-400 font-mono text-sm">
+                    $ {selectedBlog?.installation}
+                  </code>
+                  <button className="text-xs opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 px-2 py-1 rounded">
+                    Copy
+                  </button>
+                </div>
+              </div>
+
+              {/* Usage Example */}
+              <div className="space-y-3">
+                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground)">
+                  Quick Start (Usage)
+                </h3>
+                <div className="bg-zinc-900 rounded-xl overflow-hidden border border-(--border)">
+                  <div className="bg-white/5 px-4 py-2 text-xs border-b border-(--border) text-(--foreground)">
+                    example-usage.js
+                  </div>
+                  <pre className="p-4 overflow-x-auto">
+                    <code className="text-(--muted) font-mono text-sm leading-6">
+                      {selectedBlog?.usage}
+                    </code>
+                  </pre>
+                </div>
+              </div>
+            </section>
+          </article>
         </div>
         {/* Body end*/}
       </Dialog>

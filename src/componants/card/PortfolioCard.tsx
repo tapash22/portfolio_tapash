@@ -12,38 +12,38 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
   const textRef = useRef<HTMLDivElement | null>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
-  const handleEnter = () => {
-    if (!overlayRef.current || !textRef.current) return;
+const handleEnter = () => {
+  if (!overlayRef.current || !textRef.current) return;
 
-    // kill previous timeline if exists (prevents stacking)
-    tl.current?.kill();
+  tl.current?.kill();
 
-    tl.current = gsap.timeline();
+  tl.current = gsap.timeline();
 
-    tl.current
-      // 🔻 Overlay from bottom
-      .to(overlayRef.current, {
-        y: 0,
+  tl.current
+    // Overlay
+    .to(overlayRef.current, {
+      x: 0,
+      duration: 0.5,
+      ease: "power3.out",
+    })
+
+    // 👉 ALL elements (title, description, button)
+    .fromTo(
+      textRef.current.children,
+      {
+        x: -40,
+        opacity: 0,
+      },
+      {
+        x: 0,
+        opacity: 1,
         duration: 0.5,
+        stagger: 0.12,   
         ease: "power.out",
-      })
-
-      .fromTo(
-        textRef.current.children,
-        {
-          x: -80,
-          opacity: 0,
-        },
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power2.out",
-        },
-        "-=0.2",
-      );
-  };
+      },
+      "-=0.3"
+    );
+};
 
   const handleLeave = () => {
     tl.current?.reverse();
@@ -65,11 +65,11 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
       <div
         ref={overlayRef}
         className="absolute left-0 top-0 w-full h-full bg-(--neon)/30 flex items-end p-5"
-        style={{ transform: "translateY(100%)" }}
+        style={{ transform: "translateX(-100%)" }}
       >
         <div
           ref={textRef}
-          className="space-y-3 p-3 bg-(--sidebar)/50 rounded-2xl"
+          className="space-y-3 p-5 bg-(--sidebar)/50 rounded-2xl"
         >
           <h1 className="text-xl font-semibold text-(--foreground)">
             {portfolio.title}
@@ -82,7 +82,7 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
 
           <button
             className="bg-(--button-color) text-(--foreground)
-            px-4 py-2 rounded-full text-sm tracking-wide z-10
+            px-5 py-2 rounded-full text-sm tracking-wide
             ring-2 ring-(--border) hover:opacity-70 transition"
             onClick={onClick}
           >

@@ -36,7 +36,7 @@ export default function Projects() {
       {/* main content */}
       <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
         {/* portfolio section */}
-        <div className="">
+        <div className="flex flex-col justify-center items-center w-full space-y-3">
           {/* header sectection */}
           <div className="w-full flex flex-col justify-center items-center">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -63,7 +63,7 @@ export default function Projects() {
         {/* portfolio section end*/}
 
         {/* pricing section */}
-        <div className="p-10">
+        <div className="flex flex-col justify-center items-center w-full space-y-3">
           {/* pricing header */}
           <div className="w-full flex flex-col justify-center items-center py-5">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -77,7 +77,7 @@ export default function Projects() {
           {/* pricing header end */}
 
           {/* pricing body */}
-          <div className="w-full h-auto px-10 py-5 flex flex-row justify-center items-center space-x-8">
+          <div className="w-full h-auto p-5 flex flex-row justify-center items-center space-x-8">
             {pricingPlans.map((pricingPlan) => {
               return (
                 <PricingCard key={pricingPlan.id} pricingPlan={pricingPlan} />
