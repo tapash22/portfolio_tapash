@@ -74,12 +74,15 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
           <h1 className="text-xl font-semibold text-(--foreground)">
             {portfolio.title}
           </h1>
-
-          <p className="text-sm text-(--foreground)">{portfolio.description}</p>
+          <p className="text-sm text-(--foreground)">
+            {portfolio.description.length > 50
+              ? `${portfolio.description.substring(0, 50)}...`
+              : portfolio.description}
+          </p>
 
           <button
             className="bg-(--button-color) text-(--foreground)
-            px-4 py-2 rounded-full text-sm tracking-wide
+            px-4 py-2 rounded-full text-sm tracking-wide z-10
             ring-2 ring-(--border) hover:opacity-70 transition"
             onClick={onClick}
           >
