@@ -48,6 +48,25 @@ export default function Projects() {
             />
           ))}
         </div>
+
+        {/* pricing header */}
+
+        <div className="w-full flex flex-col justify-center items-center">
+          <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
+            Our Pricing
+          </h1>
+
+          <h1 className="text-4xl font-bold tracking-wider leading-7 text-(--foreground)">
+            Pricing Table
+          </h1>
+        </div>
+        {/* pricing header end */}
+
+        {/* pricing body */}
+        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+
+        {/* pricing body end */}
+
         {/* body sectection end */}
       </div>
 

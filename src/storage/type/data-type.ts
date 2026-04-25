@@ -20,3 +20,32 @@ export interface ServiceType {
 }
 
 export type ServiceTypes = ServiceType[];
+
+// id: "basic",
+// title: "Basic",
+// price: "$499",
+// duration: "per project",
+// description:
+//   "Perfect for high-performance landing pages and personal portfolios.",
+// features: [
+//   "Responsive Single Page Design",
+//   "Advanced CSS/Tailwind Styling",
+//   "GSAP Entry-level Animations",
+//   "SEO Optimization",
+//   "3 Rounds of Revision",
+// ],
+// cta: "Start Project",
+// highlight: false,
+
+export interface PricingPlan {
+  id: string;
+  title: string;
+  price: number | string;
+  duration: string;
+  description: string;
+  features: string[];
+  cta: string;
+  highlight: boolean;
+}
+
+export type PricingPlans = PricingPlan[];
