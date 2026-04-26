@@ -12,20 +12,20 @@ export function BlogCard({ blog, onClick }: BlogCardProps) {
       onClick={onClick}
       className="cursor-pointer rounded-xl overflow-hidden ring-1 ring-(--border) group shadow-lg"
     >
-      <div className="w-full h-72 overflow-hidden">
+      <div className="w-full h-52 overflow-hidden">
         <img
           src={blog.cover}
           className="w-full h-full object-fit group-hover:scale-110 transition duration-500"
         />
       </div>
 
-      <div className="p-5 space-y-5 bg-(--background)">
-        <h2 className="text-xl font-medium text-(--foreground) tracking-wide">
+      <div className="p-5 space-y-3 bg-(--background)">
+        <h2 className="text-lg font-medium text-(--foreground) tracking-wide">
           {blog.subtitle}
         </h2>
 
         <div className="flex flex-row justify-start items-center space-x-3">
-          <div className="w-10 h-10 rounded-full ring-2 ring-(--border) p-1 bg-(--sidebar) flex justify-center items-center">
+          <div className="w-8 h-8 rounded-full ring-2 ring-(--border) p-1 bg-(--sidebar) flex justify-center items-center">
             <FaRegUser size={20} className="text-(--muted)" />
           </div>
 
