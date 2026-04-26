@@ -1,7 +1,6 @@
 import { protFolioDeatils, pricingPlans } from "../storage/data/portfolio-data";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { Dialog } from "../componants/dialog/Dialog";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
@@ -36,6 +35,7 @@ export default function Projects() {
       {/* main content */}
       <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
         {/* portfolio section */}
+
         <div className="flex flex-col justify-center items-center w-full space-y-3">
           {/* header sectection */}
           <div className="w-full flex flex-col justify-center items-center">
@@ -60,9 +60,11 @@ export default function Projects() {
             ))}
           </div>
         </div>
+
         {/* portfolio section end*/}
 
         {/* pricing section */}
+
         <div className="flex flex-col justify-center items-center w-full space-y-3">
           {/* pricing header */}
           <div className="w-full flex flex-col justify-center items-center py-5">
@@ -77,6 +79,7 @@ export default function Projects() {
           {/* pricing header end */}
 
           {/* pricing body */}
+
           <div className="w-full h-auto p-5 flex flex-row justify-center items-center space-x-8">
             {pricingPlans.map((pricingPlan) => {
               return (
@@ -84,24 +87,20 @@ export default function Projects() {
               );
             })}
           </div>
+
           {/* pricing body end */}
         </div>
 
         {/* pricing section end*/}
       </div>
+
       {/* main content end*/}
 
-      {/* dialog */}
-      <Dialog open={openDialog} onClose={closeDialog}>
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">{item?.title}</h2>
-          <button onClick={closeDialog} className="cursor-pointer">
-            <IoCloseCircleOutline size={30} className="text-white" />
-          </button>
-        </div>
+      {/* portfolio dialog view */}
 
-        {/* Body */}
+      <Dialog open={openDialog} onClose={closeDialog} title={item?.title}>
+        {/* Dialog Portfolio Body */}
+
         <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
           <div className="w-full h-72 overflow-hidden my-2">
             <img
@@ -144,8 +143,11 @@ export default function Projects() {
             {item?.brief}
           </p>
         </div>
+
+        {/* Dialog Portfolio Body end */}
       </Dialog>
-      {/* dialog end*/}
+
+      {/* portfolio dialog view end*/}
     </div>
   );
 }

@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full h-screen flex items-center relative  bg-(--background)">
+    <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
       {/* left sectection */}
       <div
         ref={boxRef}
@@ -47,7 +47,7 @@ export default function Home() {
 
       {/* right sectection */}
       <div
-        className="absolute left-0  w-full h-full flex justify-end items-cente p-3  z-0 
+        className="absolute left-0  w-full h-full flex justify-end items-cente p-3 z-0 
               bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-90"
       >
         <img src={image} className="object-cover  backdrop-brightness-90  " />

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { ServiceCard } from "../componants/card/ServiceCard";
 import { services } from "../storage/data/services";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import service1 from "../assets/images/services/service1.jpg";
 import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
@@ -49,17 +48,9 @@ export default function Experience() {
         {/* body sectection end */}
       </div>
 
-      {/* dialog view */}
-      <Dialog open={openDialog} onClose={closeDialog}>
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">{item?.title}</h2>
-          <button onClick={closeDialog} className="cursor-pointer">
-            <IoCloseCircleOutline size={30} className="text-white" />
-          </button>
-        </div>
-
-        {/* Body */}
+      {/* service dialog view */}
+      <Dialog open={openDialog} onClose={closeDialog} title={item?.title}>
+        {/*Dialog service Body */}
         <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
           <div className="w-full h-72 overflow-hidden">
             <img
@@ -85,8 +76,9 @@ export default function Experience() {
             {item?.brief}
           </p>
         </div>
+        {/* Dialog service Body end */}
       </Dialog>
-      {/* dialog view end*/}
+      {/* service dialog view end*/}
     </div>
   );
 }

@@ -68,18 +68,17 @@ export function Layout() {
     <div className="h-screen w-full flex overflow-hidden bg-(--background)">
       <SideBar handleNavigation={handleNavigation} />
 
-      <div
-        ref={scrollRef}
-        className="flex-1 flex-col relative overflow-y-auto scrollbar-thin "
-      >
-        <div ref={pageRef} className="w-full min-h-full">
-          <Outlet
-          // context={{
-          //   handleNavigation,
-          // }}
-          />
+      {/* RIGHT SIDE */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden">
+        {/* PAGE AREA (NO NATIVE SCROLL CONFLICT) */}
+        <div ref={scrollRef} className="flex-1 overflow-hidden">
+          <div ref={pageRef} className="w-full h-full">
+            <Outlet />
+          </div>
         </div>
-        <div className="absolute bottom-0 right-0 w-full h-auto flex-1 ">
+
+        {/* FOOTER */}
+        <div className="shrink-0 w-full">
           <SocialMediaList
             socailMediaItems={socialMediaLinkList}
             listDirection="row"

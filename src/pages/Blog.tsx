@@ -2,7 +2,6 @@ import { useState } from "react";
 import { blogs } from "../storage/data/blog-data";
 import type { BlogType } from "../storage/type/data-type";
 import { BlogCard } from "../componants/card/BlogCard";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import { Dialog } from "../componants/dialog/Dialog";
 
 export default function Blog() {
@@ -52,20 +51,13 @@ export default function Blog() {
       </div>
       {/* main content end*/}
 
-      {/* dialog */}
-      <Dialog open={openDialog} onClose={closeDialog}>
-        {/* Header */}
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-bold text-white">
-            {selectedBlog?.title}
-          </h2>
-          <button onClick={closeDialog} className="cursor-pointer">
-            <IoCloseCircleOutline size={30} className="text-white" />
-          </button>
-        </div>
-        {/* Header end*/}
-
-        {/* Body */}
+      {/* Dialog */}
+      <Dialog
+        open={openDialog}
+        onClose={closeDialog}
+        title={selectedBlog?.title}
+      >
+        {/* Blog Dalog Body */}
         <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
           <article className="w-full px-4 py-10 ">
             {/* --- Header Section --- */}
@@ -162,9 +154,9 @@ export default function Blog() {
             </section>
           </article>
         </div>
-        {/* Body end*/}
+        {/* Blog Dalog Body end*/}
       </Dialog>
-      {/* dialog end*/}
+      {/* Dialog end*/}
     </div>
   );
 }

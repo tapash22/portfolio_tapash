@@ -1,13 +1,24 @@
 import { useEffect, useRef } from "react";
+import { IoCloseCircleOutline } from "react-icons/io5";
 import gsap from "gsap";
 
 type DialogProps = {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  title?: string;
+  showFooter?: boolean;
+  footerContent?: React.ReactNode;
 };
 
-export function Dialog({ open, onClose, children }: DialogProps) {
+export function Dialog({
+  open,
+  onClose,
+  children,
+  title = "Dialog Title",
+  showFooter = false,
+  footerContent,
+}: DialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -63,13 +74,52 @@ export function Dialog({ open, onClose, children }: DialogProps) {
         className="absolute inset-0 bg-black/30 backdrop-blur-md"
         onClick={onClose}
       />
-
       {/* Dialog */}
       <div
         ref={dialogRef}
-        className="relative w-2/3 h-3/4 p-7 flex flex-col space-y-3 backdrop-blur-xl ring-2 ring-(--border) rounded-xl shadow-xl"
+        className="relative w-2/3 h-3/4 flex flex-col space-y-3 backdrop-blur-xl ring-2 ring-(--border) rounded-xl shadow-xl"
       >
-        {children}
+        {/*  HEADER */}
+        <div className="w-full border-b border-(--border) p-5 flex items-center justify-between">
+          {/* dialog title */}
+          <h2 className="text-2xl font-bold text-(--foreground) tracking-wide">
+            {title.charAt(0).toUpperCase() + title.slice(1)}
+          </h2>
+          {/* dialog title end*/}
+
+          {/* dialog close icon */}
+          <button onClick={onClose} className="cursor-pointer">
+            <IoCloseCircleOutline size={30} className="text-white" />
+          </button>
+          {/* dialog close icon end*/}
+        </div>
+        {/*  HEADER end*/}
+
+        {/* 🔹 BODY */}
+        <div className="flex-1 p-5 overflow-y-auto scrollbar-thin">
+          {children}
+        </div>
+        {/* BODY end */}
+
+        {/*  FOOTER (isHave) */}
+        {showFooter && (
+          <div className="p-5 border-t border-(--border) flex justify-end gap-3">
+            {footerContent ?? (
+              <>
+                <button
+                  onClick={onClose}
+                  className="px-4 py-2 rounded-lg border"
+                >
+                  Cancel
+                </button>
+                <button className="px-4 py-2 rounded-lg bg-blue-500 text-white">
+                  Save
+                </button>
+              </>
+            )}
+          </div>
+        )}
+        {/*  FOOTER end*/}
       </div>
     </div>
   );
