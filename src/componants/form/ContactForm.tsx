@@ -50,9 +50,13 @@ export function ContactForm() {
     <>
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col space-y-4 w-full h-full max-w-4xl bg-(--background) p-8 my-2 opacity-90 "
+        className="flex flex-col space-y-0.5 sm:space-y-0.5 md:space-y-2 w-full h-full max-w-4xl bg-(--background) p-2 sm:p-2 md:p-8 my-2 opacity-90 "
       >
-        <div className="flex justify-between items-center w-full h-auto p-2 space-x-3 ">
+        <div
+          className="flex flex-col md:flex-row 
+          items-center justify-center w-full h-auto p-2 
+          gap-4 md:gap-4"
+        >
           <input
             type="text"
             name="firstName"
@@ -115,9 +119,9 @@ export function ContactForm() {
           <button
             type="submit"
             className="
-            bg-(--button-color) px-5 py-3 
-            rounded-xl text-(--foreground) shadow-none hover:shadow-(--box-shadow) 
-            transition text-sm font-light tracking-widest uppercase"
+            bg-(--button-color) px-8 sm:px-8 md:px-5 py-3 
+            rounded-lg text-(--foreground) shadow-none hover:shadow-(--box-shadow) 
+            transition text-sm font-light tracking-wider uppercase"
           >
             Send Message
           </button>

@@ -67,59 +67,89 @@ export function Dialog({
   return (
     <div
       ref={wrapperRef}
-      className="absolute top-0 left-0 w-full h-full flex justify-center items-center pointer-events-none opacity-0"
+      className="fixed inset-0 flex items-center justify-center pointer-events-none opacity-0"
     >
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/30 backdrop-blur-md"
         onClick={onClose}
       />
+
       {/* Dialog */}
       <div
         ref={dialogRef}
-        className="relative w-2/3 h-3/4 flex flex-col space-y-3 backdrop-blur-xl ring-2 ring-(--border) rounded-xl shadow-xl"
+        className="
+          relative
+          w-[90%] sm:w-[90%] md:w-2/3
+          max-h-[65vh] md:max-h-[75vh]
+          flex flex-col
+          backdrop-blur-xl
+          ring-2 ring-(--border)
+          rounded-lg md:rounded-xl
+          shadow-xl
+          overflow-hidden
+        "
       >
-        {/*  HEADER */}
-        <div className="w-full border-b border-(--border) p-5 flex items-center justify-between">
-          {/* dialog title */}
-          <h2 className="text-2xl font-bold text-(--foreground) tracking-wide">
+        {/* HEADER (SAFE TOP AREA FIX) */}
+        <div
+          className="
+            w-full border-b border-(--border)
+            pt-2.5 pb-3 sm:pt-4 sm:pb-4 md:p-5
+            px-4 sm:px-5
+            flex items-center justify-between
+          "
+        >
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-(--foreground) tracking-wide">
             {title.charAt(0).toUpperCase() + title.slice(1)}
           </h2>
-          {/* dialog title end*/}
 
-          {/* dialog close icon */}
-          <button onClick={onClose} className="cursor-pointer">
-            <IoCloseCircleOutline size={30} className="text-white" />
+          <button
+            onClick={onClose}
+            className="p-1 sm:p-2 hover:scale-110 transition"
+          >
+            <IoCloseCircleOutline
+              size={24}
+              className="sm:w-7 sm:h-7 md:w-7.5 md:h-7.5 text-(--foreground)"
+            />
           </button>
-          {/* dialog close icon end*/}
         </div>
-        {/*  HEADER end*/}
 
-        {/* 🔹 BODY */}
-        <div className="flex-1 p-5 overflow-y-auto scrollbar-thin">
+        {/* BODY (SCROLL ONLY WHEN NEEDED) */}
+        <div
+          className="
+            flex-1 min-h-0
+            px-3 py-3 sm:px-4 sm:py-4 md:p-5
+            overflow-y-auto scrollbar-thin
+          "
+        >
           {children}
         </div>
-        {/* BODY end */}
 
-        {/*  FOOTER (isHave) */}
+        {/* FOOTER */}
         {showFooter && (
-          <div className="p-5 border-t border-(--border) flex justify-end gap-3">
+          <div
+            className="
+              px-3 py-3 sm:px-4 sm:py-4 md:p-5
+              border-t border-(--border)
+              flex flex-col sm:flex-row
+              justify-end gap-2 sm:gap-3
+            "
+          >
             {footerContent ?? (
               <>
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 rounded-lg border"
+                  className="w-full sm:w-auto px-4 py-2 rounded-lg border"
                 >
                   Cancel
                 </button>
-                <button className="px-4 py-2 rounded-lg bg-blue-500 text-white">
+                <button className="w-full sm:w-auto px-4 py-2 rounded-lg bg-blue-500 text-white">
                   Save
                 </button>
               </>
             )}
           </div>
         )}
-        {/*  FOOTER end*/}
       </div>
     </div>
   );

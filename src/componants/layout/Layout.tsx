@@ -71,7 +71,7 @@ export function Layout() {
       {/* RIGHT SIDE */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
         {/* PAGE AREA (NO NATIVE SCROLL CONFLICT) */}
-        <div ref={scrollRef} className="flex-1 overflow-hidden">
+        <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-thin">
           <div ref={pageRef} className="w-full h-full">
             <Outlet />
           </div>

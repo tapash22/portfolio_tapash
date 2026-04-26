@@ -10,25 +10,48 @@ export default function About() {
     console.log("click");
   };
   return (
-    <div className="w-full h-screen flex items-center bg-(--sidebar)">
+    <div
+      className="w-full min-h-screen flex flex-col sm:flex-col md:flex-row 
+         justify-start sm:justify-start md:justify-center items-start sm:items-start md:items-center 
+         relative bg-(--background) scrollbar-thin py-3 "
+    >
       {/* left sectection */}
-      <div className="w-1/2 h-auto p-8 flex justify-center items-center   ">
+      <div
+        className="w-full sm:w-full md:w-1/2 h-auto p-1 sm:p-1 md:p-8
+                     flex justify-center items-center "
+      >
         <img
           src={image}
-          className="w-fit h-auto rounded-xl shadow-(--shadow) scale-75 "
+          className="w-full sm:w-full md:w-fit h-auto rounded-xl shadow-(--shadow) scale-75 "
         />
       </div>
       {/* left sectection end */}
 
       {/* right sectection */}
-      <div className="w-1/2 h-auto p-5 flex flex-col justify-start space-y-5">
-        <div className="w-14 h-14 rounded-lg p-2 flex justify-center items-center bg-(--box) ">
+      <div
+        className="
+                  w-full sm:w-full md:w-1/2 h-full px-10 sm:px-10 pb-10 sm:pb-10 md:pb-0 
+                  md:px-0 md:p-5 flex flex-col justify-center items-center sm:items-center 
+                  md:items-start sm:justify-center md:justify-start space-y-3 "
+      >
+        <div
+          className="w-14 h-14 rounded-lg p-2 
+                        flex justify-center items-center bg-(--box) "
+        >
           <PiDesktop size={40} />
         </div>
-        <h1 className="text-3xl font-bold tracking-wide text-(--foreground) text-wrap w-2/3 ">
+        <h1
+          className="text-2xl sm:text-2xl md:text-3xl 
+                       font-medium sm:font-medium md:font-bold tracking-wide 
+                       text-(--foreground) text-wrap w-full sm:w-full md:w-2/3 
+                       text-center sm:text-center md:text-start leading-8 "
+        >
           Professional Frontend Developer & Creative UI Engineer
         </h1>
-        <p className="text-lg font-light text-(--muted) tracking-wide text-wrap ">
+        <p
+          className="text-lg font-light text-(--foreground) tracking-wide text-wrap 
+                      text-center sm:text-center md:text-start leading-7  "
+        >
           Discover top web design and development companies tailored to your
           business needs. Our carefully curated directory features highly
           reviewed firms specializing in modern, scalable, and user-focused
@@ -42,13 +65,18 @@ export default function About() {
           and reliable customer support.
         </p>
 
-        <p className="text-xl font-light tracking-wider text-(--foreground) ">
-          Frontend Developer of Anwar Technology
+        <p
+          className="text-xl font-medium tracking-wider text-(--foreground) 
+                      border-b border-(--border) leading-10 "
+        >
+          Frontend Developer at Anwar Technology
         </p>
 
         <button
           onClick={openDialog}
-          className="bg-(--button-color) text-(--foreground) font-normal tracking-wider uppercase ring-1 ring-(--border) w-1/4 p-2 my-2 rounded-full "
+          className="bg-(--button-color) text-sm text-(--foreground) 
+                    font-normal tracking-wider uppercase ring-1 ring-(--border) 
+                    w-3/4 sm:w-3/4 md:w-1/4 p-2 my-2 rounded-full "
         >
           More About
         </button>

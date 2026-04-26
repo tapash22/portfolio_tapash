@@ -22,8 +22,8 @@ export default function Experience() {
   };
 
   return (
-    <div className="w-full h-screen flex items-center relative overflow-hidden bg-(--background)">
-      <div className="p-16 flex flex-col justify-center items-center w-full h-full space-y-5 ">
+    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-3 ">
+      <div className="p-12 sm:p-12 md:p-16 flex flex-col justify-center items-center w-full h-full space-y-3 ">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-center items-center">
           <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -36,7 +36,7 @@ export default function Experience() {
         {/* header sectection end */}
 
         {/* body sectection */}
-        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
+        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((info) => (
             <ServiceCard
               key={info.id}

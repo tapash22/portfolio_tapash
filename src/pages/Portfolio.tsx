@@ -31,9 +31,9 @@ export default function Projects() {
   }, [openDialog]);
 
   return (
-    <div className="w-full h-screen relative flex flex-col bg-(--background)">
+    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-3 ">
       {/* main content */}
-      <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
+      <div className="flex-1 space-y-3 sm:space-y-3 md:space-y-8 p-12 sm:p-12 md:p-16 overflow-y-auto scrollbar-thin">
         {/* portfolio section */}
 
         <div className="flex flex-col justify-center items-center w-full space-y-3">
@@ -80,7 +80,11 @@ export default function Projects() {
 
           {/* pricing body */}
 
-          <div className="w-full h-auto p-5 flex flex-row justify-center items-center space-x-8">
+          <div
+            className="w-full p-0 md:p-5 flex flex-col md:flex-row 
+            justify-center items-center 
+            gap-2 sm:gap-3 md:gap-8"
+          >
             {pricingPlans.map((pricingPlan) => {
               return (
                 <PricingCard key={pricingPlan.id} pricingPlan={pricingPlan} />

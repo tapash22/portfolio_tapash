@@ -20,9 +20,9 @@ export default function Blog() {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col relative bg-(--background)">
+    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-3 ">
       {/* main content */}
-      <div className="flex-1 space-y-10 p-16 overflow-y-auto scrollbar-thin">
+      <div className="p-12 sm:p-12 md:p-16 flex flex-col justify-center items-center w-full h-full space-y-3 ">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-center items-center">
           <h1 className="text-sm font-normal text-(--foreground) tracking-wide">

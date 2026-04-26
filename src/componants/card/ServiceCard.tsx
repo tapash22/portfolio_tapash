@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import gsap from "gsap";
 import type { ServiceType } from "../../storage/type/data-type";
+import type { IconType } from "react-icons";
 interface ServiceCardProps {
   item: ServiceType;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -31,11 +32,11 @@ export function ServiceCard({ item, onClick }: ServiceCardProps) {
     animation.current?.pause();
   };
 
-  const Icon = item.icon;
+  const Icon = item?.icon as IconType;
 
   return (
     <div
-      className="flex flex-col p-8 bg-(--sidebar) w-full space-y-3 opacity-85"
+      className="flex flex-col p-8 bg-(--sidebar) w-full space-y-3 opacity-85 rounded-xl sm:rounded-xl md:rounded-none"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >

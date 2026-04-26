@@ -12,38 +12,38 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
   const textRef = useRef<HTMLDivElement | null>(null);
   const tl = useRef<gsap.core.Timeline | null>(null);
 
-const handleEnter = () => {
-  if (!overlayRef.current || !textRef.current) return;
+  const handleEnter = () => {
+    if (!overlayRef.current || !textRef.current) return;
 
-  tl.current?.kill();
+    tl.current?.kill();
 
-  tl.current = gsap.timeline();
+    tl.current = gsap.timeline();
 
-  tl.current
-    // Overlay
-    .to(overlayRef.current, {
-      x: 0,
-      duration: 0.5,
-      ease: "power3.out",
-    })
-
-    // 👉 ALL elements (title, description, button)
-    .fromTo(
-      textRef.current.children,
-      {
-        x: -40,
-        opacity: 0,
-      },
-      {
+    tl.current
+      // Overlay
+      .to(overlayRef.current, {
         x: 0,
-        opacity: 1,
         duration: 0.5,
-        stagger: 0.12,   
-        ease: "power.out",
-      },
-      "-=0.3"
-    );
-};
+        ease: "power3.out",
+      })
+
+      // 👉 ALL elements (title, description, button)
+      .fromTo(
+        textRef.current.children,
+        {
+          x: -40,
+          opacity: 0,
+        },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.12,
+          ease: "power.out",
+        },
+        "-=0.3",
+      );
+  };
 
   const handleLeave = () => {
     tl.current?.reverse();
@@ -64,12 +64,12 @@ const handleEnter = () => {
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="absolute left-0 top-0 w-full h-full bg-(--neon)/30 flex items-end p-5"
+        className="absolute left-0 top-0 w-full h-full bg-(--neon)/30 flex items-end p-10 sm:p-10 md:p-5"
         style={{ transform: "translateX(-100%)" }}
       >
         <div
           ref={textRef}
-          className="space-y-3 p-5 bg-(--sidebar)/50 rounded-2xl"
+          className="space-y-3 p-5 bg-(--sidebar)/50 rounded-lg sm:rounded-lg md:rounded-2xl"
         >
           <h1 className="text-xl font-semibold text-(--foreground)">
             {portfolio.title}
@@ -82,7 +82,7 @@ const handleEnter = () => {
 
           <button
             className="bg-(--button-color) text-(--foreground)
-            px-5 py-2 rounded-full text-sm tracking-wide
+            px-8 sm:px-8 md:px-5 py-2 rounded-full text-sm tracking-wide
             ring-2 ring-(--border) hover:opacity-70 transition"
             onClick={onClick}
           >
