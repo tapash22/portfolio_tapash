@@ -51,25 +51,26 @@ export default function Blog() {
       </div>
       {/* main content end*/}
 
-      {/* Dialog */}
+      {/* Blog Dialog view */}
       <Dialog
         open={openDialog}
         onClose={closeDialog}
         title={selectedBlog?.title}
       >
-        {/* Blog Dalog Body */}
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
-          <article className="w-full px-4 py-10 ">
+        {/* Dialog Blog Body */}
+
+        <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-2  scrollbar-thin">
+          <article className="w-full p-3 ">
             {/* --- Header Section --- */}
-            <div className="mb-8">
-              <h1 className="text-4xl font-bold text-(--foreground) mb-4">
+            <div className="space-y-3">
+              <h1 className="text-2xl tracking-wide font-bold text-(--foreground) ">
                 {selectedBlog?.title}
               </h1>
-              <p className="text-xl text-(--foreground) italic mb-6">
+              <p className="text-xl text-(--foreground) italic ">
                 {selectedBlog?.subtitle}
               </p>
 
-              <div className="flex items-center text-sm text-(--foreground)">
+              <div className="flex items-center text-sm text-(--foreground) pb-3">
                 <span className="font-medium text-(--foreground)">
                   By {selectedBlog?.author}
                 </span>
@@ -88,18 +89,18 @@ export default function Blog() {
             </div>
 
             {/* --- Content Body --- */}
-            <div className="prose prose-invert">
-              <p className="whitespace-pre-line leading-relaxed text-lg text-(--foreground)">
+            <div className="prose prose-invert p-3 ">
+              <hr className="border-(--border) " />
+              <p className="whitespace-pre-line leading-relaxed text-lg text-(--foreground) ">
                 {selectedBlog?.content}
               </p>
+              <hr className="border-(--border) my-5" />
             </div>
-
-            <hr className="border-(--border) my-5" />
 
             {/* --- Beginner's Guide Section --- */}
             <section className="bg-muted/30 rounded-3xl p-8 border border-(--border) space-y-5">
               <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-(--foreground)">
-                🚀 Beginner's Guide
+                Beginner's Guide
               </h2>
 
               {/* Prerequisites */}
@@ -154,9 +155,11 @@ export default function Blog() {
             </section>
           </article>
         </div>
-        {/* Blog Dalog Body end*/}
+
+        {/* Dialog Blog Body end*/}
       </Dialog>
-      {/* Dialog end*/}
+
+      {/* Blog Dialog view end*/}
     </div>
   );
 }
