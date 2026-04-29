@@ -23,7 +23,7 @@ export default function Service() {
 
   return (
     <div className="w-full min-h-full flex items-start relative bg-(--background)">
-      <div className="p-8 sm:p-8 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-3">
+      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-3">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-start items-center space-y-2">
           <h1 className="text-sm font-normal text-(--foreground) tracking-wide">

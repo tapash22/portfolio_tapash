@@ -25,29 +25,30 @@ export default function Contact() {
   ];
 
   return (
-    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-5 ">
-      <div className="px-12 sm:px-12 md:px-16  flex flex-col justify-center items-center w-full h-full space-y-5 ">
-        <div className="w-full h-full px-16 py-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="w-full min-h-full flex items-start relative bg-(--background)">
+      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-3 ">
+        <div className="w-full h-full p-3 sm:p-3 md:px-16 md:py-5  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {contactInfo.map((info) => {
             const Icon: IconType = info.icon;
             return (
               <div
                 key={info.type}
-                className="flex flex-col justify-center items-center w-full bg-(--sidebar) rounded-2xl sm:rounded-2xl  lg:rounded-none xl:rounded-none  shadow-(--shadow-footer)"
+                className="w-full flex flex-col justify-center items-center 
+                           bg-(--sidebar) rounded-lg sm:rounded-lg md:rounded-lg
+                           ring-1 ring-(--border) 
+                           shadow-(--shadow-footer) py-4 space-y-2"
               >
-                <div className="p-5">
-                  <div className="w-16 h-16 rounded-full flex justify-center items-center p-5 ring-2 ring-(--border) shadow-(--shadow-footer)">
-                    <Icon size={24} className="text-(--foreground)" />
-                  </div>
+                <div className="w-16 h-16 rounded-full flex justify-center items-center ring-2 ring-(--border) shadow-(--shadow) opacity-80">
+                  <Icon size={30} className="text-(--foreground)" />
                 </div>
-                <h3 className="text-2xl font-medium tracking-wider text-(--foreground) border-b-2 w-full text-center border-(--border) leading-12">
+                <h3 className="text-lg sm:text-lg md:text-xl font-medium tracking-wider text-(--foreground) border-b-2 w-full text-center border-(--border) leading-8 md:leading-10">
                   {info.label}
                 </h3>
                 <ul className="list-none flex justify-center items-center">
                   {info.values.map((value, index) => (
                     <li
                       key={index}
-                      className="text-lg sm:text-sm md:text-lg font-normal text-(--foreground) flex justify-center text-center tracking-wide p-5 text-wrap md:whitespace-nowrap"
+                      className="text-sm sm:text-sm md:text-lg font-medium text-(--foreground) flex justify-center text-center tracking-wider p-1 md:p-2 text-wrap whitespace-nowrap"
                     >
                       {value}
                     </li>
@@ -58,15 +59,28 @@ export default function Contact() {
           })}
         </div>
 
-        <div className="w-full h-full flex justify-center items-center p-3 sm:p-3 md:p-16 ">
+        <div
+          className="w-full h-full flex justify-center items-center 
+                        p-1 sm:p-1 md:p-16 "
+        >
           {/* form block */}
-          <div className="bg-(--sidebar) space-y-3 rounded-xl sm:rounded-xl md:rounded-none w-full h-full p-10 flex flex-col justify-center items-center">
+          <div
+            className=" w-full h-full p-3 sm:p-3 md:p-10 flex flex-col 
+                        justify-center items-center bg-(--sidebar) 
+                        space-y-2 sm:space-y-2 md:space-y-5 
+                        rounded-lg 
+                        "
+          >
             <div className="w-full flex flex-col justify-center items-center">
               <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
                 Contact
               </h1>
 
-              <h1 className="text-xl sm:text-xl md:text-4xl font-medium sm:font-medium md:font-bold tracking-wider leading-7 text-(--foreground)">
+              <h1
+                className="text-xl sm:text-xl md:text-4xl 
+                             font-medium sm:font-medium md:font-bold 
+                             tracking-wider leading-7 text-(--foreground)"
+              >
                 Have Any Question?
               </h1>
             </div>
