@@ -19,10 +19,20 @@ export default function Home() {
       const mm = gsap.matchMedia();
 
       mm.add("(max-width: 768px)", () => {
-        gsap.fromTo(
-          boxRef.current,
-          { opacity: 0, x: -40 },
-          { opacity: 1, x: 0, duration: 1, ease: "power3.out" },
+        const el = boxRef.current;
+
+        const tl = gsap.timeline();
+
+        tl.fromTo(
+          el.children,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+          },
         );
       });
 
@@ -30,7 +40,7 @@ export default function Home() {
         gsap.fromTo(
           boxRef.current,
           { opacity: 0, x: -100 },
-          { opacity: 1, x: 200, duration: 1, ease: "power3.out" },
+          { opacity: 1, x: 100, duration: 1, ease: "power3.out" },
         );
       });
     });
@@ -54,21 +64,21 @@ export default function Home() {
         ref={boxRef}
         className="
         z-10
-        w-full md:w-1/2
+        w-full md:w-5/12
         flex flex-col
         justify-end sm:justify-end md:justify-start
         items-center  md:items-start
         space-y-1 sm:space-y-1 md:space-y-5
         px-1 sm:px-1 md:px-5
-        py-3 md:py-0
-        opacity-50
+        py-10 md:py-0
+        opacity-100
     "
       >
-        <h1 className="text-xl sm:text-2xl font-medium text-(--foreground) tracking-wide opacity-90">
+        <h1 className="text-2xl sm:text-2xl font-bold text-(--foreground) tracking-wider opacity-80">
           I am Tapash Paul
         </h1>
 
-        <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold tracking-wider text-(--foreground)">
+        <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold tracking-wide text-(--foreground)">
           Front End Developer
         </h1>
 
@@ -100,8 +110,8 @@ export default function Home() {
       <div
         className="
       absolute md:static
-inset-0 md:inset-auto
-      w-full md:w-1/2
+      inset-0 md:inset-auto
+      w-full md:w-7/12
       h-full
       flex justify-end md:justify-start items-start
       z-0
@@ -112,7 +122,7 @@ inset-0 md:inset-auto
           className="
         w-[120%] sm:w-full md:w-auto
         max-w-none md:max-w-full
-        md:object-contain
+        md:object-cover
         md:opacity-70
         md:scale-100
       "
@@ -128,9 +138,6 @@ inset-0 md:inset-auto
     "
         />
       </div>
-
-      {/* MOBILE DARK OVERLAY FOR FOCUS */}
-      <div className="absolute inset-0 bg-black/30 md:hidden" />
     </div>
   );
 }
