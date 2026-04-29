@@ -36,30 +36,30 @@ export function ServiceCard({ item, onClick }: ServiceCardProps) {
 
   return (
     <div
-      className="flex flex-col p-8 bg-(--sidebar) w-full space-y-3 opacity-85 rounded-xl sm:rounded-xl md:rounded-none"
+      className="flex flex-col p-5 sm:p-5 md:p-8 bg-(--sidebar) w-full space-y-3 opacity-85 rounded-xl sm:rounded-xl md:rounded-none"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
       {/* ICON + ORBIT */}
       <div
-        className="relative w-24 h-24 rounded-full flex justify-center items-center 
+        className="relative w-16 h-16 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full flex justify-center items-center 
                       ring-1 ring-(--muted)"
       >
-        <Icon size={40} className="text-(--foreground) " />
+        <Icon className="text-(--foreground) text-4xl sm:text-4xl md:text-4xl " />
 
         <div
           ref={orbitRef}
           className="absolute w-full h-full flex justify-center items-center"
         >
           {/* DOT 1 */}
-          <span className="absolute w-4 h-4 bg-(--muted) rounded-full -top-2"></span>
+          <span className="absolute w-2 h-2 md:w-4 md:h-4 bg-(--muted) rounded-full -top-1 sm:-top-1 md:-top-2"></span>
 
           {/* DOT 2 (OPPOSITE) */}
-          <span className="absolute w-4 h-4 bg-(--muted) rounded-full -bottom-2"></span>
+          <span className="absolute w-2 h-2 md:w-4 md:h-4 bg-(--muted) rounded-full -bottom-1 sm:-bottom-1 md:-bottom-2"></span>
         </div>
       </div>
 
-      <div className="space-y-5">
+      <div className="space-y-4">
         <h3 className="text-xl font-bold tracking-wide text-(--muted)">
           {item.title}
         </h3>
@@ -68,7 +68,7 @@ export function ServiceCard({ item, onClick }: ServiceCardProps) {
         </p>
         <button
           className="bg-(--button-color) text-(--foreground) text-sm tracking-wider 
-                            ring-2 ring-(--border) w-1/3 py-2 rounded-full uppercase z-10
+                            ring-2 ring-(--border) w-full sm:w-full md:w-1/3 py-1 sm:py-1 md:py-2 rounded-full uppercase z-10
                             hover:opacity-60 cursor-pointer"
           onClick={onClick}
         >

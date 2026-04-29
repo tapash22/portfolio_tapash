@@ -31,12 +31,12 @@ export default function Projects() {
   }, [openDialog]);
 
   return (
-    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-3 ">
+    <div className="w-full h-full flex items-start relative overflow-y-auto scrollbar-thin bg-(--background)">
       {/* main content */}
-      <div className="flex-1 space-y-3 sm:space-y-3 md:space-y-8 p-12 sm:p-12 md:p-16 overflow-y-auto scrollbar-thin">
+      <div className="p-8 sm:p-8 md:p-16 flex flex-col justify-center items-center w-full h-full space-y-5">
         {/* portfolio section */}
 
-        <div className="flex flex-col justify-center items-center w-full space-y-3">
+        <div className="flex flex-col justify-start items-center w-full h-auto space-y-3">
           {/* header sectection */}
           <div className="w-full flex flex-col justify-center items-center">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -67,7 +67,7 @@ export default function Projects() {
 
         <div className="flex flex-col justify-center items-center w-full space-y-3">
           {/* pricing header */}
-          <div className="w-full flex flex-col justify-center items-center py-5">
+          <div className="w-full flex flex-col justify-center items-center ">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
               Our Pricing
             </h1>

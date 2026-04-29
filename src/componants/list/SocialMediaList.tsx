@@ -72,7 +72,7 @@ export function SocialMediaList({
   const resolvedIconColor = resolveColor(iconColor);
   return (
     <div
-      className="w-full p-2 flex justify-center items-center bg-(--sidebar)/50 backdrop-blur-lg shadow-(--footer-shadow)"
+      className="w-full p-0 md:p-2 flex justify-center items-center bg-(--sidebar)/50 backdrop-blur-lg shadow-(--footer-shadow)"
       style={{ background: resolvedBackground }}
     >
       {socailMediaItems && socailMediaItems?.length > 0 && (
@@ -80,7 +80,7 @@ export function SocialMediaList({
           ref={listRef}
           className={`flex ${
             listDirection === "col" ? "flex-col" : "flex-row"
-          } w-auto h-full p-2 space-x-1`}
+          } w-auto h-full p-0 md:p-2 space-x-1`}
         >
           {socailMediaItems.map((item, index) => {
             //declear icon type

@@ -23,15 +23,18 @@ export function BlogCard({ blog, onClick }: BlogCardProps) {
         <h2 className="text-lg font-medium text-(--foreground) tracking-wide">
           {blog.subtitle}
         </h2>
+        <div className="flex flex-col sm:flex-col md:flex-row justify-start items-start md:items-center space-x-0 md:space-x-3  space-y-2 md:space-y-0 w-full">
+          <div className="flex flex-row justify-start items-center space-x-2  md:border-r border-(--foreground)">
+            <div className="w-8 h-8 rounded-full ring-2 ring-(--border) p-1 bg-(--sidebar) flex justify-center items-center">
+              <FaRegUser size={20} className="text-(--muted)" />
+            </div>
 
-        <div className="flex flex-row justify-start items-center space-x-3">
-          <div className="w-8 h-8 rounded-full ring-2 ring-(--border) p-1 bg-(--sidebar) flex justify-center items-center">
-            <FaRegUser size={20} className="text-(--muted)" />
+            <p className="flex items-center text-sm text-(--foreground)/70 whitespace-nowrap">
+              By {blog.author}
+              <span className="mx-2 h-4 " />
+            </p>
           </div>
-
-          <p className="flex items-center text-sm text-(--foreground)/70">
-            By {blog.author}
-            <span className="mx-2 h-4 border-l border-(--foreground)" />
+          <p className="text-sm font-light text-(--foreground) tracking-wider">
             {blog.date}
           </p>
         </div>

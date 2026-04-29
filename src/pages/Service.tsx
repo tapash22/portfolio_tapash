@@ -7,7 +7,7 @@ import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
 import { Dialog } from "../componants/dialog/Dialog";
 
-export default function Experience() {
+export default function Service() {
   const [openDialog, setOpenDialog] = useState(false);
   const [item, setItem] = useState<ServiceType | null>(null);
 
@@ -22,10 +22,10 @@ export default function Experience() {
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center relative bg-(--background) scrollbar-thin py-3 ">
-      <div className="p-12 sm:p-12 md:p-16 flex flex-col justify-center items-center w-full h-full space-y-3 ">
+    <div className="w-full h-full flex items-start relative overflow-y-auto scrollbar-thin bg-(--background)">
+      <div className="p-8 sm:p-8 md:p-16 flex flex-col justify-center items-center w-full h-full space-y-3">
         {/* header sectection */}
-        <div className="w-full flex flex-col justify-center items-center">
+        <div className="w-full flex flex-col justify-start items-center space-y-2">
           <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
             What I am Expert In
           </h1>
@@ -36,7 +36,7 @@ export default function Experience() {
         {/* header sectection end */}
 
         {/* body sectection */}
-        <div className="w-full h-auto p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="w-full p-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {services.map((info) => (
             <ServiceCard
               key={info.id}

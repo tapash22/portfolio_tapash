@@ -65,14 +65,17 @@ export function Layout() {
   };
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-(--background)">
+    <div className="h-full md:h-screen w-full flex overflow-hidden bg-(--background)">
       <SideBar handleNavigation={handleNavigation} />
-
+      <div className="bg-amber-800 h-28 sm:h-28 md:hidden shrink-0 " />
       {/* RIGHT SIDE */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
         {/* PAGE AREA (NO NATIVE SCROLL CONFLICT) */}
-        <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-thin">
-          <div ref={pageRef} className="w-full h-full">
+        <div
+          ref={scrollRef}
+          className="flex-1 overflow-y-auto md:overflow-y-hidden h-full py-5"
+        >
+          <div ref={pageRef} className="w-full h-full py-2">
             <Outlet />
           </div>
         </div>
