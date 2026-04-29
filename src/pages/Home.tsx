@@ -22,11 +22,27 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center relative overflow-hidden bg-(--background)">
-      {/* left sectection */}
+    <div
+      className="
+        w-full min-h-screen
+        flex flex-col md:flex-row
+        items-center
+        relative
+        overflow-hidden overflow-x-hidden
+        bg-(--background)
+      "
+    >
+      {/* LEFT SECTION */}
       <div
         ref={boxRef}
-        className="relative z-10 w-1/2 flex flex-col space-y-5 px-5 "
+        className="
+          relative z-10
+          w-full md:w-1/2
+          flex flex-col
+          space-y-5
+          px-6 md:px-5
+          pt-16 md:pt-0
+        "
       >
         <h1 className="text-2xl font-medium text-(--foreground) tracking-wide">
           I am Tapash Paul
@@ -38,21 +54,43 @@ export default function Home() {
 
         <button
           onClick={handleLink}
-          className="bg-(--button-color) text-(--foreground) font-normal tracking-wider ring-1 ring-(--border) w-1/4 p-2 rounded-full uppercase "
+          className="
+            bg-(--button-color)
+            text-(--foreground)
+            font-normal tracking-wider
+            ring-1 ring-(--border)
+            w-fit
+            px-6 py-2
+            rounded-full uppercase
+          "
         >
           Contact Me
         </button>
       </div>
-      {/* left sectection end */}
 
-      {/* right sectection */}
+      {/* RIGHT SECTION */}
       <div
-        className="absolute left-0  w-full h-full flex justify-end items-center p-3 z-0 
-              bg-[linear-gradient(to_bottom,var(--background),var(--background))] opacity-90"
+        className="
+          absolute md:static
+          left-0 top-0
+          w-full md:w-1/2
+          h-full
+          flex justify-end items-center
+          p-3 md:p-0
+          z-0
+          bg-gray-900
+        "
       >
-        <img src={image} className="object-cover backdrop-brightness-90  " />
+        <img
+          src={image}
+          className="
+            w-full md:w-auto
+            max-w-[90%] md:max-w-full
+            object-cover
+            opacity-90
+          "
+        />
       </div>
-      {/* right sectection end */}
     </div>
   );
 }

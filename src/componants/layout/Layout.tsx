@@ -19,7 +19,12 @@ export function Layout() {
 
   // ENTER animation on route change
   useLayoutEffect(() => {
-    if (!pageRef.current) return;
+    if (!pageRef.current || !scrollRef.current) return;
+
+    // 🔥 ALWAYS RESET SCROLL TO TOP ON ROUTE CHANGE
+    scrollRef.current.scrollTop = 0;
+
+    // enter animation
     pageEnter(pageRef.current);
   }, [location.pathname]);
 
@@ -35,47 +40,42 @@ export function Layout() {
 
     const isGoingDown = toIndex > fromIndex;
 
-    console.log("FROM INDEX:", fromIndex);
-    console.log("TO INDEX:", toIndex);
-    console.log("DIRECTION:", isGoingDown ? "DOWN ⬇" : "UP ⬆");
-
-    // SCROLL ANIMATION
+    // optional scroll hint animation
     gsap.to(scrollRef.current, {
       scrollTop: isGoingDown ? 120 : 0,
-      duration: 0.5,
+      duration: 0.4,
       ease: "power2.out",
     });
 
-    // EXIT ANIMATION + NAVIGATE
+    // exit animation
     pageExit(pageRef.current, () => {
       navigate(path);
-
-      // update index AFTER navigation logic
       lastIndexRef.current = toIndex;
 
-      // RESET SCROLL AFTER ROUTE CHANGE
-      setTimeout(() => {
-        gsap.to(scrollRef.current, {
-          scrollTop: isGoingDown ? 40 : 0,
-          duration: 0.6,
-          ease: "power2.out",
-        });
-      }, 200);
+      // 🔥 RESET SCROLL AFTER NAVIGATION SAFELY
+      requestAnimationFrame(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollTop = 0;
+        }
+      });
     });
   };
 
   return (
-    <div className="h-full md:h-screen w-full flex overflow-hidden bg-(--background)">
+    <div className="h-screen w-full flex overflow-hidden bg-(--background)">
       <SideBar handleNavigation={handleNavigation} />
-      <div className="bg-amber-800 h-28 sm:h-28 md:hidden shrink-0 " />
+
       {/* RIGHT SIDE */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
-        {/* PAGE AREA (NO NATIVE SCROLL CONFLICT) */}
+        {/* ✅ MOBILE HEADER SPACE (GLOBAL FIX) */}
+        <div className="h-14 md:hidden shrink-0" />
+
+        {/* PAGE AREA */}
         <div
           ref={scrollRef}
-          className="flex-1 overflow-y-auto md:overflow-y-hidden h-full py-5"
+          className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full"
         >
-          <div ref={pageRef} className="w-full h-full py-2">
+          <div ref={pageRef} className="w-full min-h-full">
             <Outlet />
           </div>
         </div>

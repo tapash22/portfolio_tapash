@@ -13,7 +13,7 @@ export default function About() {
     <div
       className="w-full h-full flex flex-col sm:flex-col md:flex-row 
          justify-start sm:justify-start md:justify-center items-start sm:items-start md:items-center 
-         relative bg-(--background) scrollbar-thin"
+         relative bg-(--background)  "
     >
       {/* left sectection */}
       <div
