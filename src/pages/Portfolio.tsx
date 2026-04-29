@@ -33,7 +33,7 @@ export default function Projects() {
   return (
     <div className="w-full min-h-full flex items-start relative overflow-y-auto scrollbar-thin bg-(--background)">
       {/* main content */}
-      <div className="p-6 sm:p-8 md:p-16 flex flex-col justify-start items-center w-full min-h-full">
+      <div className="p-6 sm:p-8 md:p-14 flex flex-col justify-start items-center w-full min-h-full">
         {/* portfolio section */}
 
         <div className="flex flex-col justify-start items-center w-full h-auto space-y-3">
