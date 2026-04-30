@@ -33,10 +33,10 @@ export default function Projects() {
   return (
     <div className="w-full min-h-full flex items-start relative bg-(--background)">
       {/* main content */}
-      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-start items-center w-full min-h-full">
+      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-start items-center w-full h-full space-y-6">
         {/* portfolio section */}
 
-        <div className="flex flex-col justify-start items-center w-full h-auto space-y-3">
+        <div className="flex flex-col justify-start items-center w-full h-auto space-y-5">
           {/* header sectection */}
           <div className="w-full flex flex-col justify-center items-center">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">
@@ -65,7 +65,7 @@ export default function Projects() {
 
         {/* pricing section */}
 
-        <div className="flex flex-col justify-center items-center w-full space-y-3">
+        <div className="flex flex-col justify-center items-center w-full space-y-5">
           {/* pricing header */}
           <div className="w-full flex flex-col justify-center items-center ">
             <h1 className="text-sm font-normal text-(--foreground) tracking-wide">

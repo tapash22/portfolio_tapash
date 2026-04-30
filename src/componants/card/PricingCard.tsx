@@ -16,11 +16,11 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
     >
       {/* Top Floating Icon Circle */}
       <div
-        className={`absolute top-2 sm:top-2 md:top-0 left-1/2 -translate-x-1/2 rounded-full flex items-center justify-center shadow-xl ring-1 z-20
+        className={`absolute  left-1/2 -translate-x-1/2 rounded-full flex items-center justify-center shadow-xl ring-1 z-20
     ${
       pricingPlan.highlight
-        ? "bg-(--neon-color) w-16 h-20 sm:w-16 sm:h-16 md:w-28 md:h-28 ring-(--foreground)"
-        : "bg-(--sidebar) w-12 h-12 sm:w-12 sm:h-12 md:w-24 md:h-24 ring-(--border)"
+        ? "bg-(--neon-color) w-16 h-16 sm:w-16 sm:h-16 md:w-28 md:h-28 ring-(--foreground) -top-1 sm:top-2 md:top-0"
+        : "bg-(--sidebar) w-12 h-12 sm:w-12 sm:h-12 md:w-24 md:h-24 ring-(--border) top-0 sm:top-2 md:top-0"
     }`}
       >
         <span
@@ -49,7 +49,7 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
           className={`relative z-10 bg-(--background)
       rounded-[38px] md:rounded-[54px]
       overflow-hidden flex flex-col items-center
-      pb-4 sm:pb-6 md:pb-12
+      pb-4 sm:pb-6 md:pb-8
       space-y-2 sm:space-y-3 md:space-y-5
       shadow-xl
       border cursor-pointer transition-all duration-500
@@ -96,12 +96,14 @@ export function PricingCard({ pricingPlan }: PricingCardProps) {
 
           {/* Button */}
           <button
-            className="px-6 py-2 sm:px-8 sm:py-3 md:px-12 md:py-4
-        rounded-full font-normal uppercase tracking-wider text-xs sm:text-sm
-        transition-all duration-300
+            className="w-[90%] py-3 sm:py-3 md:px-12 md:py-3
+        rounded-full font-normal uppercase  text-xs sm:text-sm
+        transition-all duration-300 tracking-widest
         bg-(--button-color) text-white
-        hover:shadow-(--box-shadow)
-        shadow-[0_0_20px_var(--button-color)]"
+        hover:shadow-(--footer-shadow)
+        ring-2 ring-(--border)
+        opacity-80
+        "
           >
             {pricingPlan.cta}
           </button>

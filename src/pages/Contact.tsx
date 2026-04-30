@@ -7,10 +7,10 @@ export default function Contact() {
     <div className="w-full min-h-full flex items-start relative bg-(--background)">
       {/* contact body */}
 
-      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-3 ">
+      <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-6">
         {/* contact section */}
 
-        <div className="w-full h-full p-3 sm:p-3 md:px-16 md:py-5  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
           {contactInfo.map((contact) => {
             return <ContactCard key={contact.type} contact={contact} />;
           })}
@@ -18,13 +18,10 @@ export default function Contact() {
         {/* contact section end*/}
 
         {/* contact form */}
-        <div
-          className="w-full h-full flex justify-center items-center 
-                        p-1 sm:p-1 md:p-16 "
-        >
+        <div className="w-full h-full flex justify-center items-center ">
           {/* form block */}
           <div
-            className=" w-full h-full p-3 sm:p-3 md:p-10 flex flex-col 
+            className="w-full h-full p-3 sm:p-3 md:p-8 flex flex-col 
                         justify-center items-center bg-(--sidebar) 
                         space-y-2 sm:space-y-2 md:space-y-5 
                         rounded-lg 

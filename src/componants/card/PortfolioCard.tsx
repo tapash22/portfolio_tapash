@@ -64,12 +64,12 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
       {/* Overlay */}
       <div
         ref={overlayRef}
-        className="absolute left-0 top-0 w-full h-full bg-(--neon)/30 flex items-end p-10 sm:p-10 md:p-5"
+        className="absolute left-0 top-0 w-full h-full bg-(--neon)/30 flex justify-center items-center p-10 sm:p-10 md:p-5"
         style={{ transform: "translateX(-100%)" }}
       >
         <div
           ref={textRef}
-          className="space-y-3 p-5 bg-(--sidebar)/50 rounded-lg sm:rounded-lg md:rounded-2xl"
+          className="space-y-3 p-5 md:p-10 bg-(--sidebar)/70 rounded-lg sm:rounded-lg md:rounded-2xl"
         >
           <h1 className="text-xl font-semibold text-(--foreground)">
             {portfolio.title}

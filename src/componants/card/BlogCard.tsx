@@ -12,7 +12,7 @@ export function BlogCard({ blog, onClick }: BlogCardProps) {
       onClick={onClick}
       className="cursor-pointer rounded-xl overflow-hidden ring-1 ring-(--border) group shadow-lg"
     >
-      <div className="w-full h-52 overflow-hidden">
+      <div className="w-full h-48 overflow-hidden">
         <img
           src={blog.cover}
           className="w-full h-full object-fit group-hover:scale-110 transition duration-500"
@@ -24,7 +24,7 @@ export function BlogCard({ blog, onClick }: BlogCardProps) {
           {blog.subtitle}
         </h2>
         <div className="flex flex-col sm:flex-col md:flex-row justify-start items-start md:items-center space-x-0 md:space-x-3  space-y-2 md:space-y-0 w-full">
-          <div className="flex flex-row justify-start items-center space-x-2  md:border-r border-(--foreground)">
+          <div className="flex flex-row justify-start items-center space-x-3  md:border-r border-(--foreground)">
             <div className="w-8 h-8 rounded-full ring-2 ring-(--border) p-1 bg-(--sidebar) flex justify-center items-center">
               <FaRegUser size={20} className="text-(--muted)" />
             </div>
