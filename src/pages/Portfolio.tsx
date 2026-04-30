@@ -31,7 +31,7 @@ export default function Projects() {
   }, [openDialog]);
 
   return (
-    <div className="w-full min-h-full flex items-start relative bg-(--background)">
+    <div className="w-full h-full flex items-start relative bg-(--background)">
       {/* main content */}
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-start items-center w-full h-full space-y-6">
         {/* portfolio section */}

@@ -49,7 +49,7 @@ export function Dialog({
       gsap.to(dialogRef.current, {
         scale: 0.7,
         opacity: 0,
-        y: 80,
+        y: 40,
         duration: 0.4,
         ease: "power3.in",
       });
@@ -67,7 +67,7 @@ export function Dialog({
   return (
     <div
       ref={wrapperRef}
-      className="fixed inset-0 flex items-center justify-center pointer-events-none opacity-0"
+      className="fixed inset-0 flex items-start md:items-center justify-center p-3 sm:p-4 pointer-events-none opacity-0 h-full"
     >
       {/* Overlay */}
       <div
@@ -80,8 +80,8 @@ export function Dialog({
         ref={dialogRef}
         className="
           relative
-          w-[90%] sm:w-[90%] md:w-2/3
-          max-h-[65vh] md:max-h-[75vh]
+          w-[95%] sm:w-[95%] md:w-2/3
+          max-h-[80vh] md:max-h-[80vh]
           flex flex-col
           backdrop-blur-xl
           ring-2 ring-(--border)

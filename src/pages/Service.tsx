@@ -22,7 +22,7 @@ export default function Service() {
   };
 
   return (
-    <div className="w-full min-h-full flex items-start relative bg-(--background)">
+    <div className="w-full h-full flex items-start relative bg-(--background)">
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-6">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-start items-center space-y-2">
