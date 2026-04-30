@@ -34,7 +34,7 @@ export interface PricingPlan {
 
 export type PricingPlans = PricingPlan[];
 
-export type BlogType = {
+export interface BlogType {
   id: number;
   title: string;
   subtitle: string;
@@ -46,6 +46,15 @@ export type BlogType = {
   usage: string;
   content: string;
   cover: string;
-};
+}
 
 export type BlogTypes = BlogType[];
+
+export interface ContactType {
+  type: string;
+  label: string;
+  icon: IconType;
+  values: string[];
+}
+
+export type ContactTypes = ContactType[];
