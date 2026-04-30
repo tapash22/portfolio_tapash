@@ -20,27 +20,30 @@ export default function Home() {
 
       mm.add("(max-width: 768px)", () => {
         const el = boxRef.current;
+        if (!el) return;
 
         const tl = gsap.timeline();
 
         tl.fromTo(
           el.children,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 30 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.6,
+            duration: 0.5,
             ease: "power2.out",
-            stagger: 0.2,
+            stagger: 0.15,
           },
         );
       });
 
       mm.add("(min-width: 769px)", () => {
+        if (!boxRef.current) return;
+
         gsap.fromTo(
           boxRef.current,
           { opacity: 0, x: -100 },
-          { opacity: 1, x: 100, duration: 1, ease: "power3.out" },
+          { opacity: 1, x: 100, duration: 0.8, ease: "power3.out" },
         );
       });
     });
@@ -51,9 +54,10 @@ export default function Home() {
   return (
     <div
       className="
-    w-full min-h-full
+    w-full h-[84vh] md:min-h-full
     flex flex-col md:flex-row
-    items-end md:items-center justify-end md:justify-start
+    items-stretch md:items-center
+    justify-end md:justify-start
     relative
     bg-(--background)
     overflow-hidden
@@ -63,15 +67,14 @@ export default function Home() {
       <div
         ref={boxRef}
         className="
-        z-10
-        w-full md:w-5/12
-        flex flex-col
-        justify-end sm:justify-end md:justify-start
-        items-center  md:items-start
-        space-y-1 sm:space-y-1 md:space-y-5
-        px-1 sm:px-1 md:px-5
-        py-10 md:py-0
-        opacity-100
+    z-10
+    w-full md:w-5/12
+    flex flex-col
+    justify-end md:justify-start
+    items-center md:items-start
+    space-y-1 sm:space-y-1 md:space-y-5
+    px-1 sm:px-1 md:px-5
+    py-10 md:py-0
     "
       >
         <h1 className="text-2xl sm:text-2xl font-bold text-(--foreground) tracking-wider opacity-80">
@@ -97,7 +100,6 @@ export default function Home() {
         ring-1 ring-(--border)
         px-6 py-1 sm:py-1 md:py-3
         rounded-full uppercase
-
         hover:scale-105 active:scale-95
         transition-transform duration-300
       "
@@ -110,7 +112,7 @@ export default function Home() {
       <div
         className="
       absolute md:static
-      inset-0 md:inset-auto
+      inset-auto
       w-full md:w-7/12
       h-full
       flex justify-end md:justify-start items-start

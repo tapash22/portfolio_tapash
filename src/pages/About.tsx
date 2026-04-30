@@ -17,12 +17,15 @@ export default function About() {
     >
       {/* left sectection */}
       <div
-        className="w-full sm:w-full md:w-1/3 h-full p-1 sm:p-1 
-                     flex justify-center items-center"
+        className="w-full sm:w-full md:w-1/3 h-full p-1
+        flex 
+        justify-start md:justify-center
+        items-start md:items-center
+        "
       >
         <img
           src={image}
-          className="object-cover rounded-xl shadow-(--shadow) scale-75 "
+          className="object-cover rounded-xl shadow-(--shadow) scale-75 max-w-full min-h-0"
         />
       </div>
       {/* left sectection end */}
@@ -30,7 +33,7 @@ export default function About() {
       {/* right sectection */}
       <div
         className="
-                  w-full sm:w-full md:w-2/3 h-auto sm:auto md:h-full px-10 sm:px-10 pb-5 sm:pb-5 md:pb-0 
+                  w-full sm:w-full md:w-2/3 h-auto sm:auto md:h-full px-8 sm:px-10 pb-5 sm:pb-5 md:pb-0 
                    md:p-14 flex flex-col justify-center items-center sm:items-center 
                   md:items-start sm:justify-center md:justify-center space-y-3 "
       >
@@ -41,18 +44,18 @@ export default function About() {
           <PiDesktop size={40} />
         </div>
 
-        <div className="flex flex-col space-y-3 items-center md:items-start">
+        <div className="flex flex-col space-y-2 md:space-y-5 items-center md:items-start">
           <h1
-            className="text-2xl sm:text-2xl md:text-3xl 
+            className="text-xl sm:text-xl md:text-3xl 
                        font-medium sm:font-medium md:font-bold tracking-wide 
                        text-(--foreground) text-wrap w-full sm:w-full md:w-2/3 
-                       text-center sm:text-center md:text-start leading-8 "
+                       text-center sm:text-center md:text-start leading-7 md:leading-10 "
           >
             Professional Frontend Developer & Creative UI Engineer
           </h1>
           <p
-            className="text-lg font-light text-(--foreground) tracking-wider text-wrap 
-                      text-center sm:text-center md:text-start leading-8  "
+            className="text-sm md:text-lg font-light  text-(--foreground) tracking-wider text-wrap 
+                      text-justify sm:text-center md:text-start leading-6 md:leading-9"
           >
             Discover top web design and development companies tailored to your
             business needs. Our carefully curated directory features highly
@@ -68,8 +71,8 @@ export default function About() {
           </p>
 
           <p
-            className="w-fit text-xl font-medium tracking-wider text-(--foreground) text-center sm:text-center md:text-start
-             border-b-2 border-(--border) pb-2 sm:pb-2 md:pb-3"
+            className="w-fit text-lg md:text-xl font-medium tracking-wide text-(--foreground) text-center sm:text-center md:text-start
+             border-b-2 border-(--border) pb-1 sm:pb-1 md:pb-3"
           >
             Frontend Developer at Anwar Technology
           </p>

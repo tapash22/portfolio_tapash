@@ -75,7 +75,7 @@ export function Layout() {
           ref={scrollRef}
           className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full"
         >
-          <div ref={pageRef} className="w-full h-full">
+          <div ref={pageRef} className="w-full min-h-full">
             <Outlet />
           </div>
         </div>

@@ -77,7 +77,7 @@ export function SideBar({ handleNavigation }: Props) {
       <div className="hidden md:flex w-72 h-screen flex-col justify-center bg-(--sidebar) shadow-(--shadow) z-50 space-y-5">
         {/* LOGO */}
         <div className="px-10 ">
-          <img src={portfolio_icon} className="w-10 h-10" />
+          <img src={portfolio_icon} className="w-12 h-12" />
         </div>
 
         {/* MENU */}
@@ -89,7 +89,7 @@ export function SideBar({ handleNavigation }: Props) {
               <button
                 key={i}
                 onClick={() => handleNavigation(to)}
-                className={`link text-left transition-colors ${
+                className={`link text-left transition-colors text-lg ${
                   isActiveRoute(to)
                     ? "text-(--foreground) active-link"
                     : "text-(--muted) hover:text-(--foreground)"
