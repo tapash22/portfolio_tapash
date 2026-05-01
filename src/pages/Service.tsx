@@ -6,23 +6,32 @@ import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
 import { Dialog } from "../componants/dialog/Dialog";
+import { useOutletContext } from "react-router-dom";
+
+type LayoutContextType = {
+  setLockScroll: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export default function Service() {
+  // handle scroll reset on dialog open and close
+  const { setLockScroll } = useOutletContext<LayoutContextType>();
+
   const [openDialog, setOpenDialog] = useState(false);
   const [item, setItem] = useState<ServiceType | null>(null);
 
   const handleDialog = (value: ServiceType) => {
     setOpenDialog(true);
     setItem(value);
-    console.log(value);
+    setLockScroll(true);
   };
 
   const closeDialog = () => {
     setOpenDialog(false);
+    setLockScroll(false);
   };
 
   return (
-    <div className="w-full h-full flex items-start relative bg-(--background)">
+    <div className="w-full h-full flex items-start bg-(--background)">
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-6">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-start items-center space-y-2">
@@ -49,9 +58,13 @@ export default function Service() {
       </div>
 
       {/* service dialog view */}
-      <Dialog open={openDialog} onClose={closeDialog} title={item?.title}>
+      <Dialog
+        open={openDialog}
+        onClose={closeDialog}
+        title={item?.title || "Service Details"}
+      >
         {/*Dialog service Body */}
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
+        <div className="space-y-4 ">
           <div className="w-full h-72 overflow-hidden">
             <img
               src={service1}

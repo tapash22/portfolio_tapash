@@ -4,10 +4,14 @@ import { Dialog } from "../componants/dialog/Dialog";
 import service2 from "../assets/images/services/service2.jpg";
 import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PricingCard } from "../componants/card/PricingCard";
+// import { useOutletContext } from "react-router-dom";
 
 export default function Projects() {
+  // handle scroll reset on dialog open and close
+  // const { lockScroll, unlockScroll } = useOutletContext<LayoutContextType>();
+
   const [openDialog, setOpenDialog] = useState(false);
   const [item, setItem] = useState<ServiceType | null>(null);
 
@@ -15,23 +19,17 @@ export default function Projects() {
   const handleClick = (value: ServiceType) => {
     setOpenDialog(true);
     setItem(value);
+    // lockScroll();
   };
 
   // this are handle close dialog
   const closeDialog = () => {
     setOpenDialog(false);
+    // unlockScroll();
   };
 
-  useEffect(() => {
-    if (openDialog) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-  }, [openDialog]);
-
   return (
-    <div className="w-full h-full flex items-start relative bg-(--background)">
+    <div className="w-full h-full flex items-start bg-(--background)">
       {/* main content */}
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-start items-center w-full h-full space-y-6">
         {/* portfolio section */}
@@ -105,7 +103,7 @@ export default function Projects() {
       <Dialog open={openDialog} onClose={closeDialog} title={item?.title}>
         {/* Dialog Portfolio Body */}
 
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-4 pr-2 scrollbar-thin">
+        <div className="space-y-4 ">
           <div className="w-full h-72 overflow-hidden my-2">
             <img
               src={item?.image}

@@ -3,7 +3,7 @@ import gsap from "gsap";
 // import { fadeInUp } from "../animations/gsap";
 import { useNavigate } from "react-router-dom";
 import image from "../assets/images/home.png";
-import image1 from "../assets/images/about.png";
+import mobile_image from "../assets/images/mobile_image.png";
 
 export default function Home() {
   const boxRef = useRef<HTMLHeadingElement | null>(null);
@@ -54,7 +54,7 @@ export default function Home() {
   return (
     <div
       className="
-    w-full h-[84vh] md:min-h-full
+    w-full h-[84vh] md:h-full
     flex flex-col md:flex-row
     items-stretch md:items-center
     justify-end md:justify-start
@@ -130,7 +130,7 @@ export default function Home() {
       "
         />
         <img
-          src={image1}
+          src={mobile_image}
           className="
       block md:hidden
       w-full

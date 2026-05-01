@@ -3,8 +3,16 @@ import { blogs } from "../storage/data/blog-data";
 import type { BlogType } from "../storage/type/data-type";
 import { BlogCard } from "../componants/card/BlogCard";
 import { Dialog } from "../componants/dialog/Dialog";
+import { useOutletContext } from "react-router-dom";
+
+type LayoutContextType = {
+  setLockScroll: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export default function Blog() {
+  // handle scroll reset on dialog open and close
+  const { setLockScroll } = useOutletContext<LayoutContextType>();
+
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
 
@@ -12,11 +20,13 @@ export default function Blog() {
   const handleOpenDialog = (blog: BlogType) => {
     setSelectedBlog(blog);
     setOpenDialog(true);
+    setLockScroll(true);
   };
 
   //close details dialog
   const closeDialog = () => {
     setOpenDialog(false);
+    setLockScroll(false);
   };
 
   return (
@@ -59,7 +69,7 @@ export default function Blog() {
       >
         {/* Dialog Blog Body */}
 
-        <div className="flex-1 min-h-0 overflow-y-auto space-y-3 pr-2  scrollbar-thin">
+        <div className="space-y-3 ">
           <article className="w-full p-3 ">
             {/* --- Header Section --- */}
             <div className="space-y-3">

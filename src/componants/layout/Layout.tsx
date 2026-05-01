@@ -2,10 +2,9 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { SideBar } from "../sidebar/SIdeBar";
 import { useLayoutEffect, useRef } from "react";
 import { pageEnter, pageExit } from "../../animations/pageTransition";
-import { routeIndexMap } from "../../routes/routeConfig";
-import gsap from "gsap";
 import { SocialMediaList } from "../list/SocialMediaList";
 import { socialMediaLinkList } from "../../storage/data/social-media-links";
+import { useNavigationDirection } from "../../hook/useNavigationDirection";
 
 export function Layout() {
   const location = useLocation();
@@ -15,50 +14,40 @@ export function Layout() {
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
   //stable index tracker (DO NOT depend on location during animation)
-  const lastIndexRef = useRef(routeIndexMap[location.pathname] ?? 0);
+  const { getDirection, updateIndex } = useNavigationDirection();
 
-  // ENTER animation on route change
+  // ENTER animation
   useLayoutEffect(() => {
     if (!pageRef.current || !scrollRef.current) return;
 
-    // 🔥 ALWAYS RESET SCROLL TO TOP ON ROUTE CHANGE
-    scrollRef.current.scrollTop = 0;
+    const { isGoingForward, toIndex } = getDirection(location.pathname);
 
-    // enter animation
-    pageEnter(pageRef.current);
-  }, [location.pathname]);
+    updateIndex(toIndex);
 
-  // NAVIGATION WITH EXIT + SCROLL CONTROL
+    scrollRef.current.scrollTo({ top: 0 });
+
+    pageEnter(pageRef.current, isGoingForward);
+  }, [location.pathname, getDirection, updateIndex]);
+
+  // NAVIGATION
   const handleNavigation = (path: string) => {
-    if (!pageRef.current || !scrollRef.current) {
-      navigate(path);
-      return;
-    }
+    if (!pageRef.current || !scrollRef.current) return;
 
-    const fromIndex = lastIndexRef.current;
-    const toIndex = routeIndexMap[path] ?? 0;
+    const { isGoingForward, toIndex } = getDirection(path);
 
-    const isGoingDown = toIndex > fromIndex;
+    pageExit(
+      pageRef.current,
+      () => {
+        navigate(path);
 
-    // optional scroll hint animation
-    gsap.to(scrollRef.current, {
-      scrollTop: isGoingDown ? 120 : 0,
-      duration: 0.4,
-      ease: "power2.out",
-    });
+        updateIndex(toIndex);
 
-    // exit animation
-    pageExit(pageRef.current, () => {
-      navigate(path);
-      lastIndexRef.current = toIndex;
-
-      // 🔥 RESET SCROLL AFTER NAVIGATION SAFELY
-      requestAnimationFrame(() => {
-        if (scrollRef.current) {
-          scrollRef.current.scrollTop = 0;
-        }
-      });
-    });
+        requestAnimationFrame(() => {
+          scrollRef.current?.scrollTo({ top: 0 });
+        });
+      },
+      isGoingForward,
+    );
   };
 
   return (
@@ -73,10 +62,14 @@ export function Layout() {
         {/* PAGE AREA */}
         <div
           ref={scrollRef}
-          className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full"
+          className={`flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full`}
         >
           <div ref={pageRef} className="w-full min-h-full">
-            <Outlet />
+            <Outlet
+              context={{
+                scrollRef,
+              }}
+            />
           </div>
         </div>
 

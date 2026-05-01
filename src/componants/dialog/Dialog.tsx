@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import gsap from "gsap";
+import { createPortal } from "react-dom";
 
 type DialogProps = {
   open: boolean;
@@ -23,80 +24,56 @@ export function Dialog({
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!dialogRef.current || !wrapperRef.current) return;
+    if (!open || !dialogRef.current || !wrapperRef.current) return;
 
-    if (open) {
-      gsap.set(wrapperRef.current, { pointerEvents: "auto" });
+    gsap.fromTo(
+      wrapperRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.2 },
+    );
 
-      gsap.fromTo(
-        wrapperRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.3 },
-      );
-
-      gsap.fromTo(
-        dialogRef.current,
-        { scale: 0.7, opacity: 0, y: 80 },
-        {
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power3.out",
-        },
-      );
-    } else {
-      gsap.to(dialogRef.current, {
-        scale: 0.7,
-        opacity: 0,
-        y: 40,
-        duration: 0.4,
-        ease: "power3.in",
-      });
-
-      gsap.to(wrapperRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          gsap.set(wrapperRef.current, { pointerEvents: "none" });
-        },
-      });
-    }
+    gsap.fromTo(
+      dialogRef.current,
+      { scale: 0.9, opacity: 0, y: 20 },
+      { scale: 1, opacity: 1, y: 0, duration: 0.25 },
+    );
   }, [open]);
 
-  return (
+  if (!open) return null;
+
+  return createPortal(
     <div
       ref={wrapperRef}
-      className="fixed inset-0 flex items-start md:items-center justify-center p-3 sm:p-4 pointer-events-none opacity-0 h-full"
+      className=" fixed inset-0 z-9
+        flex items-center justify-center 
+        p-4 sm:p-6 md:p-10
+        bg-black/40 backdrop-blur-xs"
+      onClick={onClose}
     >
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-black/30 backdrop-blur-md"
-        onClick={onClose}
-      />
-
       {/* Dialog */}
       <div
         ref={dialogRef}
+        onClick={(e) => e.stopPropagation()}
         className="
           relative
-          w-[95%] sm:w-[95%] md:w-2/3
-          max-h-[80vh] md:max-h-[80vh]
+          md:ml-[20%]
+          w-[90%] sm:w-[90%] md:w-2/3
+          max-h-[70vh] md:max-h-[80vh]
           flex flex-col
-          backdrop-blur-xl
-          ring-2 ring-(--border)
-          rounded-lg md:rounded-xl
-          shadow-xl
+          backdrop-blur-xs
+          ring-1 ring-(--border)
+          rounded-lg md:rounded-sm
+          shadow-(--shadow)
           overflow-hidden
+
         "
       >
         {/* HEADER (SAFE TOP AREA FIX) */}
         <div
           className="
-            w-full border-b border-(--border)
-            pt-2.5 pb-3 sm:pt-4 sm:pb-4 md:p-5
-            px-4 sm:px-5
-            flex items-center justify-between
+            w-full border-b-4 border-(--border)
+            p-4 
+            flex items-center justify-between 
           "
         >
           <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-(--foreground) tracking-wide">
@@ -107,10 +84,7 @@ export function Dialog({
             onClick={onClose}
             className="p-1 sm:p-2 hover:scale-110 transition"
           >
-            <IoCloseCircleOutline
-              size={24}
-              className="sm:w-7 sm:h-7 md:w-7.5 md:h-7.5 text-(--foreground)"
-            />
+            <IoCloseCircleOutline className="text-2xl sm:text-2xl md:text-4xl  text-(--foreground)" />
           </button>
         </div>
 
@@ -118,7 +92,7 @@ export function Dialog({
         <div
           className="
             flex-1 min-h-0
-            px-3 py-3 sm:px-4 sm:py-4 md:p-5
+            px-3 sm:px-4 sm:py-4 md:p-5
             overflow-y-auto scrollbar-thin
           "
         >
@@ -151,6 +125,7 @@ export function Dialog({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
