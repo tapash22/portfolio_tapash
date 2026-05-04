@@ -134,6 +134,7 @@ export function ContactForm() {
       <div className="flex justify-center items-center w-full h-auto p-1">
         <button
           type="submit"
+          disabled={true}
           className="
               bg-(--button-color) w-full sm:w-full md:w-auto px-0 md:px-5 py-2 
               rounded-sm text-(--foreground) shadow-none hover:shadow-(--box-shadow) 
