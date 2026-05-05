@@ -3,15 +3,9 @@ import { ServiceCard } from "../componants/card/ServiceCard";
 import { services } from "../storage/data/services";
 import type { ServiceType } from "../storage/type/data-type";
 import { Dialog } from "../componants/dialog/Dialog";
-import { useOutletContext } from "react-router-dom";
-
-type LayoutContextType = {
-  setLockScroll: React.Dispatch<React.SetStateAction<boolean>>;
-};
 
 export default function Service() {
   // handle scroll reset on dialog open and close
-  const { setLockScroll } = useOutletContext<LayoutContextType>();
 
   const [openDialog, setOpenDialog] = useState(false);
   const [item, setItem] = useState<ServiceType | null>(null);
@@ -19,12 +13,10 @@ export default function Service() {
   const handleDialog = (value: ServiceType) => {
     setOpenDialog(true);
     setItem(value);
-    setLockScroll(true);
   };
 
   const closeDialog = () => {
     setOpenDialog(false);
-    setLockScroll(false);
   };
 
   return (
