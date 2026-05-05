@@ -1,9 +1,9 @@
 import { useRef } from "react";
 import gsap from "gsap";
-import type { ServiceType } from "../../storage/type/data-type";
+import type { PortfolioType } from "../../storage/type/data-type";
 
 type Portfolio = {
-  portfolio: ServiceType;
+  portfolio: PortfolioType;
   onClick?: () => void;
 };
 
