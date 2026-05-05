@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 // import { fadeInUp } from "../animations/gsap";
 import { useNavigate } from "react-router-dom";
-import image from "../assets/images/home.png";
-import mobile_image from "../assets/images/mobile_image.png";
+import image from "/images/home.png";
+import mobile_image from "/images/mobile_image.png";
 
 export default function Home() {
   const boxRef = useRef<HTMLHeadingElement | null>(null);
