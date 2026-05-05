@@ -1,10 +1,10 @@
 import type { BlogTypes } from "../type/data-type";
-import gsap from "../../assets/images/blog/gsap.jpg";
-import leaflet from "../../assets/images/blog/leaflet.jpg";
-import threejs from "../../assets/images/blog/threejs.jpg";
-import rtkq from "../../assets/images/blog/rtkq.jpg";
-import chartjs from "../../assets/images/blog/chartjs.png";
-import performance from "../../assets/images/blog/performance.jpg";
+import gsap from "/blog/gsap.jpg";
+import leaflet from "/blog/leaflet.jpg";
+import threejs from "/blog/threejs.jpg";
+import rtkq from "/blog/rtkq.jpg";
+import chartjs from "/blog/chartjs.png";
+import performance from "/blog/performance.jpg";
 
 export const blogs: BlogTypes = [
   {
