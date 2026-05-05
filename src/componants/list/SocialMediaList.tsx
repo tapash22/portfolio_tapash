@@ -26,9 +26,9 @@ export function SocialMediaList({
   const itemsRef = useRef<HTMLLIElement[]>([]);
 
   // collect refs safely
-  const setItemRef = (el: HTMLLIElement | null, index: number) => {
-    if (el) itemsRef.current[index] = el;
-  };
+  // const setItemRef = (el: HTMLLIElement | null, index: number) => {
+  //   if (el) itemsRef.current[index] = el;
+  // };
 
   useEffect(() => {
     if (!itemsRef.current.length) return;
@@ -51,14 +51,14 @@ export function SocialMediaList({
     });
   }, [socailMediaItems]);
 
-  const handleHover = (el: HTMLElement, enter: boolean) => {
-    gsap.to(el, {
-      scale: enter ? 1.15 : 1,
-      y: enter ? -3 : 0,
-      duration: 0.25,
-      ease: "power2.out",
-    });
-  };
+  // const handleHover = (el: HTMLElement, enter: boolean) => {
+  //   gsap.to(el, {
+  //     scale: enter ? 1.15 : 1,
+  //     y: enter ? -3 : 0,
+  //     duration: 0.25,
+  //     ease: "power2.out",
+  //   });
+  // };
 
   const handleClickAnim = (el: HTMLElement) => {
     gsap.fromTo(
@@ -149,43 +149,3 @@ export function SocialMediaList({
     </div>
   );
 }
-
-//                /circle
-// <li
-//   key={item.id}
-//   ref={(el) => setItemRef(el, index)}
-//   className="group relative w-auto h-auto
-//               flex justify-center items-center cursor-pointer"
-//   onClick={(e) => {
-//     onClick?.();
-//     handleClickAnim(e.currentTarget);
-//   }}
-//   onMouseEnter={(e) => handleHover(e.currentTarget, true)}
-//   onMouseLeave={(e) => handleHover(e.currentTarget, false)}
-// >
-//   <a href={item.link} target="_blank" rel="noopener noreferrer">
-//     <Icon
-//       size={iconSize}
-//       style={{ color: resolvedIconColor }}
-//       className={`
-//           group-hover:text-(--neon) transition-all duration-300
-//           group-hover:drop-shadow-[0_0_8px_#22d3ee]`}
-//     />
-//   </a>
-//   <svg
-//     className="absolute inset-0 w-full h-full pointer-events-none"
-//     viewBox="0 0 120 120"
-//   >
-//     <circle
-//       cx="60"
-//       cy="60"
-//       r="52"
-//       className="stroke-(--neon) fill-transparent stroke-1
-//       [stroke-dasharray:326]
-//       [stroke-dashoffset:326]
-//       transition-all duration-500
-//       group-hover:[stroke-dashoffset:0]"
-//     />
-//   </svg>
-// </li>
-//    circle end
