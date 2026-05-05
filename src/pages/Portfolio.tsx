@@ -1,8 +1,9 @@
 import { protFolioDeatils, pricingPlans } from "../storage/data/portfolio-data";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { Dialog } from "../componants/dialog/Dialog";
-import service2 from "../assets/images/services/service2.jpg";
-import service3 from "../assets/images/services/service3.jpg";
+// import service2 from "../../assets/images/portfolio/money_management_1.png";
+// import service3 from "../../assets/images/portfolio/car_rent.png";
+
 import type { ServiceType } from "../storage/type/data-type";
 import { useState } from "react";
 import { PricingCard } from "../componants/card/PricingCard";
@@ -106,19 +107,19 @@ export default function Projects() {
         <div className="space-y-4 ">
           <div className="w-full h-72 overflow-hidden my-2">
             <img
-              src={item?.image}
+              src={item?.image || "/fallback.jpg"}
               className="w-full h-full object-cover rounded-md"
             />
           </div>
 
           <p className="text-white/80 text-lg leading-7">{item?.description}</p>
           <div className="w-full h-auto px-10 py-3 flex justify-center items-center">
-            <div className="w-full h-auto p-4 ring-1 ring-(--border) grid grid-cols-3 gap-2 justify-center items-center rounded-full bg-(--sidebar)">
+            <div className="w-full h-auto p-4 ring-1 ring-(--border) grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-2 md:justify-center md:items-center rounded-lg md:rounded-full bg-(--sidebar)">
               <p className="text-lg font-medium tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full">
                 <span className="font-bold">Product Type</span>
                 <span className="font-bold">Fintech Website</span>
               </p>
-              <p className="text-lg font-semibold tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full border-l  border-r border-(--border)">
+              <p className="text-lg font-semibold tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full border-t border-b md:border-b-0 md:border-t-0 md:border-l  md:border-r border-(--border)">
                 <span className="font-bold">Product Price</span>
                 <span className="font-bold">$ 50</span>
               </p>
@@ -130,13 +131,13 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
             <img
-              src={service2}
+              src={item?.image || "/fallback.jpg"}
               className="w-full h-52 object-cover rounded-md"
             />
             <img
-              src={service3}
+              src={item?.image || "/fallback.jpg"}
               className="w-full h-52 object-cover rounded-md"
             />
           </div>

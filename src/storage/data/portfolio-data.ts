@@ -1,8 +1,8 @@
 import type { PricingPlans, ServiceTypes } from "../type/data-type";
-import money_management from "../../assets/images/portfolio/money_management_1.png";
-import car_rent from "../../assets/images/portfolio/car_rent.png";
+import money_management from "/portfolio/money_management_1.png";
+import car_rent from "/portfolio/car_rent.png";
 // import car_rent_slider from "../../assets/images/portfolio/car_rent_slider.png";
-import map from "../../assets/images/portfolio/map.png";
+import map from "/portfolio/map.png";
 
 export const protFolioDeatils: ServiceTypes = [
   {

@@ -14,7 +14,7 @@ export interface ServiceType {
   title: string;
   icon?: IconType;
   description: string;
-  image?: string[];
+  image?: string[] | string;
   brief?: string;
   link?: string;
 }
