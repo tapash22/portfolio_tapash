@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { ServiceCard } from "../componants/card/ServiceCard";
 import { services } from "../storage/data/services";
-import service1 from "../assets/images/services/service1.jpg";
-import service2 from "../assets/images/services/service2.jpg";
-import service3 from "../assets/images/services/service3.jpg";
 import type { ServiceType } from "../storage/type/data-type";
 import { Dialog } from "../componants/dialog/Dialog";
 import { useOutletContext } from "react-router-dom";
@@ -65,24 +62,29 @@ export default function Service() {
       >
         {/*Dialog service Body */}
         <div className="space-y-4 ">
-          <div className="w-full h-72 overflow-hidden">
+          <div className="w-full h-48 md:h-96 overflow-hidden rounded-lg shadow-md bg-black/10 flex items-center justify-center">
             <img
-              src={service1}
-              className="w-full h-full object-cover rounded-md"
+              src={item?.image?.[0] || "/fallback.jpg"}
+              className="w-full h-full  transform-gpu transition-transform duration-500 ease-out hover:scale-125"
             />
           </div>
 
           <p className="text-white/80 text-lg leading-7">{item?.description}</p>
 
-          <div className="grid grid-cols-2 gap-3">
-            <img
-              src={service2}
-              className="w-full h-52 object-cover rounded-md"
-            />
-            <img
-              src={service3}
-              className="w-full h-52 object-cover rounded-md"
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
+            <div className="h-96 bg-black/10 rounded-md flex items-center justify-center">
+              <img
+                src={item?.image?.[1] || "/fallback.jpg"}
+                className="max-w-full max-h-full object-contain rounded-md"
+              />
+            </div>
+
+            <div className="h-96 bg-black/10 rounded-md flex items-center justify-center">
+              <img
+                src={item?.image?.[2] || "/fallback.jpg"}
+                className="max-w-full max-h-full object-contain rounded-md"
+              />
+            </div>
           </div>
 
           <p className="text-white/80 text-lg leading-7 text-justify">

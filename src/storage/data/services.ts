@@ -5,83 +5,112 @@ import { IoColorPaletteOutline } from "react-icons/io5";
 import { MdOutlineVerified } from "react-icons/md";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 
+export const serviceImages = {
+  webDesign: ["/services/r1.png", "/services/r2.png", "/services/r3.png"],
+  webDev: ["/services/m1.jpg", "/services/m2.png", "/services/m3.png"],
+  creative: ["/services/c1.png", "/services/c2.png", "/services/c3.png"],
+  responsive: ["/services/r1.png", "/services/r2.png", "/services/r3.png"],
+  architecture: [
+    "/services/service1.jpg",
+    "/services/m2.png",
+    "/services/r3.png",
+  ],
+  Support: [
+    "/services/service2.jpg",
+    "/services/service3.jpg",
+    "/services/m4.png",
+  ],
+};
+
 export const services: ServiceTypes = [
   {
     id: 1,
     title: "Web Design",
     icon: GrTestDesktop,
+    image: serviceImages.webDesign,
     description:
-      "Designing visually appealing and user-friendly interfaces with a focus on layout, color theory, and modern UI/UX principles.",
+      "Designing modern, user-focused interfaces with strong attention to usability, accessibility, and visual hierarchy.",
     brief: `
-          Web design is more than just creating visually appealing layouts—it is about crafting meaningful user experiences that communicate your brand effectively. A well-designed website combines aesthetics with usability, ensuring visitors can navigate effortlessly while staying engaged. From typography and color schemes to spacing and visual hierarchy, every element plays a crucial role in shaping perception.
-          Our approach to web design focuses on user-centered design principles. We analyze user behavior, understand target audiences, and design interfaces that are both intuitive and functional. Whether it’s a landing page or a full-scale platform, the goal is always clarity, accessibility, and impact.
-          We also emphasize modern trends such as minimalism, dark mode compatibility, and interactive elements to keep your website fresh and competitive. By combining creativity with strategic thinking, we ensure your website not only looks great but also delivers measurable results.
-          Ultimately, great web design builds trust, strengthens brand identity, and improves user engagement. It is the foundation of your digital presence and a key driver of success in today’s online world.
-              `,
+      I create clean and engaging user interfaces that balance aesthetics with usability. My design approach focuses on clarity, accessibility, and intuitive navigation to ensure users can interact effortlessly with your product.
+
+      I pay close attention to typography, spacing, color systems, and layout structure to build visually consistent experiences. Every design decision is made to improve user engagement and communicate your brand effectively.
+
+      Using modern UI/UX principles and tools, I design interfaces that are not only attractive but also functional and conversion-focused.
+    `,
   },
   {
     id: 2,
     title: "Web Development",
     icon: BsLaptop,
+    image: serviceImages.webDev,
     description:
-      "Building fast, scalable, and maintainable web applications using modern technologies and best development practices.",
+      "Building fast, scalable, and maintainable frontend applications using modern frameworks and best practices.",
     brief: `
-        Web development is the backbone of any successful digital product. It transforms design concepts into fully functional, high-performing applications. Our development process focuses on building scalable, secure, and efficient systems that meet both user expectations and business goals.
-        We use modern frameworks and technologies to create fast-loading, responsive, and dynamic web applications. Clean code architecture and best practices ensure maintainability and long-term performance. Whether it’s a simple website or a complex web app, we prioritize reliability and speed.
-        Performance optimization is a key part of our workflow. From minimizing load times to optimizing assets and ensuring smooth interactions, we focus on delivering seamless user experiences. Security is also a priority, with proper validation, authentication, and data protection strategies in place.
-        By combining technical expertise with problem-solving skills, we deliver solutions that are robust, flexible, and future-ready. Our goal is to build digital products that not only work flawlessly but also grow with your business needs.
-            `,
+      I develop high-performance web applications using modern technologies like Angular, React, and TypeScript. My focus is on writing clean, reusable, and maintainable code that scales with your project.
+
+      I follow best practices for performance optimization, including lazy loading, efficient state management, and optimized rendering. This ensures fast load times and smooth user interactions.
+
+      From simple websites to complex applications, I deliver reliable and future-ready frontend solutions.
+    `,
   },
   {
     id: 3,
     title: "Creative Design",
     icon: IoColorPaletteOutline,
+    image: serviceImages.creative,
     description:
-      "Crafting unique and engaging designs that communicate ideas effectively through creativity, branding, and visual storytelling.",
+      "Crafting unique UI experiences through creative layouts, animations, and visual storytelling.",
     brief: `
-        Creative design is about bringing ideas to life through originality and visual storytelling. It goes beyond standard layouts to create unique and memorable experiences that capture attention and communicate messages effectively.
-        We focus on blending creativity with strategy. Every design decision is aligned with your brand identity and business objectives. From illustrations and graphics to motion elements, we create visuals that resonate with your audience and stand out in a crowded digital space.
-        Consistency is a key factor in creative design. Maintaining a unified style across all platforms helps build recognition and trust. We ensure that every element—from icons to color palettes—works together harmoniously.
-        Our goal is to create designs that are not only visually impressive but also meaningful. By combining artistic creativity with user-focused thinking, we deliver solutions that inspire, engage, and leave a lasting impression.
-            `,
+      I bring ideas to life through creative and interactive design. By combining visual storytelling with modern UI patterns, I create experiences that capture attention and keep users engaged.
+
+      I incorporate subtle animations, transitions, and micro-interactions to enhance usability and make interfaces feel dynamic and responsive.
+
+      My goal is to deliver designs that are not only visually appealing but also meaningful and user-driven.
+    `,
   },
   {
     id: 4,
     title: "Responsive Design",
     icon: HiOutlineDevicePhoneMobile,
+    image: serviceImages.responsive,
     description:
-      "Ensuring seamless user experience across all devices by creating layouts that adapt perfectly to different screen sizes.",
+      "Creating fully responsive layouts that work seamlessly across mobile, tablet, and desktop devices.",
     brief: `
-        Responsive design ensures that your website delivers a seamless experience across all devices, from desktops to smartphones. With users accessing content on various screen sizes, adaptability is no longer optional—it is essential.
-        We design layouts that automatically adjust to different resolutions and orientations. This includes flexible grids, scalable images, and media queries that ensure consistent performance across devices. The result is a smooth and intuitive experience, regardless of how users access your site.
-        Mobile-first design is a core part of our approach. By prioritizing smaller screens, we ensure faster loading times and better usability. This also improves search engine rankings, as responsiveness is a key factor in SEO.
-        A responsive website enhances user satisfaction, reduces bounce rates, and increases engagement. It ensures your content is accessible to everyone, everywhere. By focusing on adaptability and performance, we help you create a future-proof digital presence.
+      I build responsive interfaces that adapt perfectly to all screen sizes and devices. Using mobile-first design principles, I ensure optimal performance and usability across platforms.
+
+      I use flexible layouts, modern CSS techniques, and responsive frameworks to create consistent experiences everywhere.
+
+      A responsive design not only improves user experience but also boosts SEO and accessibility.
     `,
   },
   {
     id: 5,
-    title: "Branding Identity",
+    title: "Frontend Architecture",
     icon: MdOutlineVerified,
+    image: serviceImages.architecture,
     description:
-      "Developing strong brand identities with consistent visuals, logos, and messaging to create a lasting impression.",
+      "Structuring scalable frontend applications with reusable components and clean architecture.",
     brief: `
-        Branding identity is the visual and emotional representation of your business. It defines how your audience perceives you and plays a crucial role in building trust and recognition.
-        We create cohesive brand identities that reflect your values and vision. This includes logo design, typography, color systems, and visual guidelines that ensure consistency across all platforms. A strong brand identity makes your business memorable and sets you apart from competitors.
-        Our process involves understanding your target audience and market positioning. We design with purpose, ensuring every element communicates your message clearly and effectively. Consistency across digital and physical touchpoints reinforces your brand presence.
-        A well-crafted brand identity not only enhances credibility but also builds long-term relationships with your audience. It is the foundation of your marketing strategy and a key driver of business growth.
-            `,
+      I design frontend architectures that are scalable, maintainable, and easy to extend. Using component-based development, I build reusable UI elements that improve development speed and consistency.
+
+      I work with state management, modular structure, and clean coding standards to ensure long-term project stability.
+
+      This approach helps teams collaborate efficiently and keeps applications organized as they grow.
+    `,
   },
   {
     id: 6,
-    title: "24/Support",
+    title: "Maintenance & Support",
     icon: GrSupport,
+    image: serviceImages.Support,
     description:
-      "Providing reliable and continuous support to ensure smooth operation, quick issue resolution, and client satisfaction.",
+      "Providing ongoing support, bug fixes, and performance improvements for web applications.",
     brief: `
-          Reliable support is essential for maintaining a smooth and efficient digital experience. Our 24/7 support service ensures that your systems run without interruption and that any issues are resolved quickly.
-          We provide continuous monitoring and assistance to address technical challenges, bugs, and performance issues. Our team is always ready to respond, minimizing downtime and ensuring your operations remain stable.
-          Proactive maintenance is a key part of our support strategy. Regular updates, performance checks, and security monitoring help prevent problems before they occur. This ensures your website or application stays optimized and secure at all times.
-          Our goal is to provide peace of mind. With dedicated support, you can focus on your business while we handle the technical side. Reliable assistance builds trust and ensures long-term success for your digital products.
-              `,
+      I provide continuous support to keep your application running smoothly. This includes bug fixing, performance optimization, and feature updates.
+
+      I monitor and improve application performance to ensure a stable and fast user experience.
+
+      With reliable maintenance, your product stays up-to-date, secure, and aligned with evolving user needs.
+    `,
   },
 ];

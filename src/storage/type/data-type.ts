@@ -14,9 +14,9 @@ export interface ServiceType {
   title: string;
   icon?: IconType;
   description: string;
+  image?: string[];
   brief?: string;
   link?: string;
-  image?: string;
 }
 
 export type ServiceTypes = ServiceType[];
