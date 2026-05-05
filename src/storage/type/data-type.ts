@@ -21,6 +21,16 @@ export interface ServiceType {
 
 export type ServiceTypes = ServiceType[];
 
+export interface PortfolioType {
+  id: number | null;
+  title: string;
+  link?: string;
+  image?: string;
+  description: string;
+  brief?: string;
+}
+export type PortfolioTypes = PortfolioType[];
+
 export interface PricingPlan {
   id: string;
   title: string;

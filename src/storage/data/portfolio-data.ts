@@ -1,14 +1,14 @@
-import type { PricingPlans, ServiceTypes } from "../type/data-type";
+import type { PortfolioTypes, PricingPlans } from "../type/data-type";
 import money_management from "/portfolio/money_management_1.png";
 import car_rent from "/portfolio/car_rent.png";
 // import car_rent_slider from "../../assets/images/portfolio/car_rent_slider.png";
 import map from "/portfolio/map.png";
 
-export const protFolioDeatils: ServiceTypes = [
+export const protFolioDeatils: PortfolioTypes = [
   {
     id: 1,
     title: "Money Management",
-    link: "https://moneymanagement22-demo-seven.vercel.app/dashboard/home",
+    link: "https://moneymanagement22-demo-seven.vercel.app",
     image: money_management,
     description:
       "At the top, the dashboard highlights four primary financial metrics for quick assessment.The center of the project focuses on visual storytelling through different chart types.",

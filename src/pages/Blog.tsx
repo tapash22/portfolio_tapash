@@ -46,7 +46,7 @@ export default function Blog() {
         {/* header sectection end */}
 
         {/* body sectection */}
-        <div className="w-full h-auto p-3 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="w-full h-auto p-3 py-2 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {blogs.map((blog) => {
             return (
               <BlogCard
@@ -70,13 +70,10 @@ export default function Blog() {
         {/* Dialog Blog Body */}
 
         <div className="space-y-3 ">
-          <article className="w-full p-3 ">
+          <article className="w-full ">
             {/* --- Header Section --- */}
-            <div className="space-y-3">
-              <h1 className="text-2xl tracking-wide font-bold text-(--foreground) ">
-                {selectedBlog?.title}
-              </h1>
-              <p className="text-xl text-(--foreground) italic ">
+            <div className="space-y-3 py-3 sm:py-3 md:py-0">
+              <p className="text-lg text-(--foreground) italic ">
                 {selectedBlog?.subtitle}
               </p>
 
@@ -84,13 +81,13 @@ export default function Blog() {
                 <span className="font-medium text-(--foreground)">
                   By {selectedBlog?.author}
                 </span>
-                <span className="mx-2 h-4 border-l border-(--border)" />
+                <span className="mx-2 h-4 border-l border-(--foreground)" />
                 <span>{selectedBlog?.date}</span>
               </div>
             </div>
 
             {/* --- Cover Image --- */}
-            <div className="w-full h-auto rounded-2xl overflow-hidden bg-(--background)">
+            <div className="w-full h-auto rounded-lg md:rounded-2xl overflow-hidden bg-(--background)">
               <img
                 src={selectedBlog?.cover}
                 alt={selectedBlog?.title}
@@ -104,12 +101,12 @@ export default function Blog() {
               <p className="whitespace-pre-line leading-relaxed text-lg text-(--foreground) ">
                 {selectedBlog?.content}
               </p>
-              <hr className="border-(--border) my-5" />
+              <hr className="border-(--border) my-3 md:my-5" />
             </div>
 
             {/* --- Beginner's Guide Section --- */}
-            <section className="bg-muted/30 rounded-3xl p-8 border border-(--border) space-y-5">
-              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-(--foreground)">
+            <section className="bg-muted/30 rounded-lg md:rounded-2xl p-5 border border-(--border) space-y-5">
+              <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-(--foreground)">
                 Beginner's Guide
               </h2>
 

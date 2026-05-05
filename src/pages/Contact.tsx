@@ -33,7 +33,7 @@ export default function Contact() {
               </h1>
 
               <h1
-                className="text-xl sm:text-xl md:text-4xl 
+                className="text-xl sm:text-xl xl:text-4xl 
                              font-medium sm:font-medium md:font-bold 
                              tracking-wider leading-7 text-(--foreground)"
               >

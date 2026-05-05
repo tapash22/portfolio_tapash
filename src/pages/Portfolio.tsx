@@ -1,10 +1,7 @@
 import { protFolioDeatils, pricingPlans } from "../storage/data/portfolio-data";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { Dialog } from "../componants/dialog/Dialog";
-// import service2 from "../../assets/images/portfolio/money_management_1.png";
-// import service3 from "../../assets/images/portfolio/car_rent.png";
-
-import type { ServiceType } from "../storage/type/data-type";
+import type { PortfolioType } from "../storage/type/data-type";
 import { useState } from "react";
 import { PricingCard } from "../componants/card/PricingCard";
 // import { useOutletContext } from "react-router-dom";
@@ -14,10 +11,10 @@ export default function Projects() {
   // const { lockScroll, unlockScroll } = useOutletContext<LayoutContextType>();
 
   const [openDialog, setOpenDialog] = useState(false);
-  const [item, setItem] = useState<ServiceType | null>(null);
+  const [item, setItem] = useState<PortfolioType | null>(null);
 
   //this handle selected data and also open dialog
-  const handleClick = (value: ServiceType) => {
+  const handleClick = (value: PortfolioType) => {
     setOpenDialog(true);
     setItem(value);
     // lockScroll();
@@ -106,15 +103,18 @@ export default function Projects() {
 
         <div className="space-y-4 ">
           <div className="w-full h-72 overflow-hidden my-2">
-            <img
-              src={item?.image || "/fallback.jpg"}
-              className="w-full h-full object-cover rounded-md"
-            />
+            <a href={item?.link} target="_blank" rel="noopener noreferrer">
+              <img
+                src={item?.image || "/fallback.jpg"}
+                className="w-full h-full object-cover rounded-md"
+              />
+            </a>
           </div>
 
           <p className="text-white/80 text-lg leading-7">{item?.description}</p>
-          <div className="w-full h-auto px-10 py-3 flex justify-center items-center">
-            <div className="w-full h-auto p-4 ring-1 ring-(--border) grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-2 md:justify-center md:items-center rounded-lg md:rounded-full bg-(--sidebar)">
+
+          <div className="w-full h-auto px-0 sm:px-0 md:px-10 py-3 flex justify-center items-center">
+            <div className="w-full h-auto p-4 ring-1 ring-(--border) grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-2 md:justify-center md:items-center rounded-lg md:rounded-full bg-(--sidebar) space-y-5 sm:space-y-5 md:space-y-0">
               <p className="text-lg font-medium tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full">
                 <span className="font-bold">Product Type</span>
                 <span className="font-bold">Fintech Website</span>

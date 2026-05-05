@@ -31,9 +31,9 @@ export function ContactCard({ contact }: ContactCardProps) {
         {contact.values.map((value, index) => (
           <li
             key={index}
-            className="text-sm sm:text-sm md:text-lg font-medium 
+            className="text-sm sm:text-sm lg:text-lg lg:font-light font-medium xl:font-medium 
                      text-(--foreground) flex justify-center text-center tracking-wider 
-                     p-1 md:p-2 text-wrap whitespace-nowrap"
+                     p-1 md:p-2 text-wrap lg:whitespace-normal xl:whitespace-nowrap"
           >
             {value}
           </li>

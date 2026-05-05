@@ -65,7 +65,7 @@ export function SideBar({ handleNavigation }: Props) {
   return (
     <>
       {/* ================= MOBILE TOP BAR ================= */}
-      <div className="md:hidden fixed top-0 left-0 w-full h-14 flex items-center justify-between px-4 bg-(--sidebar) z-50 shadow-(--shadow) backdrop-blur-xl">
+      <div className="lg:hidden fixed top-0 left-0 w-full h-14 flex items-center justify-between px-4 bg-(--sidebar) z-50 shadow-(--shadow) backdrop-blur-xl">
         <img src={portfolio_icon} className="w-10 h-10" />
 
         <button onClick={openDrawer}>
@@ -74,7 +74,7 @@ export function SideBar({ handleNavigation }: Props) {
       </div>
 
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <div className="hidden md:flex w-72 h-screen flex-col justify-center bg-(--sidebar) shadow-(--shadow) z-50 space-y-5">
+      <div className="hidden lg:flex w-72 h-screen flex-col justify-center bg-(--sidebar) shadow-(--shadow) z-50 space-y-5">
         {/* LOGO */}
         <div className="px-10 ">
           <img src={portfolio_icon} className="w-12 h-12" />
@@ -104,7 +104,7 @@ export function SideBar({ handleNavigation }: Props) {
 
       {/* ================= MOBILE DRAWER ================= */}
       {open && (
-        <div className="fixed md:hidden inset-0 z-50">
+        <div className="fixed lg:hidden inset-0 z-50">
           {/* OVERLAY */}
           <div
             ref={overlayRef}
