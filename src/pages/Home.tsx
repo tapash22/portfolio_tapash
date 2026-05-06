@@ -85,27 +85,48 @@ export default function Home() {
           Front End Developer
         </h1>
 
-        <p className="text-sm text-center hidden md:block text-(--muted) px-5 sm:px-5 md:px-0 ">
+        <p className="text-sm text-start tracking-wide hidden md:block text-(--muted) whitespace-nowrap ">
           I build modern, responsive and animated web experiences with clean UI
           and performance in mind.
         </p>
-
-        <button
-          onClick={handleLink}
-          className="
+        <div className="flex flex-col sm:flex-col md:flex-row space-x-3 space-y-3 sm:space-y-3 md:space-y-0 ">
+          <button
+            onClick={handleLink}
+            className="
         bg-(--button-color)
         text-(--foreground)
         text-sm
         font-normal tracking-wider
         ring-1 ring-(--border)
-        px-6 py-1 sm:py-1 md:py-3
+        px-10 py-2 sm:py-2 md:py-3
         rounded-full uppercase
         hover:scale-105 active:scale-95
         transition-transform duration-300
+        whitespace-nowrap
       "
-        >
-          Contact Me
-        </button>
+          >
+            Contact Me
+          </button>
+
+          {/* CV Download */}
+          <a
+            href="/cv/tapash-paul-cv.pdf"
+            download
+            className="
+            border border-(--border)
+            text-(--foreground)
+            text-sm
+            tracking-wider
+            px-6 py-2 md:py-3
+            rounded-full uppercase
+            hover:bg-(--button-color) hover:scale-105 active:scale-95
+            transition-all duration-300
+            whitespace-nowrap
+          "
+          >
+            Download CV
+          </a>
+        </div>
       </div>
 
       {/* RIGHT SECTION (MOBILE BACKGROUND STYLE) */}
