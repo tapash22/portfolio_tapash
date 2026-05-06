@@ -4,6 +4,7 @@ import { Dialog } from "../componants/dialog/Dialog";
 import type { PortfolioType } from "../storage/type/data-type";
 import { useState } from "react";
 import { PricingCard } from "../componants/card/PricingCard";
+import { GithubActivity } from "../componants/github-calendar/GithubActivity";
 // import { useOutletContext } from "react-router-dom";
 
 export default function Projects() {
@@ -56,8 +57,13 @@ export default function Projects() {
             ))}
           </div>
         </div>
-
         {/* portfolio section end*/}
+
+        {/* LIVE METRICS & ACTIVITY */}
+        <div className="flex flex-col justify-start items-center w-full h-auto space-y-5 p-3">
+          <GithubActivity />
+        </div>
+        {/* LIVE METRICS & ACTIVITY END*/}
 
         {/* pricing section */}
 

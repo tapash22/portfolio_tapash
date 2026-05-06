@@ -1,5 +1,6 @@
 import { PiDesktop } from "react-icons/pi";
 import image from "/images/about.png";
+import { Timeline } from "../componants/time-line/Timeline";
 
 export default function About() {
   // const [showDialog, setShowDialog] = useState(false);
@@ -8,13 +9,13 @@ export default function About() {
     console.log("click");
   };
   return (
-    <div className="w-full h-auto flex items-end relative bg-(--background)">
+    <div className="w-full h-auto flex flex-col items-end relative bg-(--background)">
       <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full">
         {/* left sectection */}
         <div
-          className="w-full sm:w-full md:w-1/3 h-full 
+          className="w-full sm:w-full md:w-1/4 h-full 
                   flex justify-start md:justify-center
-                  items-start md:items-center p-3
+                  items-start md:items-center p-2
         "
         >
           <img
@@ -24,10 +25,20 @@ export default function About() {
         </div>
         {/* left sectection end */}
 
+        {/* middle timeline section */}
+        <div
+          className="
+                  w-full sm:w-full md:w-1/4 h-full sm:h-full md:h-full md:p-5
+                  flex justify-center items-center  "
+        >
+          <Timeline />
+        </div>
+        {/* middle timeline section end*/}
+
         {/* right sectection */}
         <div
           className="
-                  w-full sm:w-full md:w-2/3 h-full sm:h-full md:h-full p-3
+                  w-full sm:w-full md:w-2/4 h-full sm:h-full md:h-full p-2
                   flex flex-col justify-center items-center sm:items-center 
                   md:items-start sm:justify-center md:justify-center space-y-5 "
         >
@@ -85,6 +96,7 @@ export default function About() {
             </button>
           </div>
         </div>
+
         {/* right sectection end */}
       </div>
     </div>

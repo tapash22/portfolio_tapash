@@ -227,6 +227,23 @@
   transform: scale(1.08);
 }
 
+/* Target the calendar container to force the SVG to be fluid */
+.github-calendar-wrapper svg {
+  width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+/* Optional: hide the scrollbar if you are using overflow-x-auto */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* trophy animation */
 @keyframes float {
 
