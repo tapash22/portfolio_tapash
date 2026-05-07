@@ -1,6 +1,6 @@
 import { PiDesktop } from "react-icons/pi";
-import image from "/images/about.png";
 import { Timeline } from "../componants/time-line/Timeline";
+import image from "/images/about.png";
 
 export default function About() {
   // const [showDialog, setShowDialog] = useState(false);
@@ -10,7 +10,7 @@ export default function About() {
   };
   return (
     <div className="w-full h-auto flex flex-col items-end relative bg-(--background)">
-      <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full">
+      <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full space-y-8 sm:space-y-8  md:space-y-0">
         {/* left sectection */}
         <div
           className="w-full sm:w-full md:w-1/4 h-full 
@@ -43,12 +43,12 @@ export default function About() {
                   md:items-start sm:justify-center md:justify-center space-y-5 "
         >
           <div
-            className="w-14 h-14 rounded-xl md:rounded-sm  p-2 
-                        flex justify-center items-center bg-transparent md:bg-(--box) shadow-(--shadow-footer) ring-1 ring-(--border) md:ring-0 opacity-80 md:opacity-50 "
+            className="w-14 h-14 rounded-xl md:rounded-lg  p-2 
+                        flex justify-center items-center bg-transparent shadow-(--shadow) ring-2 ring-(--border) opacity-80 "
           >
             <PiDesktop
               size={40}
-              className="text-(--foreground) md:text-(--border)"
+              className="text-(--foreground) md:text-(--muted)"
             />
           </div>
 

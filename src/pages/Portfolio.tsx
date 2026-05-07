@@ -1,11 +1,10 @@
-import { protFolioDeatils, pricingPlans } from "../storage/data/portfolio-data";
-import { PortfolioCard } from "../componants/card/PortfolioCard";
-import { Dialog } from "../componants/dialog/Dialog";
-import type { PortfolioType } from "../storage/type/data-type";
 import { useState } from "react";
+import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { PricingCard } from "../componants/card/PricingCard";
+import { Dialog } from "../componants/dialog/Dialog";
 import { GithubActivity } from "../componants/github-calendar/GithubActivity";
-// import { useOutletContext } from "react-router-dom";
+import { pricingPlans, protFolioDeatils } from "../storage/data/portfolio-data";
+import type { PortfolioType } from "../storage/type/data-type";
 
 export default function Projects() {
   // handle scroll reset on dialog open and close

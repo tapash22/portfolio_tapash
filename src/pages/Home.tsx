@@ -66,16 +66,11 @@ export default function Home() {
       {/* LEFT SECTION */}
       <div
         ref={boxRef}
-        className="
-    z-10
-    w-full md:w-5/12
-    flex flex-col
-    justify-end md:justify-start
-    items-center md:items-start
-    space-y-1 sm:space-y-1 md:space-y-5
-    px-1 sm:px-1 md:px-5
-    py-10 md:py-0
-    "
+        className="w-full md:w-5/12 flex flex-col
+                  justify-end md:justify-start items-center md:items-start
+                  space-y-1 sm:space-y-1 md:space-y-5
+                  px-1 sm:px-1 md:px-5 py-10 md:py-0 z-10 
+                "
       >
         <h1 className="text-2xl sm:text-2xl font-bold text-(--foreground) tracking-wider opacity-80">
           I am Tapash Paul
