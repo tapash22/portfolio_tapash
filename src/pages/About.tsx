@@ -9,7 +9,7 @@ export default function About() {
     console.log("click");
   };
   return (
-    <div className="w-full h-auto flex flex-col items-end relative bg-(--background)">
+    <div className="w-full h-full flex flex-col items-center relative bg-(--background)">
       <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full space-y-8 sm:space-y-8  md:space-y-0">
         {/* left sectection */}
         <div
@@ -28,8 +28,8 @@ export default function About() {
         {/* middle timeline section */}
         <div
           className="
-                  w-full sm:w-full md:w-1/4 h-full sm:h-full md:h-full md:p-5
-                  flex justify-center items-center  "
+                  w-full sm:w-full md:w-1/4 h-full sm:h-full md:h-full p-3 sm:p-3 md:p-10
+                  flex justify-center items-start  "
         >
           <Timeline />
         </div>
@@ -52,9 +52,9 @@ export default function About() {
             />
           </div>
 
-          <div className="flex flex-col space-y-3 md:space-y-5 items-center md:items-start">
+          <div className="flex flex-col space-y-3 items-center md:items-start">
             <h1
-              className="text-xl sm:text-xl md:text-3xl 
+              className="text-xl sm:text-xl md:text-2xl md:whitespace-nowrap
                        font-medium sm:font-medium md:font-bold tracking-wide 
                        text-(--foreground) text-wrap w-full sm:w-full md:w-2/3 
                        text-center sm:text-center md:text-start leading-7 md:leading-10

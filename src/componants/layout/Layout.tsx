@@ -1,10 +1,10 @@
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
-import { SideBar } from "../sidebar/SIdeBar";
 import { useLayoutEffect, useRef } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { pageEnter, pageExit } from "../../animations/pageTransition";
-import { SocialMediaList } from "../list/SocialMediaList";
-import { socialMediaLinkList } from "../../storage/data/social-media-links";
 import { useNavigationDirection } from "../../hook/useNavigationDirection";
+import { socialMediaLinkList } from "../../storage/data/social-media-links";
+import { SocialMediaList } from "../list/SocialMediaList";
+import { SideBar } from "../sidebar/SIdeBar";
 
 export function Layout() {
   const location = useLocation();
@@ -64,7 +64,7 @@ export function Layout() {
           ref={scrollRef}
           className={`flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full`}
         >
-          <div ref={pageRef} className="w-full min-h-full">
+          <div ref={pageRef} className="w-full min-h-full flex items-center">
             <Outlet
               context={{
                 scrollRef,

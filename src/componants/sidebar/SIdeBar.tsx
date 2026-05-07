@@ -1,9 +1,9 @@
-import { useLocation } from "react-router-dom";
-import { routeConfig } from "../../routes/routeConfig";
-import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 import portfolio_icon from "../../assets/images/portfolio_icon.png";
+import { routeConfig } from "../../routes/routeConfig";
 
 type Props = {
   handleNavigation: (path: string) => void;

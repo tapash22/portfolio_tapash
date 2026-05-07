@@ -8,22 +8,26 @@ export function TimeLineSIdeBarWithDot({
   return (
     <div
       className="
-        absolute left-1/2 md:-left-3 
-        pointer-events-none z-0
-        
-        top-30 md:top-16
+    absolute
+    left-1/2 md:-left-3.5
+    -translate-x-1/2
+    md:translate-y-[22%]
+    translate-y-5
+    md:top-0 md:bottom-0 
+    w-1
+    rounded-full
+    bg-(--border)
       "
       style={{
         height,
       }}
     >
-      {/* LINE */}
-      <div className="absolute left-1/2 md:left-0 top-0 bottom-0 w-1 bg-(--border) rounded-3xl transform -translate-x-1/2 md:translate-x-0" />
-
       {/* DOTS CONTAINER */}
       <div
         className="
-          h-full flex flex-col justify-between items-center
+        md:-mr-2 -mr-1.5 sm:-mr-1.5
+
+          h-full flex flex-col justify-between items-end 
         "
       >
         {Array.from({ length: cardCount }).map((_, index) => (

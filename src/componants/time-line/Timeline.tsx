@@ -51,7 +51,7 @@ export function Timeline() {
 
   const finalHeight = isSm
     ? boxHeight * 0.76 // mobile: 90%
-    : boxHeight * 0.75;
+    : boxHeight * 0.7;
 
   useEffect(() => {
     gsap.fromTo(
@@ -65,7 +65,7 @@ export function Timeline() {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.8,
+        duration: 0.82,
         stagger: 0.2,
         ease: "power3.out",
       },
@@ -73,7 +73,10 @@ export function Timeline() {
   }, []);
 
   return (
-    <div className="relative w-full md:w-2/3 mx-auto px-2 md:px-0 flex  ">
+    <div
+      className="relative w-full md:w-full px-2 md:px-0 
+    flex justify-center items-end sm:justify-center sm:items-end md:justify-center md:items-center   "
+    >
       {/* Timeline Line (AUTO HEIGHT) */}
       <TimeLineSIdeBarWithDot
         cardCount={timelineData.length}
