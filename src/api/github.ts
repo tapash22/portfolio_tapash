@@ -23,7 +23,7 @@ export async function fetchGithubContributions(
     }
   `;
 
-  const response = await fetch("https://api.github.com/graphql", {
+  const response = await fetch("htt://api.github.com/graphql", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
