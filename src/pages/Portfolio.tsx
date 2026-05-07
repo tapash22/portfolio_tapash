@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { PricingCard } from "../componants/card/PricingCard";
 import { Dialog } from "../componants/dialog/Dialog";
-import { GithubActivity } from "../componants/github-calendar/GithubActivity";
+import { GithubHeatmap } from "../componants/github-calendar/GithubHeatmap";
 import { pricingPlans, protFolioDeatils } from "../storage/data/portfolio-data";
 import type { PortfolioType } from "../storage/type/data-type";
 
@@ -60,7 +60,8 @@ export default function Projects() {
 
         {/* LIVE METRICS & ACTIVITY */}
         <div className="flex flex-col justify-start items-center w-full h-auto space-y-5 p-3">
-          <GithubActivity />
+          {/* <GithubActivity /> */}
+          <GithubHeatmap username="tapash22" />
         </div>
         {/* LIVE METRICS & ACTIVITY END*/}
 
