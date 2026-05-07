@@ -3,6 +3,7 @@ import type { PricingPlan } from "../../storage/type/data-type";
 interface PricingCardProps {
   pricingPlan: PricingPlan;
 }
+
 export function PricingCard({ pricingPlan }: PricingCardProps) {
   return (
     <div
