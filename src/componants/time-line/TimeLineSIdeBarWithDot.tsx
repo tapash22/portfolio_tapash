@@ -48,7 +48,7 @@ export function TimeLineSIdeBarWithDot({
     -translate-x-1/2
     md:translate-y-[22%]
     translate-y-[5%]
-    md:top-0 md:bottom-0 
+    md:top-0 md:bottom-0
     w-1
     rounded-full
     bg-(--border)

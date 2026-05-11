@@ -70,10 +70,6 @@ export function Timeline() {
     return () => clearTimeout(timeoutId);
   }, [expandedIndex, isSm]);
 
-  // const finalHeight = isSm
-  //   ? boxHeight * 0.61 // mobile: 90%
-  //   : boxHeight * 0.68;
-
   useEffect(() => {
     const tl = gsap.timeline({
       onComplete: () => setAnimate(true),
@@ -96,6 +92,11 @@ export function Timeline() {
       },
     );
   }, []);
+
+  const handleExpand = (index: number) => {
+    if (isSm) return;
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <div
@@ -127,12 +128,12 @@ export function Timeline() {
                   if (isLast) lastItemRef.current = el;
                 }
               }}
-              onClick={() => setExpandedIndex(isExpanded ? null : index)}
+              onClick={() => handleExpand(index)}
               className="
                 group w-full
                 bg-(--background)/20
                 backdrop-blur-xl
-                p-5 rounded-xl
+                p-6 rounded-xl
                 border border-(--border)
                 shadow-(--shadow-footer)
                 hover:border-(--primary)/50
@@ -141,37 +142,40 @@ export function Timeline() {
               "
             >
               <div className="flex justify-between items-start gap-4">
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <h3 className="text-sm md:text-xl font-bold text-(--foreground)">
                     {item.year}
                   </h3>
                   <h4 className="text-sm md:text-lg font-medium text-(--foreground)">
-                    {item.title} {boxHeight} {}
+                    {item.title}
                   </h4>
-                  <p className="text-sm text-(--muted)">{item.company}</p>
+                  <p className="text-lg text-(--muted)">{item.company}</p>
                 </div>
-
-                <div
-                  className={`mt-1 p-1 rounded-full bg-(--foreground)/5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-                >
-                  <FaChevronDown size={20} className="text-(--muted)" />
-                </div>
+                {!isSm && (
+                  <div
+                    className={`mt-1 p-1 rounded-full bg-(--foreground)/5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                  >
+                    <FaChevronDown size={20} className="text-(--muted)" />
+                  </div>
+                )}
               </div>
 
               {/* Expandable Content */}
-              <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                  isExpanded
-                    ? "grid-rows-[1fr] opacity-100 mt-4"
-                    : "grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <p className="text-sm leading-relaxed text-(--foreground)/80 border-t border-(--border) pt-4">
-                    {item.description}
-                  </p>
+              {!isSm && (
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    isExpanded
+                      ? "grid-rows-[1fr] opacity-100 mt-4"
+                      : "grid-rows-[0fr] opacity-0"
+                  }`}
+                >
+                  <div className="overflow-hidden -ml-6 -mr-6  ">
+                    <p className="text-sm leading-relaxed text-(--foreground)/80 border-t border-(--border) px-4 py-2">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           );
         })}
