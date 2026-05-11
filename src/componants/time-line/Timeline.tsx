@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FaChevronDown } from "react-icons/fa6";
 import { TimeLineSIdeBarWithDot } from "./TimeLineSIdeBarWithDot";
 
 const timelineData = [
@@ -31,11 +32,13 @@ export function Timeline() {
 
   //calculate the height of the timeline line based on the number of items
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const lastItemRef = useRef<HTMLDivElement | null>(null);
 
   const [boxHeight, setBoxHeight] = useState(0);
   const [isSm, setIsSm] = useState(false);
 
   const [animate, setAnimate] = useState(false);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const check = () => setIsSm(window.innerWidth <= 640);
@@ -46,13 +49,30 @@ export function Timeline() {
   }, []);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) return;
-    setBoxHeight(containerRef.current.offsetHeight);
-  }, []);
+    if (!containerRef.current || !lastItemRef.current) return;
 
-  const finalHeight = isSm
-    ? boxHeight * 0.61 // mobile: 90%
-    : boxHeight * 0.55;
+    const calculateHeight = () => {
+      const containerRect = containerRef.current!.getBoundingClientRect();
+      const lastItemRect = lastItemRef.current!.getBoundingClientRect();
+
+      // Calculate distance from container top to the middle of the last card's header
+      // This keeps the dot perfectly centered even when the last card expands
+      const relativeTop = lastItemRect.top - containerRect.top;
+      const mobileOffset = isSm ? -40 : 0;
+
+      setBoxHeight(relativeTop + mobileOffset);
+    };
+
+    // Small timeout ensures the DOM has finished the expansion transition before measuring
+    const timeoutId = setTimeout(calculateHeight, 300);
+    calculateHeight();
+
+    return () => clearTimeout(timeoutId);
+  }, [expandedIndex, isSm]);
+
+  // const finalHeight = isSm
+  //   ? boxHeight * 0.61 // mobile: 90%
+  //   : boxHeight * 0.68;
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -85,7 +105,7 @@ export function Timeline() {
       {/* Timeline Line (AUTO HEIGHT) */}
       <TimeLineSIdeBarWithDot
         cardCount={timelineData.length}
-        height={finalHeight}
+        height={boxHeight}
         animateTrigger={animate}
       />
 
@@ -94,41 +114,67 @@ export function Timeline() {
         ref={containerRef}
         className="space-y-8 sm:space-y-8 md:space-y-5 w-full relative z-10 box"
       >
-        {timelineData.map((item, index) => (
-          <div
-            key={index}
-            ref={(el) => {
-              if (el) itemsRef.current[index] = el;
-            }}
-            className="relative flex flex-col md:flex-row md:items-start gap-3"
-          >
-            {/* Card */}
+        {timelineData.map((item, index) => {
+          const isLast = index === timelineData.length - 1;
+          const isExpanded = expandedIndex === index;
+
+          return (
             <div
+              key={index}
+              ref={(el) => {
+                if (el) {
+                  itemsRef.current[index] = el;
+                  if (isLast) lastItemRef.current = el;
+                }
+              }}
+              onClick={() => setExpandedIndex(isExpanded ? null : index)}
               className="
-            w-full
-            bg-(--background)/20
-            backdrop-blur-xl
-            p-5 lg:p-4
-            rounded-xl
-            border border-(--border)
-            shadow-(--shadow-footer)
-            hover:scale-[1.02]
-            transition-all duration-300
-            space-y-1
-          "
+                group w-full
+                bg-(--background)/20
+                backdrop-blur-xl
+                p-5 rounded-xl
+                border border-(--border)
+                shadow-(--shadow-footer)
+                hover:border-(--primary)/50
+                transition-all duration-300
+                cursor-pointer
+              "
             >
-              <h3 className="text-sm md:text-xl font-bold text-(--foreground)">
-                {item.year}
-              </h3>
+              <div className="flex justify-between items-start gap-4">
+                <div className="space-y-1">
+                  <h3 className="text-sm md:text-xl font-bold text-(--foreground)">
+                    {item.year}
+                  </h3>
+                  <h4 className="text-sm md:text-lg font-medium text-(--foreground)">
+                    {item.title} {boxHeight} {}
+                  </h4>
+                  <p className="text-sm text-(--muted)">{item.company}</p>
+                </div>
 
-              <h4 className="text-sm md:text-lg font-medium text-(--foreground)">
-                {item.title}
-              </h4>
+                <div
+                  className={`mt-1 p-1 rounded-full bg-(--foreground)/5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                >
+                  <FaChevronDown size={20} className="text-(--muted)" />
+                </div>
+              </div>
 
-              <p className="text-sm text-(--muted)">{item.company}</p>
+              {/* Expandable Content */}
+              <div
+                className={`grid transition-all duration-300 ease-in-out ${
+                  isExpanded
+                    ? "grid-rows-[1fr] opacity-100 mt-4"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <p className="text-sm leading-relaxed text-(--foreground)/80 border-t border-(--border) pt-4">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
