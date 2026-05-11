@@ -56,8 +56,6 @@ export function Timeline() {
       const containerRect = containerRef.current!.getBoundingClientRect();
       const lastItemRect = lastItemRef.current!.getBoundingClientRect();
 
-      // Calculate distance from container top to the middle of the last card's header
-      // This keeps the dot perfectly centered even when the last card expands
       const relativeTop = lastItemRect.top - containerRect.top;
       const mobileOffset = isSm ? -40 : 0;
 
