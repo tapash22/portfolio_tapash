@@ -152,11 +152,7 @@ export function Timeline() {
                   <p className="text-lg text-(--muted)">{item.company}</p>
                 </div>
                 {!isSm && (
-                  <div
-                    className={`mt-1 p-1 rounded-full bg-(--foreground)/5 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-                  >
-                    <FaChevronDown size={20} className="text-(--muted)" />
-                  </div>
+                  <FaChevronDown size={20} className="text-(--muted)" />
                 )}
               </div>
 

@@ -80,7 +80,7 @@ export default function About() {
             </p>
 
             <p
-              className="w-fit text-sm md:text-lg font-semibold tracking-wider text-(--foreground) text-center sm:text-center md:text-start whitespace-nowrap
+              className="w-full md:w-fit text-sm md:text-lg font-semibold tracking-wider text-(--foreground) text-center sm:text-center md:text-start whitespace-nowrap
              border-b-2 border-t-2 md:border-t-0 border-(--border) p-3 "
             >
               Frontend Developer at Anwar Technology
