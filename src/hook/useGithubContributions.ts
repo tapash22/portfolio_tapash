@@ -1,20 +1,14 @@
 import useSWR from "swr";
-import { type ContributionDay, fetchGithubContributions } from "../api/github";
+import { fetchGithubContributions, type ContributionDay } from "../api/github";
 
 export function useGithubContributions(username: string) {
   const { data, error, isLoading, mutate } = useSWR<ContributionDay[]>(
-    ["github-contributions", username],
+    username ? ["github", username] : null,
     () => fetchGithubContributions(username),
     {
-      refreshInterval: 60000,
-
-      revalidateOnFocus: true,
-
-      revalidateOnReconnect: true,
-
-      dedupingInterval: 10000,
-
-      keepPreviousData: true,
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 1000 * 60 * 60,
     },
   );
 

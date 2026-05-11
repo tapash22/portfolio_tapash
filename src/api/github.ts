@@ -6,29 +6,49 @@ export interface ContributionDay {
 export async function fetchGithubContributions(
   username: string,
 ): Promise<ContributionDay[]> {
-  // GitHub public events API (safe, no token needed)
-  const response = await fetch(
-    `https://api.github.com/users/${username}/events/public`,
-  );
+  const query = `
+    query ($login: String!) {
+      user(login: $login) {
+        contributionsCollection {
+          contributionCalendar {
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
 
-  if (!response.ok) {
+  const res = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      query,
+      variables: { login: username },
+    }),
+  });
+
+  if (!res.ok) {
     throw new Error("Failed to fetch GitHub data");
   }
 
-  const events = await response.json();
+  const json = await res.json();
 
-  // Convert events into pseudo contribution data
-  const map: Record<string, number> = {};
+  const weeks =
+    json?.data?.user?.contributionsCollection?.contributionCalendar?.weeks ||
+    [];
 
-  events.forEach((event: any) => {
-    const date = event.created_at?.split("T")[0];
-    if (!date) return;
+  const days = weeks.flatMap((w: any) => w.contributionDays);
 
-    map[date] = (map[date] || 0) + 1;
-  });
-
-  return Object.entries(map).map(([date, count]) => ({
-    date,
-    count,
+  return days.map((d: any) => ({
+    date: d.date,
+    count: d.contributionCount,
   }));
 }

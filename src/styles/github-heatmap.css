@@ -1,5 +1,3 @@
-/* src/styles/github-heatmap.css */
-
 .react-calendar-heatmap {
     width: 100%;
 }
@@ -9,19 +7,13 @@
     font-size: 10px;
 }
 
+/* BASE CELL STYLE */
 .react-calendar-heatmap rect {
     rx: 3px;
-    transition:
-        all 0.3s ease,
-        transform 0.2s ease;
+    transition: all 0.15s ease-in-out;
 }
 
-.react-calendar-heatmap rect:hover {
-    transform: scale(1.2);
-    stroke: white;
-    stroke-width: 1px;
-}
-
+/* COLORS */
 .react-calendar-heatmap .color-empty {
     fill: #161b22;
 }
@@ -40,4 +32,13 @@
 
 .react-calendar-heatmap .color-scale-4 {
     fill: #39d353;
+}
+
+/* 🔥 HOVER HIGHLIGHT */
+.react-calendar-heatmap .hovered-cell {
+    stroke: #ffffff;
+    stroke-width: 2px;
+    filter: brightness(1.4);
+    transform: scale(1.15);
+    transform-origin: center;
 }

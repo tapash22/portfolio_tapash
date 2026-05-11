@@ -60,7 +60,6 @@ export default function Projects() {
 
         {/* LIVE METRICS & ACTIVITY */}
         <div className="flex flex-col justify-start items-center w-full h-auto space-y-5 p-3">
-          {/* <GithubActivity /> */}
           <GithubHeatmap username="tapash22" />
         </div>
         {/* LIVE METRICS & ACTIVITY END*/}
