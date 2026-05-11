@@ -36,9 +36,10 @@ export function Timeline() {
 
   const [boxHeight, setBoxHeight] = useState(0);
   const [isSm, setIsSm] = useState(false);
-
   const [animate, setAnimate] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+  // prevent wrong initial render
 
   useEffect(() => {
     const check = () => setIsSm(window.innerWidth <= 640);
@@ -104,6 +105,7 @@ export function Timeline() {
     flex justify-center items-end sm:justify-center sm:items-end md:justify-center md:items-center   "
     >
       {/* Timeline Line (AUTO HEIGHT) */}
+
       <TimeLineSIdeBarWithDot
         cardCount={timelineData.length}
         height={boxHeight}
@@ -147,7 +149,7 @@ export function Timeline() {
                     {item.year}
                   </h3>
                   <h4 className="text-sm md:text-lg font-medium text-(--foreground)">
-                    {item.title}
+                    {item.title} {}
                   </h4>
                   <p className="text-lg text-(--muted)">{item.company}</p>
                 </div>
