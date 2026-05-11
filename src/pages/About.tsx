@@ -9,7 +9,7 @@ export default function About() {
     console.log("click");
   };
   return (
-    <div className="w-full h-full flex flex-col items-center relative bg-(--background)">
+    <div className="w-full h-full bg-(--background)">
       <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full space-y-8 sm:space-y-8  md:space-y-0">
         {/* left sectection */}
         <div

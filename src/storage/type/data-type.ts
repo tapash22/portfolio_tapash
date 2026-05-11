@@ -44,20 +44,25 @@ export interface PricingPlan {
 
 export type PricingPlans = PricingPlan[];
 
+export type BlogSectionType = "list" | "code" | "paragraph";
+
+export interface BlogSection {
+  title: string;
+  type: BlogSectionType;
+  content: string | string[];
+}
+
 export interface BlogType {
   id: number;
   title: string;
   subtitle: string;
   author: string;
   date: string;
-  description: string;
-  prerequisites: string[];
-  installation: string;
-  usage: string;
-  content: string;
   cover: string;
-}
+  description: string;
 
+  sections: BlogSection[];
+}
 export type BlogTypes = BlogType[];
 
 export interface ContactType {

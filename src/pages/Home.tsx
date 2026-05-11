@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
 // import { fadeInUp } from "../animations/gsap";
 import { useNavigate } from "react-router-dom";
 import image from "/images/home.png";
@@ -54,14 +54,14 @@ export default function Home() {
   return (
     <div
       className="
-    w-full h-[84vh] md:h-full
-    flex flex-col md:flex-row
-    items-stretch md:items-center
-    justify-end md:justify-start
-    relative
-    bg-(--background)
-    overflow-hidden
-  "
+              w-full h-[84vh] md:h-full
+              flex flex-col md:flex-row
+              items-stretch md:items-center
+              justify-end md:justify-start
+              relative
+              bg-(--background)
+              overflow-hidden
+            "
     >
       {/* LEFT SECTION */}
       <div
@@ -88,17 +88,17 @@ export default function Home() {
           <button
             onClick={handleLink}
             className="
-        bg-(--button-color)
-        text-(--foreground)
-        text-sm
-        font-normal tracking-wider
-        ring-1 ring-(--border)
-        px-10 py-2 sm:py-2 md:py-3
-        rounded-full uppercase
-        hover:scale-105 active:scale-95
-        transition-transform duration-300
-        whitespace-nowrap
-      "
+                    bg-(--button-color)
+                    text-(--foreground)
+                    text-sm
+                    font-normal tracking-wider
+                    ring-1 ring-(--border)
+                    px-10 py-2 sm:py-2 md:py-3
+                    rounded-full uppercase
+                    hover:scale-105 active:scale-95
+                    transition-transform duration-300
+                    whitespace-nowrap
+                  "
           >
             Contact Me
           </button>

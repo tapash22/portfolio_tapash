@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ServiceCard } from "../componants/card/ServiceCard";
+import { Dialog } from "../componants/dialog/Dialog";
 import { services } from "../storage/data/services";
 import type { ServiceType } from "../storage/type/data-type";
-import { Dialog } from "../componants/dialog/Dialog";
 
 export default function Service() {
   // handle scroll reset on dialog open and close
@@ -20,7 +20,7 @@ export default function Service() {
   };
 
   return (
-    <div className="w-full h-full flex items-start bg-(--background)">
+    <div className="w-full h-full ">
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-6">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-start items-center space-y-2">

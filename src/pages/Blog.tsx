@@ -1,18 +1,10 @@
 import { useState } from "react";
-import { blogs } from "../storage/data/blog-data";
-import type { BlogType } from "../storage/type/data-type";
 import { BlogCard } from "../componants/card/BlogCard";
 import { Dialog } from "../componants/dialog/Dialog";
-import { useOutletContext } from "react-router-dom";
-
-type LayoutContextType = {
-  setLockScroll: React.Dispatch<React.SetStateAction<boolean>>;
-};
+import { blogs } from "../storage/data/blog-data";
+import type { BlogType } from "../storage/type/data-type";
 
 export default function Blog() {
-  // handle scroll reset on dialog open and close
-  const { setLockScroll } = useOutletContext<LayoutContextType>();
-
   const [openDialog, setOpenDialog] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<BlogType | null>(null);
 
@@ -20,17 +12,15 @@ export default function Blog() {
   const handleOpenDialog = (blog: BlogType) => {
     setSelectedBlog(blog);
     setOpenDialog(true);
-    setLockScroll(true);
   };
 
   //close details dialog
   const closeDialog = () => {
     setOpenDialog(false);
-    setLockScroll(false);
   };
 
   return (
-    <div className="w-full h-full flex items-start relative bg-(--background) ">
+    <div className="w-full h-full relative bg-(--background) ">
       {/* main content */}
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-start items-start w-full h-full space-y-6">
         {/* header sectection */}
@@ -47,7 +37,7 @@ export default function Blog() {
 
         {/* body sectection */}
         <div className="w-full h-auto p-3 py-2 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
-          {blogs.map((blog) => {
+          {blogs.map((blog: BlogType) => {
             return (
               <BlogCard
                 key={blog.id}
@@ -70,18 +60,18 @@ export default function Blog() {
         {/* Dialog Blog Body */}
 
         <div className="space-y-3 ">
-          <article className="w-full ">
+          <article className="w-full space-y-3 ">
             {/* --- Header Section --- */}
             <div className="space-y-3 py-3 sm:py-3 md:py-0">
-              <p className="text-lg text-(--foreground) italic ">
+              <p className="text-lg text-(--foreground) italic">
                 {selectedBlog?.subtitle}
               </p>
 
               <div className="flex items-center text-sm text-(--foreground) pb-3">
-                <span className="font-medium text-(--foreground)">
-                  By {selectedBlog?.author}
-                </span>
+                <span className="font-medium">By {selectedBlog?.author}</span>
+
                 <span className="mx-2 h-4 border-l border-(--foreground)" />
+
                 <span>{selectedBlog?.date}</span>
               </div>
             </div>
@@ -95,71 +85,120 @@ export default function Blog() {
               />
             </div>
 
-            {/* --- Content Body --- */}
-            <div className="prose prose-invert p-3 ">
-              <hr className="border-(--border) " />
-              <p className="whitespace-pre-line leading-relaxed text-lg text-(--foreground) ">
-                {selectedBlog?.content}
+            {/* --- Blog Description --- */}
+            <div className="p-2">
+              <p className="text-base md:text-lg leading-6 text-(--foreground)">
+                {selectedBlog?.description}
               </p>
-              <hr className="border-(--border) my-3 md:my-5" />
             </div>
 
-            {/* --- Beginner's Guide Section --- */}
-            <section className="bg-muted/30 rounded-lg md:rounded-2xl p-5 border border-(--border) space-y-5">
-              <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-(--foreground)">
-                Beginner's Guide
-              </h2>
+            {/* --- Dynamic Blog Sections --- */}
+            <div className="w-full">
+              <article
+                className="
+                          prose prose-invert
+                          prose-headings:text-white
+                          prose-p:text-(--foreground)
+                          prose-strong:text-white
+                          prose-li:text-(--foreground)
+                          prose-code:text-cyan-400
+                          prose-pre:bg-black/40
+                          w-full
+                          space-y-5
+                        "
+              >
+                <div className="space-y-5 border-t-2 border-b-2 border-(--border) py-5">
+                  {selectedBlog?.sections?.map((section, index) => (
+                    <section key={index} className="space-y-3">
+                      {/* --- Section Heading --- */}
+                      <div
+                        className={`
+                                    border-l-4 border-(--muted)
+                                    rounded-r-lg
+                                    bg-(--background)/50
+                                    w-auto
+                                    p-2
+                                    shadow-(--shadow) 
+                                  `}
+                      >
+                        <h2 className="text-lg md:text-xl font-bold tracking-wider  text-(--foreground)">
+                          {section.title}
+                        </h2>
+                      </div>
 
-              {/* Prerequisites */}
-              <div className="mb-6">
-                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground) mb-3">
-                  Prerequisites
-                </h3>
-                <ul className="flex flex-col flex-wrap gap-2">
-                  {selectedBlog?.prerequisites.map((pkg, index) => (
-                    <li
-                      key={index}
-                      className="px-3 space-x-1  text-(--foreground) rounded-full text-sm"
-                    >
-                      <span className="font-bold text-sm">{index + 1}.</span>{" "}
-                      <span>{pkg}</span>
-                    </li>
+                      {/* --- Section Body --- */}
+                      <div
+                        className="
+                                border border-(--border)
+                                rounded-2xl
+                                bg-(--background)/40
+                                backdrop-blur-md
+                                p-4
+                                shadow-(--shadow-footer)
+                              "
+                      >
+                        {/* LIST */}
+                        {section.type === "list" && (
+                          <ul className="space-y-1">
+                            {Array.isArray(section.content) &&
+                              section.content.map((item: string, i: number) => (
+                                <li
+                                  key={i}
+                                  className="leading-6 text-(--muted) tracking-wide"
+                                >
+                                  - {item}
+                                </li>
+                              ))}
+                          </ul>
+                        )}
+
+                        {/* CODE */}
+                        {section.type === "code" && (
+                          <div
+                            className="
+                                  bg-(--background)/50
+                                  rounded-xl
+                                  overflow-hidden
+                                  border border-(--border)
+                                "
+                          >
+                            <div
+                              className="
+                                      bg-(--background)/40
+                                      p-2
+                                      text-sm tracking-wider
+                                      border-b border-(--border) text-(--muted)
+                                    "
+                            >
+                              example.tsx
+                            </div>
+
+                            <pre className="p-5 overflow-x-auto">
+                              <code className="font-mono text-sm leading-6 text-(--foreground) ">
+                                {section.content}
+                              </code>
+                            </pre>
+                          </div>
+                        )}
+
+                        {/* PARAGRAPH */}
+                        {section.type === "paragraph" && (
+                          <div
+                            className="
+                                      whitespace-pre-line
+                                      leading-7
+                                      text-base md:text-lg text-(--muted)
+                                    "
+                          >
+                            {section.content}
+                          </div>
+                        )}
+                      </div>
+                    </section>
                   ))}
-                </ul>
-              </div>
-
-              {/* Installation */}
-              <div className="space-y-3">
-                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground) ">
-                  Installation
-                </h3>
-                <div className="bg-black p-4 rounded-xl flex justify-between items-center group">
-                  <code className="text-green-400 font-mono text-sm">
-                    $ {selectedBlog?.installation}
-                  </code>
-                  <button className="text-xs opacity-0 group-hover:opacity-100 transition-opacity bg-white/10 px-2 py-1 rounded">
-                    Copy
-                  </button>
                 </div>
-              </div>
-
-              {/* Usage Example */}
-              <div className="space-y-3">
-                <h3 className="text-sm uppercase tracking-widest font-semibold text-(--foreground)">
-                  Quick Start (Usage)
-                </h3>
-                <div className="bg-zinc-900 rounded-xl overflow-hidden border border-(--border)">
-                  <div className="bg-white/5 px-4 py-2 text-xs border-b border-(--border) text-(--foreground)">
-                    example-usage.js
-                  </div>
-                  <pre className="p-4 overflow-x-auto">
-                    <code className="text-(--muted) font-mono text-sm leading-6">
-                      {selectedBlog?.usage}
-                    </code>
-                  </pre>
-                </div>
-              </div>
-            </section>
+              </article>
+            </div>
           </article>
         </div>
 

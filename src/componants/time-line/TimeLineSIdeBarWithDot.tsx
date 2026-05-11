@@ -12,7 +12,7 @@ export function TimeLineSIdeBarWithDot({
     left-1/2 md:-left-3.5
     -translate-x-1/2
     md:translate-y-[22%]
-    translate-y-5
+    translate-y-[5%]
     md:top-0 md:bottom-0 
     w-1
     rounded-full
@@ -25,8 +25,7 @@ export function TimeLineSIdeBarWithDot({
       {/* DOTS CONTAINER */}
       <div
         className="
-        md:-mr-2 -mr-1.5 sm:-mr-1.5
-
+         -mr-1.5
           h-full flex flex-col justify-between items-end 
         "
       >
@@ -34,21 +33,26 @@ export function TimeLineSIdeBarWithDot({
           <span
             key={index}
             className="
-            ml-0 
-            md:-ml-1.5
-              w-4 h-4 rounded-full
-              bg-(--foreground)
-              ring-2 ring-(--neon)
-              shadow-(--shadow-footer)
-              relative
-              before:content-['']
-              before:absolute
-              before:inset-0
-              before:rounded-full
-              before:bg-(--neon)/80
-              before:animate-ping
+    ml-0 md:-ml-1.5
+    w-4 h-4 rounded-full
+    bg-white/90
 
-            "
+    ring-2 ring-(--neon)
+
+    shadow-[0_0_12px_var(--neon)]
+
+    relative
+
+    before:content-['']
+    before:absolute
+    before:inset-0
+    before:rounded-full
+    before:bg-(--neon)
+    before:opacity-50
+    before:blur-sm
+    before:scale-100
+    before:animate-ping
+  "
           />
         ))}
       </div>

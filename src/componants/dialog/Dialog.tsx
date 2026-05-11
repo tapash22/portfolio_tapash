@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { IoCloseCircleOutline } from "react-icons/io5";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 type DialogProps = {
   open: boolean;
@@ -45,9 +45,10 @@ export function Dialog({
     <div
       ref={wrapperRef}
       className=" fixed inset-0 z-9
-        flex items-center justify-center 
-        p-4 sm:p-6 md:p-10
-        bg-black/40 backdrop-blur-xs"
+        flex items-center justify-center
+        mt-10 md:mt-0 
+        p-0 sm:p-6 md:p-10
+        bg-(--background)/40 backdrop-blur-xs"
       onClick={onClose}
     >
       {/* Dialog */}
@@ -57,14 +58,15 @@ export function Dialog({
         className="
           relative
           md:ml-[20%]
-          w-[90%] sm:w-[90%] md:w-2/3
-          max-h-[70vh] md:max-h-[80vh]
+          w-[85%] sm:w-[85%] md:w-2/3
+          max-h-[80vh] md:max-h-[85vh]
           flex flex-col
           backdrop-blur-xs
           ring-1 ring-(--border)
-          rounded-lg md:rounded-sm
+          rounded-xl
           shadow-(--shadow)
           overflow-hidden
+          bg-(--background)/30
 
         "
       >
