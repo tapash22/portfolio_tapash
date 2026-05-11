@@ -1,10 +1,45 @@
+import gsap from "gsap";
+import { useEffect, useRef } from "react";
+
 export function TimeLineSIdeBarWithDot({
   cardCount,
   height,
+  animateTrigger,
 }: {
   cardCount: number;
   height: number;
+  animateTrigger: boolean;
 }) {
+  const dotsRef = useRef<HTMLSpanElement[]>([]);
+
+  useEffect(() => {
+    if (!animateTrigger) return;
+
+    const tl = gsap.timeline({ repeat: -1 });
+
+    dotsRef.current.forEach((dot) => {
+      tl.to(
+        dot,
+        {
+          scale: 1.2,
+          opacity: 0.3,
+          duration: 0.5,
+          ease: "power1.inOut",
+        },
+        "-=0.2", // overlap for smooth flow
+      ).to(
+        dot,
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power1.inOut",
+        },
+        "-=0.1",
+      );
+    });
+  }, [animateTrigger]);
+
   return (
     <div
       className="
@@ -12,7 +47,7 @@ export function TimeLineSIdeBarWithDot({
     left-1/2 md:-left-3.5
     -translate-x-1/2
     md:translate-y-[22%]
-    translate-y-[5%]
+    translate-y-[7%]
     md:top-0 md:bottom-0 
     w-1
     rounded-full
@@ -32,27 +67,14 @@ export function TimeLineSIdeBarWithDot({
         {Array.from({ length: cardCount }).map((_, index) => (
           <span
             key={index}
+            ref={(el) => {
+              if (el) dotsRef.current[index] = el;
+            }}
             className="
-    ml-0 md:-ml-1.5
-    w-4 h-4 rounded-full
-    bg-white/90
-
-    ring-2 ring-(--neon)
-
-    shadow-[0_0_12px_var(--neon)]
-
-    relative
-
-    before:content-['']
-    before:absolute
-    before:inset-0
-    before:rounded-full
-    before:bg-(--neon)
-    before:opacity-50
-    before:blur-sm
-    before:scale-100
-    before:animate-ping
-  "
+                      w-4 h-4 rounded-full
+                      bg-(--neon)
+                      ring-8 ring-(--neon)/20
+                    "
           />
         ))}
       </div>

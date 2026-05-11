@@ -94,7 +94,6 @@ export const blogs: BlogTypes = [
       {
         title: "Final Thoughts",
         type: "paragraph",
-        color: "border-purple-400",
         content:
           "This implementation creates a modern and interactive user experience while keeping the component structure clean, scalable, and maintainable.",
       },

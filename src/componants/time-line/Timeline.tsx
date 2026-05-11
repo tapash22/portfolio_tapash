@@ -1,22 +1,28 @@
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { TimeLineSIdeBarWithDot } from "./TimeLineSIdeBarWithDot";
 
 const timelineData = [
   {
-    year: "2025",
+    year: "2024 - Present",
     title: "Frontend Developer",
-    company: "Company Name",
+    company: "Anwar Technologies",
+    description:
+      "Architecting scalable Vue 3 applications using Vue Macros and optimizing performance by 25%.", // [cite: 7, 28, 29]
   },
   {
-    year: "2024",
-    title: "Freelance Projects",
-    company: "Self-employed",
+    year: "2023 - 2024",
+    title: "Frontend Developer",
+    company: "Logic InfoTech Ltd",
+    description:
+      "Developed GIS-based mapping features with React and Leaflet, reducing load times by 15%.", // [cite: 35, 37, 38]
   },
   {
-    year: "2023",
-    title: "Learning Phase",
-    company: "Self-taught",
+    year: "2021 - 2022",
+    title: "Frontend Developer",
+    company: "Ultrawave Digital",
+    description:
+      "Managed large-scale Vue/React apps and refactored legacy code into modular components.", // [cite: 41, 42, 44]
   },
 ];
 
@@ -27,45 +33,44 @@ export function Timeline() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const [boxHeight, setBoxHeight] = useState(0);
+  const [isSm, setIsSm] = useState(false);
+
+  const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+    const check = () => setIsSm(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
 
-    const updateHeight = () => {
-      setBoxHeight(el.offsetHeight);
-    };
-
-    updateHeight();
-
-    const observer = new ResizeObserver(() => {
-      updateHeight();
-    });
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
+    return () => window.removeEventListener("resize", check);
   }, []);
 
-  const isSm = window.innerWidth <= 640;
+  useLayoutEffect(() => {
+    if (!containerRef.current) return;
+    setBoxHeight(containerRef.current.offsetHeight);
+  }, []);
 
   const finalHeight = isSm
-    ? boxHeight * 0.76 // mobile: 90%
-    : boxHeight * 0.7;
+    ? boxHeight * 0.61 // mobile: 90%
+    : boxHeight * 0.55;
 
   useEffect(() => {
-    gsap.fromTo(
+    const tl = gsap.timeline({
+      onComplete: () => setAnimate(true),
+    });
+
+    tl.fromTo(
       itemsRef.current,
       {
         opacity: 0,
-        y: 60,
+        y: 50,
         scale: 0.95,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.82,
+        duration: 0.6,
         stagger: 0.2,
         ease: "power3.out",
       },
@@ -81,10 +86,14 @@ export function Timeline() {
       <TimeLineSIdeBarWithDot
         cardCount={timelineData.length}
         height={finalHeight}
+        animateTrigger={animate}
       />
 
       {/* Items */}
-      <div ref={containerRef} className="space-y-8 w-full relative z-10 box">
+      <div
+        ref={containerRef}
+        className="space-y-8 sm:space-y-8 md:space-y-5 w-full relative z-10 box"
+      >
         {timelineData.map((item, index) => (
           <div
             key={index}
@@ -97,15 +106,15 @@ export function Timeline() {
             <div
               className="
             w-full
-            bg-white/3
-            backdrop-blur-lg
-            p-5 lg:p-6
+            bg-(--background)/20
+            backdrop-blur-xl
+            p-5 lg:p-4
             rounded-xl
             border border-(--border)
             shadow-(--shadow-footer)
             hover:scale-[1.02]
             transition-all duration-300
-            space-y-2
+            space-y-1
           "
             >
               <h3 className="text-sm md:text-xl font-bold text-(--foreground)">
