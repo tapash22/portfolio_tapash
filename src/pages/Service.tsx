@@ -20,7 +20,7 @@ export default function Service() {
   };
 
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full bg-amber-400 ">
       <div className="p-5 sm:p-5 md:p-14 flex flex-col justify-center items-center w-full h-full space-y-6">
         {/* header sectection */}
         <div className="w-full flex flex-col justify-start items-center space-y-2">
