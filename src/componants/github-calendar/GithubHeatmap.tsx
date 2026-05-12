@@ -1,22 +1,79 @@
+import type { ReactCalendarHeatmapValue } from "react-calendar-heatmap";
 import CalendarHeatmap from "react-calendar-heatmap";
+
 import "react-calendar-heatmap/dist/styles.css";
 import "../../styles/github-heatmap.css";
 
-import { useRef, useState } from "react";
+import gsap from "gsap";
+import { useEffect, useRef, useState } from "react";
 import { useGithubContributions } from "../../hook/useGithubContributions";
+import { HeatmapLoader } from "../pre-loader/HeatmapLoader";
 
+/** ---------------- TYPES ---------------- */
+type HeatmapStage = "loading" | "ready";
+
+type HeatmapValue = ReactCalendarHeatmapValue<string> & {
+  date: string;
+  count: number;
+};
+
+type TooltipState = {
+  x: number;
+  y: number;
+  text: string;
+} | null;
+
+/** ---------------- TYPE GUARD ---------------- */
+function isHeatmapValue(
+  value: ReactCalendarHeatmapValue<string> | undefined,
+): value is HeatmapValue {
+  return (
+    !!value &&
+    typeof (value as HeatmapValue).count === "number" &&
+    typeof (value as HeatmapValue).date === "string"
+  );
+}
+
+/** ---------------- COMPONENT ---------------- */
 export function GithubHeatmap({ username }: { username: string }) {
   const { contributions, loading, error } = useGithubContributions(username);
 
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
-  const [tooltip, setTooltip] = useState<{
-    x: number;
-    y: number;
-    text: string;
-  } | null>(null);
+  const [stage, setStage] = useState<HeatmapStage>("loading");
+  const [tooltip, setTooltip] = useState<TooltipState>(null);
 
-  if (loading) return <div>Loading...</div>;
+  /** ---------------- LOADING FLOW ---------------- */
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let tween: gsap.core.Tween | undefined;
+
+    if (!loading) {
+      timer = setTimeout(() => {
+        setStage("ready");
+
+        if (contentRef.current) {
+          tween = gsap.fromTo(
+            contentRef.current,
+            { opacity: 0, y: 10 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+            },
+          );
+        }
+      }, 2000);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+      if (tween) tween.kill();
+    };
+  }, [loading]);
+
   if (error) return <div>Error loading heatmap</div>;
 
   return (
@@ -38,68 +95,91 @@ export function GithubHeatmap({ username }: { username: string }) {
         </div>
       </div>
 
-      {/* HEATMAP WRAPPER */}
+      {/* WRAPPER */}
       <div ref={containerRef} className="relative w-full overflow-x-hidden">
-        {/* TOOLTIP (FIXED POSITIONING) */}
-        {tooltip && (
-          <div
-            className="pointer-events-none absolute z-50 rounded-md bg-black/80 px-3 py-1 text-xs text-white"
-            style={{
-              left: tooltip.x,
-              top: tooltip.y,
-              transform: "translate(-50%, -50%)",
-            }}
-          >
-            {tooltip.text}
+        {/* ================= LOADER ================= */}
+        {stage === "loading" && (
+          <div className="heatmap-loader w-full h-full ">
+            <HeatmapLoader />
           </div>
         )}
 
-        {/* FORCE FULL WIDTH FOR MOBILE SCROLL */}
-        <div className="min-w-187.5">
-          <CalendarHeatmap
-            startDate={
-              new Date(new Date().setFullYear(new Date().getFullYear() - 1))
-            }
-            endDate={new Date()}
-            values={contributions}
-            gutterSize={4}
-            showWeekdayLabels
-            classForValue={(value) => {
-              if (!value || value.count === 0) return "color-empty";
-              if (value.count >= 10) return "color-scale-4";
-              if (value.count >= 7) return "color-scale-3";
-              if (value.count >= 4) return "color-scale-2";
-              return "color-scale-1";
-            }}
-            // 🔥 TOOLTIP HANDLER
-            onMouseOver={(e: any) => {
-              const target = e.target as SVGRectElement;
+        {/* ================= HEATMAP ================= */}
+        {stage === "ready" && (
+          <div
+            ref={contentRef}
+            className="heatmap-content relative w-full overflow-x-auto md:overflow-x-hidden"
+          >
+            {/* TOOLTIP */}
+            {tooltip && (
+              <div
+                className="pointer-events-none absolute z-50 rounded-lg bg-(--sidebar)/80 p-3 text-(--foreground) shadow-lg text-sm font-light tracking-wide whitespace-nowrap"
+                style={{
+                  left: tooltip.x,
+                  top: tooltip.y,
+                  transform: "translateY(-50%)",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {tooltip.text}
+              </div>
+            )}
 
-              if (!target || target.tagName !== "rect") return;
+            <div className="min-w-187">
+              <CalendarHeatmap
+                startDate={
+                  new Date(new Date().setFullYear(new Date().getFullYear() - 1))
+                }
+                endDate={new Date()}
+                values={contributions}
+                gutterSize={4}
+                showWeekdayLabels
+                /** ✅ FULL TYPE SAFE */
+                classForValue={(
+                  value: ReactCalendarHeatmapValue<string> | undefined,
+                ) => {
+                  if (!isHeatmapValue(value) || value.count === 0)
+                    return "color-empty";
 
-              const allRects = document.querySelectorAll("rect");
+                  if (value.count >= 10) return "color-scale-4";
+                  if (value.count >= 7) return "color-scale-3";
+                  if (value.count >= 4) return "color-scale-2";
 
-              const index = Array.from(allRects).indexOf(target);
+                  return "color-scale-1";
+                }}
+                /** ✅ FULL TYPE SAFE */
+                onMouseOver={(
+                  event: React.MouseEvent<SVGRectElement>,
+                  value: ReactCalendarHeatmapValue<string> | undefined,
+                ) => {
+                  if (!isHeatmapValue(value) || !containerRef.current) return;
 
-              const data = contributions[index];
-              if (!data || !containerRef.current) return;
+                  const target = event.target as SVGRectElement;
+                  if (!target || target.tagName !== "rect") return;
 
-              const rect = target.getBoundingClientRect();
-              const container = containerRef.current.getBoundingClientRect();
+                  const rect = target.getBoundingClientRect();
+                  const container =
+                    containerRef.current.getBoundingClientRect();
 
-              const x = rect.left - container.left + rect.width / 2;
+                  const tooltipWidth = 180;
 
-              const y = rect.top - container.top;
+                  let x = rect.right - container.left + 10;
+                  let y = rect.top - container.top + rect.height / 2;
 
-              setTooltip({
-                x,
-                y,
-                text: `${data.count} contributions on ${data.date}`,
-              });
-            }}
-            onMouseLeave={() => setTooltip(null)}
-          />
-        </div>
+                  x = Math.min(x, container.width - tooltipWidth);
+                  y = Math.max(10, y);
+
+                  setTooltip({
+                    x,
+                    y,
+                    text: `${value.count} contributions on ${value.date}`,
+                  });
+                }}
+                onMouseLeave={() => setTooltip(null)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
