@@ -25,7 +25,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-[84vh] overflow-hidden bg-black/8 flex">
+    <div className="relative w-full h-[90vh] overflow-hidden bg-black/8 flex">
       <BackgroundGrid />
       <AnimatedWaves />
 
