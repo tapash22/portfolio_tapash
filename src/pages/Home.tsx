@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import AnimatedWaves from "../componants/landing/AnimatedWaves";
 import BackgroundGrid from "../componants/landing/BackgroundGrid";
+
 import { useWaveSystem } from "../hook/useWaveSystem";
 import image from "/images/home.png";
 import mobile_image from "/images/mobile_image.png";
@@ -22,6 +23,147 @@ export default function Home() {
   });
 
   const navigate = useNavigate();
+
+  // useGSAP(
+  //   () => {
+  //     const mm = gsap.matchMedia();
+
+  //     // ================= GRID ANIMATION =================
+  //     gsap.fromTo(
+  //       boxesRef.current,
+  //       { opacity: 0.05 },
+  //       {
+  //         opacity: 0.15,
+  //         duration: 2,
+  //         stagger: { each: 0.02, from: "random" },
+  //         repeat: -1,
+  //         yoyo: true,
+  //         ease: "sine.inOut",
+  //       },
+  //     );
+
+  //     mm.add(
+  //       {
+  //         isDesktop: "(min-width: 769px)",
+  //         isMobile: "(max-width: 768px)",
+  //       },
+  //       (context) => {
+  //         const { isMobile } = context.conditions as { isMobile: boolean };
+  //         const containerEl = waveContainer.current;
+
+  //         // ================= TEXT ANIMATION =================
+  //         if (boxRef.current) {
+  //           gsap.fromTo(
+  //             boxRef.current.children,
+  //             {
+  //               opacity: 0,
+  //               x: isMobile ? 0 : -100,
+  //               y: isMobile ? 80 : 0,
+  //             },
+  //             {
+  //               opacity: 1,
+  //               x: 0,
+  //               y: 0,
+  //               duration: 0.8,
+  //               stagger: 0.18,
+  //               ease: "power3.out",
+  //             },
+  //           );
+  //         }
+
+  //         if (!containerEl) return;
+
+  //         // ================= WAVE CREATION =================
+  //         const createWave = () => {
+  //           const wave = document.createElement("div");
+  //           const head = document.createElement("div");
+
+  //           wave.style.position = "absolute";
+  //           wave.style.pointerEvents = "none";
+  //           wave.style.borderRadius = "999px";
+
+  //           if (isMobile) {
+  //             wave.style.bottom = "0%";
+  //             wave.style.left = "50%";
+  //             wave.style.width = "4px";
+  //             wave.style.height = "100%";
+  //             head.style.bottom = "0px";
+  //             head.style.left = "-70px";
+  //           } else {
+  //             wave.style.top = "50%";
+  //             wave.style.right = "0%";
+  //             wave.style.width = "100%";
+  //             wave.style.height = "6px";
+  //             head.style.right = "0px";
+  //             head.style.top = "-70px";
+  //           }
+
+  //           head.style.position = "absolute";
+  //           head.style.width = "140px";
+  //           head.style.height = "140px";
+  //           head.style.borderRadius = "50%";
+  //           head.style.backdropFilter = "blur(15px)";
+  //           head.style.background =
+  //             "linear-gradient(to bottom right, rgba(34,211,238,0.4), rgba(34,211,238,0.3), transparent)";
+  //           head.style.filter = "blur(18px)";
+  //           head.style.boxShadow = "0 0 50px rgba(34,211,238,0.9)";
+  //           head.style.opacity = "0.9";
+
+  //           wave.appendChild(head);
+  //           containerEl.appendChild(wave);
+
+  //           const state = { progress: 0, start: performance.now() };
+  //           const duration = 6000;
+
+  //           const animate = (time: number) => {
+  //             const elapsed = time - state.start;
+  //             state.progress = elapsed / duration;
+
+  //             if (state.progress >= 1) {
+  //               wave.remove();
+  //               return;
+  //             }
+
+  //             const sine = Math.sin(state.progress * Math.PI * 6) * 30;
+  //             const scale = 0.1 + state.progress * 2;
+
+  //             if (isMobile) {
+  //               const y =
+  //                 (-70 * state.progress * window.innerHeight) / 100 + sine;
+  //               gsap.set(wave, { y });
+  //             } else {
+  //               const x =
+  //                 (-140 * state.progress * window.innerWidth) / 100 + sine;
+  //               gsap.set(wave, { x });
+  //             }
+
+  //             // FIXED: Calculate actual numbers instead of passing strings
+  //             const baseOpacity = isMobile ? 0.3 : 0.6;
+  //             const finalOpacity = baseOpacity + scale * 0.2; // Keep it under 1.0
+
+  //             gsap.set(head, {
+  //               scale: scale,
+  //               opacity: finalOpacity,
+  //             });
+
+  //             requestAnimationFrame(animate);
+  //           };
+
+  //           requestAnimationFrame(animate);
+  //         };
+
+  //         const interval = setInterval(createWave, 2000);
+  //         createWave();
+
+  //         return () => {
+  //           clearInterval(interval);
+  //           containerEl.innerHTML = "";
+  //         };
+  //       },
+  //     );
+  //   },
+  //   { scope: container },
+  // );
 
   return (
     <div className="relative w-full h-[84vh] overflow-hidden bg-black/8 flex">
