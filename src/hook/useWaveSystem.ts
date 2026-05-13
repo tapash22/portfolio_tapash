@@ -151,8 +151,8 @@ export function useWaveSystem({
             boxRef.current.children,
             {
               opacity: 0,
-              x: isMobile ? 0 : -100,
-              y: isMobile ? 80 : 0,
+              x: isMobile ? 20 : -100,
+              y: isMobile ? 50 : 0,
             },
             {
               opacity: 1,

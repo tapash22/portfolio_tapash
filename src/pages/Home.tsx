@@ -35,7 +35,7 @@ export default function Home() {
       {/* CONTENT AREA */}
       <div
         ref={boxRef}
-        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-0 md:space-y-3 px-5 md:px-10 py-5 md:py-0 z-10 relative"
+        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-0 md:space-y-3 px-5 md:px-10 py-10 md:py-0 z-10 relative"
       >
         <h1 className="text-xl md:text-2xl font-bold text-center md:text-start text-(--foreground) tracking-wider opacity-80">
           I am Tapash Paul
@@ -64,7 +64,7 @@ export default function Home() {
       </div>
 
       {/* HERO IMAGES */}
-      <div className="absolute md:static w-full md:w-7/12 h-full flex justify-center items-start md:items-end z-0">
+      <div className="absolute md:static w-full md:w-7/12 h-full flex justify-center items-start md:items-end z-0 p-5">
         <img
           src={image}
           className="hidden md:block w-full"
@@ -72,7 +72,7 @@ export default function Home() {
         />
         <img
           src={mobile_image}
-          className="block md:hidden w-auto px-2"
+          className="block md:hidden w-auto h-auto"
           alt="Mobile Hero"
         />
       </div>

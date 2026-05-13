@@ -12,14 +12,14 @@ export default function FibonacciSVGDrawingGrid() {
     () => {
       // Initial hidden/blurred state
       gsap.set(cardsRef.current, {
-        opacity: 0.7,
+        opacity: 0,
         scale: 0.5,
-        z: -100,
-        filter: "blur(10px) brightness(0.5) ",
+        z: -200,
+        filter: "blur(10px) brightness(0.2) ",
       });
 
       // Sheen starts off-screen to the left
-      gsap.set(sheenRef.current, { x: "-150%", opacity: 0 });
+      gsap.set(sheenRef.current, { x: "-100%", opacity: 0 });
 
       const triggerPopping = () => {
         const availableIndices = Array.from(
@@ -55,8 +55,8 @@ export default function FibonacciSVGDrawingGrid() {
           path,
           {
             strokeDashoffset: 0,
-            duration: 1.2,
-            ease: "power2.inOut",
+            duration: 1.5,
+            ease: "power1.inOut",
           },
           "0",
         );
@@ -65,7 +65,7 @@ export default function FibonacciSVGDrawingGrid() {
         tl.to(
           sheen,
           {
-            x: "150%",
+            x: "100%",
             opacity: 0.8,
             duration: 1.5,
             ease: "power1.inOut",
@@ -87,9 +87,9 @@ export default function FibonacciSVGDrawingGrid() {
         tl.to(
           card,
           {
-            opacity: 0.5,
+            opacity: 0.2,
             scale: 0.9,
-            z: -100,
+            z: 100,
             filter: "blur(2px) brightness(0.5)",
             duration: 1.2,
             ease: "power1.inOut",
@@ -97,7 +97,7 @@ export default function FibonacciSVGDrawingGrid() {
           "<",
         );
 
-        gsap.delayedCall(0.8, triggerPopping);
+        gsap.delayedCall(0.4, triggerPopping);
       };
 
       for (let i = 0; i < 3; i++) {
