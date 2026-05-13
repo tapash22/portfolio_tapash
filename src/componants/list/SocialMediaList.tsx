@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import { type SocialMediaItems } from "../../storage/type/data-type";
-import type { IconType } from "react-icons";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
+import type { IconType } from "react-icons";
+import { type SocialMediaItems } from "../../storage/type/data-type";
 import { resolveColor } from "../../utils/resolveColor";
 
 interface SocialMediaListProps {
@@ -25,11 +25,6 @@ export function SocialMediaList({
   const listRef = useRef<HTMLUListElement | null>(null);
   const itemsRef = useRef<HTMLLIElement[]>([]);
 
-  // collect refs safely
-  // const setItemRef = (el: HTMLLIElement | null, index: number) => {
-  //   if (el) itemsRef.current[index] = el;
-  // };
-
   useEffect(() => {
     if (!itemsRef.current.length) return;
 
@@ -50,15 +45,6 @@ export function SocialMediaList({
       stagger: 0.08,
     });
   }, [socailMediaItems]);
-
-  // const handleHover = (el: HTMLElement, enter: boolean) => {
-  //   gsap.to(el, {
-  //     scale: enter ? 1.15 : 1,
-  //     y: enter ? -3 : 0,
-  //     duration: 0.25,
-  //     ease: "power2.out",
-  //   });
-  // };
 
   const handleClickAnim = (el: HTMLElement) => {
     gsap.fromTo(
@@ -120,18 +106,6 @@ export function SocialMediaList({
                     transition-all duration-500
                     group-hover:[stroke-dashoffset:0]"
                   />
-                  {/* <rect
-                    x="1"
-                    y="1"
-                    width="98"
-                    height="98"
-                    rx="12"
-                    ry="12"
-                    className="stroke-cyan-400 fill-transparent stroke-[2]
-                 [stroke-dasharray:600] [stroke-dashoffset:600]
-                 transition-all duration-500
-                 group-hover:[stroke-dashoffset:0]"
-                  /> */}
                 </svg>
               </li>
             );
