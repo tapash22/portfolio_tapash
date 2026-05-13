@@ -12,19 +12,20 @@ export default function FibonacciSVGDrawingGrid() {
     () => {
       // Initial hidden/blurred state
       gsap.set(cardsRef.current, {
-        opacity: 0,
+        opacity: 0.7,
         scale: 0.5,
-        z: -300,
-        filter: "blur(10px) brightness(0.3)",
+        z: -100,
+        filter: "blur(10px) brightness(0.5) ",
       });
 
       // Sheen starts off-screen to the left
       gsap.set(sheenRef.current, { x: "-150%", opacity: 0 });
 
       const triggerPopping = () => {
-        const availableIndices = Array.from({ length: 96 }, (_, i) => i).filter(
-          (i) => !gsap.isTweening(cardsRef.current[i]),
-        );
+        const availableIndices = Array.from(
+          { length: 100 },
+          (_, i) => i,
+        ).filter((i) => !gsap.isTweening(cardsRef.current[i]));
 
         if (availableIndices.length === 0) return;
 
