@@ -72,14 +72,14 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
           ref={textRef}
           className="space-y-3 p-3 md:p-5 bg-(--sidebar)/70 rounded-lg sm:rounded-lg md:rounded-2xl"
         >
-          <div className="flex justify-end items-start gap-3 ">
+          <div className="flex justify-center md:justify-end items-start gap-3 ">
             <a
               href={portfolio.link}
               target="_blank"
               download
               className="
                 ring-1 ring-(--border)
-                p-3
+                p-1 md:p-3
                 overflow-hidden
                 rounded-full
                 hover:shadow-(--shadow)
@@ -102,7 +102,7 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
               download
               className="
                 ring-1 ring-(--border)
-                p-3
+                p-1 md:p-3
                 overflow-hidden
                 rounded-full
                 hover:shadow-(--shadow)
@@ -120,10 +120,10 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
               />
             </a>
           </div>
-          <h1 className="text-xl font-semibold text-(--foreground)">
+          <h1 className="text-xl font-semibold text-(--foreground) text-center md:text-start">
             {portfolio.title}
           </h1>
-          <p className="text-sm text-(--foreground)">
+          <p className="text-sm text-(--foreground) text-center md:text-start ">
             {portfolio.description.length > 50
               ? `${portfolio.description.substring(0, 50)}...`
               : portfolio.description}
@@ -131,8 +131,8 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
 
           <button
             className="bg-(--button-color) text-(--foreground)
-            px-8 sm:px-8 md:px-5 py-2 rounded-full text-sm tracking-wide
-            ring-2 ring-(--border) hover:opacity-70 transition"
+            px-8 sm:px-8 md:px-5 py-1 rounded-full text-sm font-normal tracking-wide
+            ring-1 md:ring-2 ring-(--border) hover:opacity-70 transition w-full md:w-fit"
             onClick={onClick}
           >
             View Details
