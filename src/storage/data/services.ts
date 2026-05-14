@@ -7,15 +7,11 @@ import { type ServiceTypes } from "../type/data-type";
 
 export const serviceImages = {
   webDesign: ["/services/w1.png", "/services/r2.png", "/services/r3.png"],
-  webDev: ["/services/m1.png", "/services/m2.png", "/services/m3.png"],
+  webDev: ["/services/wb.png", "/services/m2.png", "/services/m3.png"],
   creative: ["/services/c1.png", "/services/c2.png", "/services/c3.png"],
   responsive: ["/services/r1.png", "/services/r2.png", "/services/r3.png"],
-  architecture: [
-    "/services/service3.jpg",
-    "/services/m2.png",
-    "/services/r3.png",
-  ],
-  Support: ["/services/s1.jpg", "/services/s2.png", "/services/s3.png"],
+  architecture: ["/services/fa.png", "/services/m2.png", "/services/r3.png"],
+  Support: ["/services/s1.png", "/services/s2.png", "/services/s3.png"],
 };
 
 export const services: ServiceTypes = [
