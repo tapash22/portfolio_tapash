@@ -64,7 +64,7 @@ export default function Home() {
       </div>
 
       {/* HERO IMAGES */}
-      <div className="absolute md:static w-full md:w-7/12 h-full flex justify-center items-start md:items-end z-0 p-5">
+      <div className="absolute md:static w-full md:w-7/12 h-full flex justify-center items-start md:items-end z-0 px-5">
         <img
           src={image}
           className="hidden md:block w-full"

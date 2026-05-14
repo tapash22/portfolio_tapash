@@ -66,7 +66,7 @@ export function SideBar({ handleNavigation }: Props) {
     <>
       {/* ================= MOBILE TOP BAR ================= */}
       <div className="lg:hidden fixed top-0 left-0 w-full h-14 flex items-center justify-between px-4 bg-(--sidebar) z-50 shadow-(--shadow) backdrop-blur-xl">
-        <img src={portfolio_icon} className="w-10 h-10" />
+        <img src={portfolio_icon} className="w-12 h-12" />
 
         <button onClick={openDrawer}>
           <FiMenu size={24} className="text-(--foreground)" />
@@ -76,8 +76,8 @@ export function SideBar({ handleNavigation }: Props) {
       {/* ================= DESKTOP SIDEBAR ================= */}
       <div className="hidden lg:flex w-72 h-screen flex-col justify-center bg-(--sidebar) shadow-(--shadow) z-50 space-y-5">
         {/* LOGO */}
-        <div className="px-10 ">
-          <img src={portfolio_icon} className="w-12 h-12" />
+        <div className="px-5 ">
+          <img src={portfolio_icon} className="w-20 h-20" />
         </div>
 
         {/* MENU */}
@@ -126,8 +126,8 @@ export function SideBar({ handleNavigation }: Props) {
               "
             >
               {/* LOGO */}
-              <div className="p-6 border-b border-(--border)">
-                <img src={portfolio_icon} className="w-10 h-10" />
+              <div className="p-3 border-b border-(--border)">
+                <img src={portfolio_icon} className="w-16 h-16" />
               </div>
 
               {/* MENU */}
