@@ -2,7 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
 
-export default function FibonacciSVGDrawingGrid() {
+export default function BackgroundGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const pathsRef = useRef<SVGRectElement[]>([]);
