@@ -24,6 +24,7 @@ export const protFolioDeatils: PortfolioTypes = [
     id: 1,
     title: "Money Management",
     link: "https://moneymanagement22-demo-seven.vercel.app",
+    gitLink: "https://github.com/tapash22/my-react-demo.git",
     image: protFolioImages.money,
     description:
       "At the top, the dashboard highlights four primary financial metrics for quick assessment.The center of the project focuses on visual storytelling through different chart types.",
@@ -33,6 +34,7 @@ export const protFolioDeatils: PortfolioTypes = [
     id: 2,
     title: "Location Allocate",
     link: "https://mapprojection.netlify.app/",
+    gitLink: "https://github.com/tapash22/barikoi2.git",
     image: protFolioImages.location,
     description:
       "The interface is built using Leaflet.js (as indicated by the attribution in the bottom right corner). It provides an interactive environment where users can zoom, pan, and interact with data layers",
@@ -43,6 +45,7 @@ This project is a GIS (Geographic Information System) Web Application designed f
     id: 3,
     title: "Rent Service",
     link: "https://rentcarview.netlify.app/",
+    gitLink: "https://github.com/tapash22/vue-example.git",
     image: protFolioImages.rent,
     description:
       "The centerpiece of the UI is the dynamic filtering system. It allows users to narrow down their search through a multi-step selection process",

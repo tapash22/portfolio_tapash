@@ -1,5 +1,6 @@
 import gsap from "gsap";
 import { useRef } from "react";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import type { PortfolioType } from "../../storage/type/data-type";
 
 type Portfolio = {
@@ -69,8 +70,56 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
       >
         <div
           ref={textRef}
-          className="space-y-3 p-5 md:p-10 bg-(--sidebar)/70 rounded-lg sm:rounded-lg md:rounded-2xl"
+          className="space-y-3 p-3 md:p-5 bg-(--sidebar)/70 rounded-lg sm:rounded-lg md:rounded-2xl"
         >
+          <div className="flex justify-end items-start gap-3 ">
+            <a
+              href={portfolio.link}
+              target="_blank"
+              download
+              className="
+                ring-1 ring-(--border)
+                p-3
+                overflow-hidden
+                rounded-full
+                hover:shadow-(--shadow)
+                transition-all duration-300
+              "
+            >
+              <FaExternalLinkAlt
+                size={20}
+                className="
+                  text-(--foreground)
+                  transition-all duration-300
+                  hover:text-(--neon)
+                  hover:scale-110
+                "
+              />
+            </a>
+            <a
+              href={portfolio.gitLink}
+              target="_blank"
+              download
+              className="
+                ring-1 ring-(--border)
+                p-3
+                overflow-hidden
+                rounded-full
+                hover:shadow-(--shadow)
+                transition-all duration-300
+              "
+            >
+              <FaGithub
+                size={20}
+                className="
+                  text-(--foreground)
+                  transition-all duration-300
+                  hover:text-(--neon)
+                  hover:scale-110
+                "
+              />
+            </a>
+          </div>
           <h1 className="text-xl font-semibold text-(--foreground)">
             {portfolio.title}
           </h1>

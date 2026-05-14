@@ -119,17 +119,23 @@ export default function Projects() {
           <p className="text-white/80 text-lg leading-7">{item?.description}</p>
 
           <div className="w-full h-auto px-0 sm:px-0 md:px-10 py-3 flex justify-center items-center">
-            <div className="w-full h-auto p-4 ring-1 ring-(--border) grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-2 md:justify-center md:items-center rounded-lg md:rounded-full bg-(--sidebar) space-y-5 sm:space-y-5 md:space-y-0">
+            <div className="w-full h-auto p-4 ring-2 ring-(--border) grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-2 md:justify-center md:items-center rounded-lg md:rounded-full bg-(--sidebar)/10 space-y-5 sm:space-y-5 md:space-y-0">
               <p className="text-lg font-medium tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full">
-                <span className="font-bold">Product Type</span>
-                <span className="font-bold">Fintech Website</span>
+                <span className="font-bold text-lg tracking-wider">
+                  Product Type
+                </span>
+                <span className="font-medium text-lg tracking-wider">
+                  Fintech Website
+                </span>
               </p>
-              <p className="text-lg font-semibold tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full border-t border-b md:border-b-0 md:border-t-0 md:border-l  md:border-r border-(--border)">
-                <span className="font-bold">Product Price</span>
-                <span className="font-bold">$ 50</span>
+              <p className="text-lg font-semibold tracking-wide text-(--foreground) flex flex-col justify-center items-center w-full border-t border-b md:border-b-0 md:border-t-0 md:border-l-2  md:border-r-2 border-(--border)">
+                <span className="font-medium text-lg tracking-wider">
+                  Product Price
+                </span>
+                <span className="font-bold text-lg tracking-wider">$ 50</span>
               </p>
               <div className="flex justify-center">
-                <button className="px-10 py-2 text-sm font-normal tracking-wide text-(--muted) ring-1 ring-(--border) rounded-xl">
+                <button className="px-10 py-2 text-sm font-normal tracking-wide text-(--muted) ring-2 ring-(--border) rounded-lg">
                   Contact Me
                 </button>
               </div>
