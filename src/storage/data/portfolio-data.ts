@@ -1,15 +1,30 @@
 import type { PortfolioTypes, PricingPlans } from "../type/data-type";
-import money_management from "/portfolio/money_management_1.png";
-import car_rent from "/portfolio/car_rent.png";
 // import car_rent_slider from "../../assets/images/portfolio/car_rent_slider.png";
-import map from "/portfolio/map.png";
+
+export const protFolioImages = {
+  money: [
+    "/portfolio/money_management_1.png",
+    "/portfolio/money_management_2.png",
+    "/portfolio/money_management_3.png",
+  ],
+  location: [
+    "/portfolio/map.png",
+    "/portfolio/map_1.png",
+    "/portfolio/map_2.png",
+  ],
+  rent: [
+    "portfolio/car_rent.png",
+    "portfolio/car_rent_1.png",
+    "portfolio/car_rent_2.png",
+  ],
+};
 
 export const protFolioDeatils: PortfolioTypes = [
   {
     id: 1,
     title: "Money Management",
     link: "https://moneymanagement22-demo-seven.vercel.app",
-    image: money_management,
+    image: protFolioImages.money,
     description:
       "At the top, the dashboard highlights four primary financial metrics for quick assessment.The center of the project focuses on visual storytelling through different chart types.",
     brief: `This project appears to be a Financial Management Dashboard designed for tracking personal or small business finances. It utilizes a modern "Dark Mode" aesthetic with a high-contrast UI, focusing on data visualization and real-time monitoring.This project is likely designed as a SaaS (Software as a Service) platform for freelancers or small teams who need to visualize their cash flow, manage investments, and track collaborative spending in one centralized, aesthetically pleasing location.`,
@@ -18,7 +33,7 @@ export const protFolioDeatils: PortfolioTypes = [
     id: 2,
     title: "Location Allocate",
     link: "https://mapprojection.netlify.app/",
-    image: map,
+    image: protFolioImages.location,
     description:
       "The interface is built using Leaflet.js (as indicated by the attribution in the bottom right corner). It provides an interactive environment where users can zoom, pan, and interact with data layers",
     brief: `
@@ -28,7 +43,7 @@ This project is a GIS (Geographic Information System) Web Application designed f
     id: 3,
     title: "Rent Service",
     link: "https://rentcarview.netlify.app/",
-    image: car_rent,
+    image: protFolioImages.rent,
     description:
       "The centerpiece of the UI is the dynamic filtering system. It allows users to narrow down their search through a multi-step selection process",
     brief: `This project is an Automotive E-commerce or Vehicle Rental Landing Page. It serves as the primary entry point for a platform focused on vehicle parts, sales, or rentals, with a heavy emphasis on user-driven filtering and search.From a development perspective, this layout is highly compatible with responsive design, where the horizontal search bar would likely stack vertically on mobile devices to maintain usability.  1.Core Functionality: The "Vehicle Selector"  2.Navigation & User Experience (UX)  3.Visual Identity & Design  4.Technical Use Case`,

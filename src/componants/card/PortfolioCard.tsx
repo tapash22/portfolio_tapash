@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import gsap from "gsap";
+import { useRef } from "react";
 import type { PortfolioType } from "../../storage/type/data-type";
 
 type Portfolio = {
@@ -57,7 +57,7 @@ export function PortfolioCard({ portfolio, onClick }: Portfolio) {
     >
       {/* Image */}
       <img
-        src={portfolio.image}
+        src={portfolio?.image?.[0]}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
       />
 

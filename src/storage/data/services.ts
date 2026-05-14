@@ -1,13 +1,13 @@
-import { type ServiceTypes } from "../type/data-type";
-import { GrTestDesktop, GrSupport } from "react-icons/gr";
 import { BsLaptop } from "react-icons/bs";
+import { GrSupport, GrTestDesktop } from "react-icons/gr";
+import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { MdOutlineVerified } from "react-icons/md";
-import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { type ServiceTypes } from "../type/data-type";
 
 export const serviceImages = {
   webDesign: ["/services/r1.png", "/services/r2.png", "/services/r3.png"],
-  webDev: ["/services/m1.jpg", "/services/m2.png", "/services/m3.png"],
+  webDev: ["/services/m1.png", "/services/m2.png", "/services/m3.png"],
   creative: ["/services/c1.png", "/services/c2.png", "/services/c3.png"],
   responsive: ["/services/r1.png", "/services/r2.png", "/services/r3.png"],
   architecture: [

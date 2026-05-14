@@ -110,7 +110,7 @@ export default function Projects() {
           <div className="w-full h-72 overflow-hidden my-2">
             <a href={item?.link} target="_blank" rel="noopener noreferrer">
               <img
-                src={item?.image || "/fallback.jpg"}
+                src={item?.image?.[0] || "/fallback.jpg"}
                 className="w-full h-full object-cover rounded-md"
               />
             </a>
@@ -138,11 +138,11 @@ export default function Projects() {
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
             <img
-              src={item?.image || "/fallback.jpg"}
+              src={item?.image?.[1] || "/fallback.jpg"}
               className="w-full h-52 object-cover rounded-md"
             />
             <img
-              src={item?.image || "/fallback.jpg"}
+              src={item?.image?.[2] || "/fallback.jpg"}
               className="w-full h-52 object-cover rounded-md"
             />
           </div>

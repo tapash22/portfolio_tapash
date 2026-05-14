@@ -25,7 +25,7 @@ export interface PortfolioType {
   id: number | null;
   title: string;
   link?: string;
-  image?: string;
+  image?: string[];
   description: string;
   brief?: string;
 }

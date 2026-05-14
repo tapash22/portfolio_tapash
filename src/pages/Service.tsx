@@ -64,14 +64,14 @@ export default function Service() {
           <p className="text-white/80 text-lg leading-7">{item?.description}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3">
-            <div className="h-96 bg-black/10 rounded-md flex items-center justify-center">
+            <div className="h-52 bg-black/10 rounded-md flex items-center justify-center">
               <img
                 src={item?.image?.[1] || "/fallback.jpg"}
                 className="max-w-full max-h-full object-contain rounded-md"
               />
             </div>
 
-            <div className="h-96 bg-black/10 rounded-md flex items-center justify-center">
+            <div className="h-52 bg-black/10 rounded-md flex items-center justify-center">
               <img
                 src={item?.image?.[2] || "/fallback.jpg"}
                 className="max-w-full max-h-full object-contain rounded-md"
