@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { PiDesktop } from "react-icons/pi";
+import { ResponsiveTimeline } from "../componants/about-left/ResponsiveTimeline";
 import { Dialog } from "../componants/dialog/Dialog";
-import { Timeline } from "../componants/time-line/Timeline";
 import { TimeLineSIdeBarWithDot } from "../componants/time-line/TimeLineSIdeBarWithDot";
 import { blueprintData } from "../storage/data/blueprient-data";
-import image from "/images/about.png";
 
 export default function About() {
   // const [showDialog, setShowDialog] = useState(false);
@@ -23,28 +22,7 @@ export default function About() {
     <div className="w-full h-full relative bg-(--background)">
       <div className="p-5 sm:p-5 md:p-10 flex flex-col sm:flex-col md:flex-row justify-center items-center w-full h-full space-y-8 sm:space-y-8  md:space-y-0">
         {/* left sectection */}
-        <div
-          className="w-full sm:w-full md:w-1/4 h-full 
-                  flex justify-start md:justify-center
-                  items-start md:items-center p-2
-        "
-        >
-          <img
-            src={image}
-            className="object-cover rounded-xl shadow-(--shadow-footer) scale-100 max-w-auto max-h-auto ring-1 ring-(--border) p-1"
-          />
-        </div>
-        {/* left sectection end */}
-
-        {/* middle timeline section */}
-        <div
-          className="
-                  w-full sm:w-full md:w-1/4 h-full sm:h-full md:h-full p-3 sm:p-3 md:p-10
-                  flex justify-center items-start  "
-        >
-          <Timeline />
-        </div>
-        {/* middle timeline section end*/}
+        <ResponsiveTimeline />
 
         {/* right sectection */}
         <div
