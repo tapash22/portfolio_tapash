@@ -2,7 +2,8 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 import { useLocation } from "react-router-dom";
-import portfolio_icon from "../../assets/images/portfolio_icon.png";
+import portfolio_icon1 from "../../assets/images/logoi.png";
+
 import { routeConfig } from "../../routes/routeConfig";
 
 type Props = {
@@ -65,8 +66,11 @@ export function SideBar({ handleNavigation }: Props) {
   return (
     <>
       {/* ================= MOBILE TOP BAR ================= */}
-      <div className="lg:hidden fixed top-0 left-0 w-full h-14 flex items-center justify-between px-4 bg-(--sidebar) z-50 shadow-(--shadow) backdrop-blur-xl">
-        <img src={portfolio_icon} className="w-12 h-12" />
+      <div className="lg:hidden fixed top-0 left-0 w-full h-16 flex items-center justify-between px-4 bg-(--sidebar)/20 z-50 shadow-(--shadow) backdrop-blur-xl">
+        <img
+          src={portfolio_icon1}
+          className="w-12 h-12 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
+        />
 
         <button onClick={openDrawer}>
           <FiMenu size={24} className="text-(--foreground)" />
@@ -74,10 +78,19 @@ export function SideBar({ handleNavigation }: Props) {
       </div>
 
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <div className="hidden lg:flex w-72 h-screen flex-col justify-center bg-(--sidebar) shadow-(--shadow) z-50 space-y-5">
+      <div
+        className="hidden lg:flex w-72 h-screen flex-col justify-center bg-(--sidebar)/20 z-50 backdrop-blur-xl 
+                  border-r border-(--border)
+                  shadow-(--shadow) 
+                  space-y-5 relative"
+      >
         {/* LOGO */}
-        <div className="px-5 ">
-          <img src={portfolio_icon} className="w-20 h-20" />
+
+        <div className="px-5 py-3 w-full rounded-full flex justify-start items-center">
+          <img
+            src={portfolio_icon1}
+            className="w-28 h-28 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
+          />
         </div>
 
         {/* MENU */}
@@ -92,7 +105,7 @@ export function SideBar({ handleNavigation }: Props) {
                 className={`link text-left transition-colors text-lg ${
                   isActiveRoute(to)
                     ? "text-(--foreground) active-link"
-                    : "text-(--muted) hover:text-(--foreground)"
+                    : "text-(--muted) hover:text-(--neon)"
                 }`}
               >
                 {route.title}
@@ -109,7 +122,7 @@ export function SideBar({ handleNavigation }: Props) {
           <div
             ref={overlayRef}
             onClick={closeDrawer}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-(--background)/40 backdrop-blur-md "
           />
 
           {/* DRAWER */}
@@ -118,16 +131,16 @@ export function SideBar({ handleNavigation }: Props) {
               ref={drawerRef}
               className="
                 w-72 h-screen
-                bg-white/5 backdrop-blur-2xl
                 flex flex-col
-                border-r border-(--border)
-                shadow-[0_10px_40px_rgba(0,0,0,0.4)]
+ 
+                border-r-2 border-(--border)
+                  shadow-(--shadow)
                 overflow-hidden
               "
             >
               {/* LOGO */}
-              <div className="p-3 border-b border-(--border)">
-                <img src={portfolio_icon} className="w-16 h-16" />
+              <div className="p-3 border-b-2 border-(--border) shadow-(--shadow-footer) flex items-center">
+                <img src={portfolio_icon1} className="w-14 h-14" />
               </div>
 
               {/* MENU */}
@@ -155,14 +168,14 @@ export function SideBar({ handleNavigation }: Props) {
               <button
                 onClick={closeDrawer}
                 className="
-                  absolute top-3 right-3
-                  w-10 h-10 flex items-center justify-center
+                  absolute top-4 right-4
+                  w-12 h-12 flex items-center justify-center
                   rounded-full bg-(--background)
-                  border border-(--border)
+                  border-4 border-(--border)/20
                   hover:scale-110 transition
                 "
               >
-                <FiX size={22} className="text-(--foreground)" />
+                <FiX size={24} className="text-(--foreground)" />
               </button>
             </div>
           </div>
