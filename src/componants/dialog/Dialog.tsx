@@ -3,10 +3,13 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
+type Size = "sm" | "md" | "lg" | "xl";
+
 type DialogProps = {
   open: boolean;
   onClose: () => void;
   children: React.ReactNode;
+  mdWidthClass?: Size;
   title?: string;
   showFooter?: boolean;
   footerContent?: (() => React.ReactNode) | React.ReactNode;
@@ -17,6 +20,7 @@ export function Dialog({
   onClose,
   children,
   title = "Dialog Title",
+  mdWidthClass = "xl",
   showFooter = false,
   footerContent,
 }: DialogProps) {
@@ -39,6 +43,13 @@ export function Dialog({
     );
   }, [open]);
 
+  const widthMap = {
+    sm: "md:w-1/4 md:max-h-[50vh]",
+    md: "md:w-1/3 md:max-h-[65vh]",
+    lg: "md:w-1/2 md:max-h-[75vh]",
+    xl: "md:w-2/3 md:max-h-[85vh]",
+  } as const;
+
   if (!open) return null;
 
   return createPortal(
@@ -55,20 +66,17 @@ export function Dialog({
       <div
         ref={dialogRef}
         onClick={(e) => e.stopPropagation()}
-        className="
-          relative
+        className={`relative
           md:ml-[20%]
-          w-[85%] sm:w-[85%] md:w-2/3
-          max-h-[80vh] md:max-h-[85vh]
+          w-[85%] sm:w-[85%] ${widthMap[mdWidthClass]}
+          max-h-[80vh]
           flex flex-col
           backdrop-blur-xs
           ring-1 ring-(--border)
           rounded-xl
           shadow-(--shadow)
           overflow-hidden
-          bg-(--background)/30
-
-        "
+          bg-(--background)/30`}
       >
         {/* HEADER (SAFE TOP AREA FIX) */}
         <div
