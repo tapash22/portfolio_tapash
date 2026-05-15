@@ -5,7 +5,7 @@ type WaveDirection = "x" | "y";
 
 interface UseWaveSystemProps {
   containerRef: React.RefObject<HTMLDivElement | null>;
-  boxesRef: React.RefObject<HTMLDivElement[]>;
+  boxesRef: React.RefObject<HTMLDivElement[] | null>;
   boxRef: React.RefObject<HTMLDivElement | null>;
 }
 
@@ -17,29 +17,44 @@ export function useWaveSystem({
   useEffect(() => {
     const mm = gsap.matchMedia();
 
-    // ================= GRID =================
-    gsap.fromTo(
-      boxesRef.current,
-      { opacity: 0.05 },
-      {
-        opacity: 0.15,
-        duration: 2,
-        stagger: { each: 0.02, from: "random" },
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      },
-    );
+    let isMounted = true;
+
+    // ================= GRID ANIMATION =================
+    if (boxesRef.current?.length) {
+      const validBoxes = boxesRef.current.filter(Boolean);
+
+      gsap.fromTo(
+        validBoxes,
+        {
+          opacity: 0.05,
+        },
+        {
+          opacity: 0.15,
+          duration: 2,
+          stagger: {
+            each: 0.02,
+            from: "start",
+          },
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        },
+      );
+    }
 
     // ================= CORE WAVE =================
     const createWave = (direction: WaveDirection, isMobile: boolean) => {
       const container = containerRef.current;
+
       if (!container) return;
 
+      // ================= CREATE ELEMENTS =================
       const wave = document.createElement("div");
       const head = document.createElement("div");
 
-      // ================= WAVE LINE =================
+      wave.className = "wave-system";
+
+      // ================= WAVE STYLE =================
       Object.assign(wave.style, {
         position: "absolute",
         pointerEvents: "none",
@@ -51,7 +66,7 @@ export function useWaveSystem({
       // ================= MOBILE =================
       if (direction === "y") {
         wave.style.bottom = "0%";
-        wave.style.left = "50%";
+        wave.style.left = "0%";
         wave.style.width = "4px";
         wave.style.height = "100%";
       }
@@ -64,7 +79,7 @@ export function useWaveSystem({
         wave.style.height = "6px";
       }
 
-      // ================= HEAD =================
+      // ================= HEAD STYLE =================
       Object.assign(head.style, {
         position: "absolute",
         width: "140px",
@@ -73,19 +88,22 @@ export function useWaveSystem({
         backdropFilter: "blur(15px)",
         background:
           "radial-gradient(circle, rgba(34,211,238,0.18), rgba(34,211,238,0.08), transparent 70%)",
-        filter: "blur(14px)",
+        filter: window.innerWidth < 768 ? "blur(6px)" : "blur(14px)",
+
         boxShadow: "0 0 50px rgba(34,211,238,0.6)",
         opacity: "0.9",
       });
 
+      // ================= HEAD POSITION =================
       if (direction === "y") {
-        head.style.bottom = "0px";
+        head.style.bottom = "30px";
         head.style.left = "-70px";
       } else {
         head.style.right = "0px";
         head.style.top = "-70px";
       }
 
+      // ================= APPEND =================
       wave.appendChild(head);
       container.appendChild(wave);
 
@@ -96,28 +114,41 @@ export function useWaveSystem({
 
       const duration = 6000;
 
+      // ================= ANIMATION LOOP =================
       const animate = (time: number) => {
+        if (!isMounted) return;
+
         const elapsed = time - state.start;
+
         state.progress = elapsed / duration;
 
+        // ================= REMOVE AFTER END =================
         if (state.progress >= 1) {
           wave.remove();
           return;
         }
 
+        // ================= SINE MOVEMENT =================
         const sine = Math.sin(state.progress * Math.PI * 6) * 30;
+
+        // ================= GLOW SCALE =================
         const scale = 0.4 + state.progress * 2;
 
+        // ================= MOBILE MOVE =================
         if (direction === "y") {
           const y = (-70 * state.progress * window.innerHeight) / 100 + sine;
 
           gsap.set(wave, { y });
-        } else {
+        }
+
+        // ================= DESKTOP MOVE =================
+        else {
           const x = (-140 * state.progress * window.innerWidth) / 100 + sine;
 
           gsap.set(wave, { x });
         }
 
+        // ================= GLOW EFFECT =================
         const baseOpacity = isMobile ? 0.3 : 0.6;
 
         gsap.set(head, {
@@ -131,7 +162,7 @@ export function useWaveSystem({
       requestAnimationFrame(animate);
     };
 
-    // ================= MATCH MEDIA =================
+    // ================= RESPONSIVE =================
     mm.add(
       {
         isDesktop: "(min-width: 769px)",
@@ -143,16 +174,19 @@ export function useWaveSystem({
         };
 
         const container = containerRef.current;
+
         if (!container) return;
 
-        // ================= TEXT =================
-        if (boxRef.current) {
+        // ================= TEXT ANIMATION =================
+        const children = Array.from(boxRef.current?.children || []);
+
+        if (children.length) {
           gsap.fromTo(
-            boxRef.current.children,
+            children,
             {
               opacity: 0,
-              x: isMobile ? 20 : -100,
-              y: isMobile ? 50 : 0,
+              x: isMobile ? 200 : -100,
+              y: isMobile ? 0 : 0,
             },
             {
               opacity: 1,
@@ -165,19 +199,29 @@ export function useWaveSystem({
           );
         }
 
+        // ================= REPEATING WAVES =================
         const interval = setInterval(() => {
           createWave(isMobile ? "y" : "x", isMobile);
         }, 2000);
 
+        // ================= INITIAL WAVE =================
         createWave(isMobile ? "y" : "x", isMobile);
 
+        // ================= CLEANUP =================
         return () => {
           clearInterval(interval);
-          container.innerHTML = "";
+
+          const waves = container.querySelectorAll(".wave-system");
+
+          waves.forEach((wave) => wave.remove());
         };
       },
     );
 
-    return () => mm.revert();
+    // ================= MAIN CLEANUP =================
+    return () => {
+      isMounted = false;
+      mm.revert();
+    };
   }, [containerRef, boxesRef, boxRef]);
 }

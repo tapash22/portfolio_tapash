@@ -15,25 +15,32 @@ export default function BackgroundGrid() {
         opacity: 0,
         scale: 0.5,
         z: -200,
-        filter: "blur(10px) brightness(0.2) ",
+        filter:
+          window.innerWidth < 768
+            ? "brightness(0.3)"
+            : "blur(10px) brightness(0.2)",
       });
 
       // Sheen starts off-screen to the left
       gsap.set(sheenRef.current, { x: "-100%", opacity: 0 });
 
       const triggerPopping = () => {
-        const availableIndices = Array.from(
-          { length: 100 },
-          (_, i) => i,
-        ).filter((i) => !gsap.isTweening(cardsRef.current[i]));
+        const availableIndices = Array.from({ length: 96 }, (_, i) => i).filter(
+          (i) => !gsap.isTweening(cardsRef.current[i]),
+        );
 
-        if (availableIndices.length === 0) return;
+        if (!availableIndices.length) return;
 
         const idx =
           availableIndices[Math.floor(Math.random() * availableIndices.length)];
+
         const card = cardsRef.current[idx];
         const path = pathsRef.current[idx];
         const sheen = sheenRef.current[idx];
+
+        if (!path || !card || !sheen) return;
+        if (!(path instanceof SVGGeometryElement)) return;
+
         const length = path.getTotalLength();
 
         gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
@@ -97,7 +104,9 @@ export default function BackgroundGrid() {
           "<",
         );
 
-        gsap.delayedCall(0.4, triggerPopping);
+        const delay = window.innerWidth < 768 ? 1 : 0.4;
+
+        gsap.delayedCall(delay, triggerPopping);
       };
 
       for (let i = 0; i < 3; i++) {
@@ -107,17 +116,31 @@ export default function BackgroundGrid() {
     { scope: containerRef },
   );
 
+  const isMobile = window.innerWidth < 768;
+  const totalCards = isMobile ? 48 : 100;
+
   return (
     <div
       ref={containerRef}
       className="absolute inset-0 bg-(--sidebar)/20 flex items-center justify-center overflow-hidden"
-      style={{ perspective: "1500px" }}
+      style={{
+        perspective: window.innerWidth < 768 ? "800px" : "1500px",
+      }}
     >
       <div
-        className="grid grid-cols-4 md:grid-cols-12 gap-1 p-1 min-h-full w-fit"
+        className="
+            grid
+            grid-cols-6
+            sm:grid-cols-8
+            md:grid-cols-12
+            gap-1
+            p-1
+            w-full
+            h-full
+          "
         style={{ transformStyle: "preserve-3d" }}
       >
-        {Array.from({ length: 100 }).map((_, i) => (
+        {Array.from({ length: totalCards }).map((_, i) => (
           <div
             key={i}
             ref={(el) => {
