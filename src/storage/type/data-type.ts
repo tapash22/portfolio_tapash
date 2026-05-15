@@ -74,3 +74,38 @@ export interface ContactType {
 }
 
 export type ContactTypes = ContactType[];
+
+export interface Profile {
+  name: string;
+  role: string;
+  experience: string;
+  location: string;
+}
+
+export interface TechStackItem {
+  name: string;
+  subtitle: string;
+  icon: string;
+  description: string;
+  level?: number;
+}
+
+export interface ProjectItem {
+  name: string;
+  tech: string;
+  highlight: string;
+}
+
+export interface WorkflowItem {
+  id: number;
+  title: string;
+  detail: string;
+}
+
+export interface BlueprintData {
+  title: string;
+  profile: Profile;
+  techStack: TechStackItem[];
+  projects: ProjectItem[];
+  workflow: WorkflowItem[];
+}

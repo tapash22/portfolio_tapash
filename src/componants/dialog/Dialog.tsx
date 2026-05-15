@@ -9,7 +9,7 @@ type DialogProps = {
   children: React.ReactNode;
   title?: string;
   showFooter?: boolean;
-  footerContent?: React.ReactNode;
+  footerContent?: (() => React.ReactNode) | React.ReactNode;
 };
 
 export function Dialog({
@@ -107,22 +107,16 @@ export function Dialog({
             className="
               px-3 py-3 sm:px-4 sm:py-4 md:p-5
               border-t border-(--border)
-              flex flex-col sm:flex-row
-              justify-end gap-2 sm:gap-3
+              flex flex-row justify-center items-center
+              md:justify-end gap-2 sm:gap-3
             "
           >
-            {footerContent ?? (
-              <>
-                <button
-                  onClick={onClose}
-                  className="w-full sm:w-auto px-4 py-2 rounded-lg border"
-                >
-                  Cancel
-                </button>
-                <button className="w-full sm:w-auto px-4 py-2 rounded-lg bg-blue-500 text-white">
-                  Save
-                </button>
-              </>
+            {footerContent && (
+              <div className="flex flex-row  gap-4">
+                {typeof footerContent === "function"
+                  ? footerContent()
+                  : footerContent}
+              </div>
             )}
           </div>
         )}
