@@ -109,3 +109,12 @@ export interface BlueprintData {
   projects: ProjectItem[];
   workflow: WorkflowItem[];
 }
+
+export interface TimelineItem {
+  year: string;
+  title: string;
+  company: string;
+  description: string;
+}
+
+export type TimelineItems = TimelineItem[];

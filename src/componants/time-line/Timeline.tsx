@@ -1,31 +1,8 @@
 import gsap from "gsap";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
+import { timelineData } from "../../storage/data/blueprient-data";
 import { TimeLineSIdeBarWithDot } from "./TimeLineSIdeBarWithDot";
-
-const timelineData = [
-  {
-    year: "2024 - Present",
-    title: "Frontend Developer",
-    company: "Anwar Technologies",
-    description:
-      "Architecting scalable Vue 3 applications using Vue Macros and optimizing performance by 25%.", // [cite: 7, 28, 29]
-  },
-  {
-    year: "2023 - 2024",
-    title: "Frontend Developer",
-    company: "Logic InfoTech Ltd",
-    description:
-      "Developed GIS-based mapping features with React and Leaflet, reducing load times by 15%.", // [cite: 35, 37, 38]
-  },
-  {
-    year: "2021 - 2022",
-    title: "Frontend Developer",
-    company: "Ultrawave Digital",
-    description:
-      "Managed large-scale Vue/React apps and refactored legacy code into modular components.", // [cite: 41, 42, 44]
-  },
-];
 
 export function Timeline() {
   const itemsRef = useRef<HTMLDivElement[]>([]);

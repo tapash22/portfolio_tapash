@@ -2,38 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa6";
+import { timelineData } from "../../storage/data/blueprient-data";
 import image from "/images/about.png";
-
-interface TimelineItem {
-  year: string;
-  title: string;
-  company: string;
-  description: string;
-}
-
-const timelineData: TimelineItem[] = [
-  {
-    year: "2024 - Present",
-    title: "Frontend Developer",
-    company: "Anwar Technologies",
-    description:
-      "Architecting scalable Vue 3 applications using Vue Macros and optimizing performance by 25%.",
-  },
-  {
-    year: "2023 - 2024",
-    title: "Frontend Developer",
-    company: "Logic InfoTech Ltd",
-    description:
-      "Developed GIS-based mapping features with React and Leaflet, reducing load times by 15%.",
-  },
-  {
-    year: "2021 - 2022",
-    title: "Frontend Developer",
-    company: "Ultrawave Digital",
-    description:
-      "Managed large-scale Vue/React apps and refactored legacy code into modular components.",
-  },
-];
 
 export const ResponsiveTimeline = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
