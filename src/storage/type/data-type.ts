@@ -118,3 +118,9 @@ export interface TimelineItem {
 }
 
 export type TimelineItems = TimelineItem[];
+
+export type TimelineSVGLayerProps = {
+  pathStrings: string[];
+  pathRefs: React.RefObject<(SVGPathElement | null)[]>;
+  dotRefs: React.RefObject<(SVGCircleElement | null)[]>;
+};
