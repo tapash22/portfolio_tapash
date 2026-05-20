@@ -71,12 +71,12 @@ export const TimelineCard = ({
           {/* Active tracking circle */}
           <circle
             ref={localDotTopRef}
-            r="4"
+            r="3"
             fill="#00f2ff"
             opacity="0"
             style={{
               filter:
-                "drop-shadow(0 0 6px #00f2ff) drop-shadow(0 0 12px #22d3ee)",
+                "drop-shadow(0 0 16px #00f2ff) drop-shadow(0 0 12px #22d3ee)",
             }}
           />
 
