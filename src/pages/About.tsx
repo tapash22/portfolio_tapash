@@ -95,7 +95,7 @@ export default function About() {
         onClose={closeDialog}
         title={blueprintData?.title}
         showFooter={true}
-        mdWidthClass="md"
+        mdWidthClass="lg"
         footerContent={() => (
           <>
             <a
@@ -118,7 +118,7 @@ export default function About() {
 
             <button
               onClick={() => {
-                window.open("https://github.com/your-profile", "_blank");
+                window.open("https://github.com/tapash22", "_blank");
               }}
               className="
           p-3
@@ -138,29 +138,29 @@ export default function About() {
           </>
         )}
       >
-        <div className=" py-3 md:py-0">
-          <h2 className="text-lg md:text-2xl font-bold text-(--foreground) tracking-wider uppercase text-center md:text-start">
+        <div className=" py-2 md:py-0">
+          <h2 className="text-lg md:text-2xl font-bold text-(--foreground) tracking-wider uppercase text-center py-2 ">
             {blueprintData.profile.role}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 py-2 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 py-2 ">
             {/* Tech Capabilities */}
-            <div className="space-y-2">
-              <h3 className="text-sm font-normal text-(--muted) uppercase tracking-wider text-center md:text-start ">
+            <div className="space-y-3">
+              <h3 className="text-sm font-normal text-(--muted) uppercase tracking-wider text-center  ">
                 Technical Core
               </h3>
               {blueprintData.techStack.map((tech, i) => (
                 <div
                   key={i}
-                  className="group relative p-2 md:p-2 rounded-xl border-2 border-(--border) bg-(--background)/50 hover:bg-(--background)/10 transition-all"
+                  className="group relative p-2 md:p-4 rounded-xl border-2 border-(--border) bg-(--background)/50 hover:bg-(--background)/10 transition-all"
                 >
-                  <div className="flex justify-start items-center gap-2 ">
+                  <div className="flex flex-col md:flex-row justify-start items-center gap-2 p-1 ">
                     <span className="text-2xl">{tech.icon}</span>
                     <div>
-                      <h4 className="text-(--foreground) font-semibold text-sm tracking-wide">
+                      <h4 className="text-(--foreground) text-center md:text-start font-semibold text-sm tracking-wide">
                         {tech.name}
                       </h4>
-                      <p className="text-(--muted) text-xs font-light leading-normal tracking-wide">
+                      <p className="text-(--muted) text-xs font-light leading-normal tracking-wide text-center md:text-start">
                         {tech.description}
                       </p>
                     </div>
@@ -170,25 +170,25 @@ export default function About() {
             </div>
 
             {/* Career Timeline / Workflow */}
-            <div className="space-y-2 flex flex-col justify-center items-center  md:items-end ">
-              <h3 className="text-sm font-normal text-start text-(--muted) uppercase tracking-wider ">
+            <div className="space-y-3 flex flex-col justify-start items-start w-full px-2 md:px-5 ">
+              <h3 className="text-sm font-normal text-center text-(--muted) uppercase tracking-wider w-full ">
                 Engineering Workflow
               </h3>
-              <div className="relative flex justify-center items-center h-full">
+              <div className="relative flex justify-center items-center w-full h-full">
                 {/* ANIMATED TIMELINE DOTS */}
                 <TimeLineSIdeBarWithDot
                   cardCount={blueprintData.workflow.length}
-                  height={240}
+                  height={265}
                   animateTrigger={true}
                 />
 
                 {/* CONTENT */}
-                <div className=" flex flex-col gap-4">
+                <div className=" flex flex-col gap-4 w-full">
                   {blueprintData.workflow.map((step) => (
                     <div
                       key={step.id}
                       className="
-                        py-3 px-5
+                        py-4 
                         ring-2 ring-(--neon)
                         rounded-lg
                         shadow-(--shadow)
