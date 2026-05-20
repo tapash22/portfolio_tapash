@@ -40,7 +40,7 @@ export const TimelineCard = ({
       onMouseLeave={onHoverEnd}
       className="p-6 bg-(--sidebar)/80 md:bg-(--sidebar)/50 rounded-lg relative cursor-pointer border border-gray-900/60 transition-all duration-500 select-none"
     >
-      {/* 🎯 FULL-COVERAGE BORDER SVG LAYER */}
+      {/* 1. FULL-COVERAGE BORDER SVG LAYER */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible"
         viewBox="0 0 100 100"
@@ -49,15 +49,15 @@ export const TimelineCard = ({
         <path
           ref={cardRectRef}
           d="M 0,30
-       L 0,6
-       C 0,0 0,0 6,0
-       L 94,0
-       C 100,0 100,0 100,6
-       L 100,94
-       C 100,100 100,100 94,100
-       L 6,100
-       C 0,100 0,100 0,94
-       Z"
+             L 0,6
+             C 0,0 0,0 6,0
+             L 94,0
+             C 100,0 100,0 100,6
+             L 100,94
+             C 100,100 100,100 94,100
+             L 6,100
+             C 0,100 0,100 0,94
+             Z"
           fill="none"
           stroke="#00f2ff"
           strokeWidth="0.5"
@@ -67,8 +67,10 @@ export const TimelineCard = ({
         />
       </svg>
 
+      {/* 2. GLOWING DOT LAYER */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-30 overflow-visible">
         <svg className="w-full h-full overflow-visible">
+          {/* Active tracking circle */}
           <circle
             ref={localDotTopRef}
             r="4"
@@ -79,6 +81,8 @@ export const TimelineCard = ({
                 "drop-shadow(0 0 6px #00f2ff) drop-shadow(0 0 12px #22d3ee)",
             }}
           />
+
+          {/* 🎯 TS FIX: Changed from a <div> to an SVG <circle> to match type SVGCircleElement */}
           <circle
             ref={localDotBottomRef}
             r="0"
