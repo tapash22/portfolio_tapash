@@ -22,7 +22,6 @@ export function ContactForm() {
 
     setFormData((prev) => ({
       ...prev,
-      ...prev,
       [name]: value,
     }));
   };
@@ -33,16 +32,15 @@ export function ContactForm() {
     setStatus("PENDING");
 
     try {
-      // 🎯 FORMSPREE INTEGRATION:
-      // Replace 'YOUR_FORMSPREE_FORM_ID' with the hash id Formspree provides you.
-      // (e.g., https://formspree.io/f/mqkvwenz)
+      // 🎯 THE COMPLETE FIX: Convert custom React state names into standard
+      // Formspree key mappings so the server processes the data instantly.
       const response = await fetch("https://formspree.io/f/mbdbgyzo", {
         method: "POST",
         body: JSON.stringify({
-          name: `${formData.firstName} ${formData.lastName}`,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
+          name: `${formData.firstName} ${formData.lastName}`, // Maps to "Name" column
+          email: formData.email, // Maps to sender email field
+          _subject: formData.subject, // Formspree internal subject key
+          message: formData.message, // Message container box
         }),
         headers: {
           "Content-Type": "application/json",
@@ -176,9 +174,7 @@ export function ContactForm() {
       <div className="flex justify-center items-center w-full h-auto p-1">
         <button
           type="submit"
-          disabled={
-            status === "PENDING"
-          } /* 🎯 FIXED: Only blocks double clicks while transmitting */
+          disabled={status === "PENDING"}
           className="
               bg-(--button-color) w-full sm:w-full md:w-auto px-0 md:px-5 py-2 
               rounded-sm text-(--foreground) shadow-none hover:shadow-(--box-shadow) 
