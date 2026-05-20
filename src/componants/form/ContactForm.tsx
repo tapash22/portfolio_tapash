@@ -13,7 +13,7 @@ export function ContactForm() {
     message: "",
   });
 
-  // Handle input change
+  // Handle Input Change
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -25,7 +25,7 @@ export function ContactForm() {
     }));
   };
 
-  // Reset alert after few seconds
+  // Auto remove alert
   useEffect(() => {
     if (status === "SUCCESS" || status === "ERROR") {
       const timer = setTimeout(() => {
@@ -36,48 +36,11 @@ export function ContactForm() {
     }
   }, [status]);
 
-  // Handle form submit
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    setStatus("PENDING");
-
-    try {
-      const form = e.currentTarget;
-
-      const response = await fetch("https://formspree.io/f/xlgvjwre", {
-        method: "POST",
-        body: new FormData(form),
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        setStatus("SUCCESS");
-
-        // Reset fields
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-
-        form.reset();
-      } else {
-        setStatus("ERROR");
-      }
-    } catch (error) {
-      console.error("Form submit error:", error);
-      setStatus("ERROR");
-    }
-  };
-
   return (
     <form
-      onSubmit={handleSubmit}
+      action="https://formspree.io/f/mbdbgyzo"
+      method="POST"
+      onSubmit={() => setStatus("PENDING")}
       className="
         w-full h-full max-w-4xl flex flex-col
         space-y-2 bg-(--background)
@@ -203,7 +166,7 @@ export function ContactForm() {
         "
       />
 
-      {/* Success Message */}
+      {/* Status Messages */}
       {status === "SUCCESS" && (
         <p
           className="
@@ -216,7 +179,6 @@ export function ContactForm() {
         </p>
       )}
 
-      {/* Error Message */}
       {status === "ERROR" && (
         <p
           className="
