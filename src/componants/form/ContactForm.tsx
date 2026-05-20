@@ -9,12 +9,7 @@ export function ContactForm() {
     message: "",
   });
 
-  // Track the submission states visually
-  const [status, setStatus] = useState<
-    "IDLE" | "PENDING" | "SUCCESS" | "ERROR"
-  >("IDLE");
-
-  // handle input field
+  // handle input field updates
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -26,54 +21,15 @@ export function ContactForm() {
     }));
   };
 
-  // handle submit
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("PENDING");
-
-    try {
-      // 🎯 THE COMPLETE FIX: Convert custom React state names into standard
-      // Formspree key mappings so the server processes the data instantly.
-      const response = await fetch("https://formspree.io/f/mbdbgyzo", {
-        method: "POST",
-        body: JSON.stringify({
-          name: `${formData.firstName} ${formData.lastName}`, // Maps to "Name" column
-          email: formData.email, // Maps to sender email field
-          _subject: formData.subject, // Formspree internal subject key
-          message: formData.message, // Message container box
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
-
-      if (response.ok) {
-        setStatus("SUCCESS");
-        // Reset form fields on success
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          subject: "",
-          message: "",
-        });
-      } else {
-        setStatus("ERROR");
-      }
-    } catch (error) {
-      console.error("Submission Error:", error);
-      setStatus("ERROR");
-    }
-  };
-
   return (
     <form
-      onSubmit={handleSubmit}
+      action="https://formspree.io/f/mbdbgyzo" // 🎯 Native form endpoint (Bypasses Paid API checks)
+      method="POST"
       className="w-full h-full max-w-4xl flex flex-col
                  space-y-0 sm:space-y-0 md:space-y-2 bg-(--background) 
                  px-1 py-2 sm:px-1 sm:py-2 md:p-8 opacity-90 rounded-lg"
     >
+      {/* 🎯 Formspree requires specific "name" fields to format emails properly */}
       <div
         className="flex flex-col md:flex-row 
           items-center justify-center w-full h-auto p-1 
@@ -81,7 +37,7 @@ export function ContactForm() {
       >
         <input
           type="text"
-          name="firstName"
+          name="First Name" // 🎯 Capitalized for Formspree dashboard readability
           required
           placeholder="First Name"
           value={formData.firstName}
@@ -94,7 +50,7 @@ export function ContactForm() {
 
         <input
           type="text"
-          name="lastName"
+          name="Last Name" // 🎯 Matches standard form tracking
           required
           placeholder="Last Name"
           value={formData.lastName}
@@ -109,7 +65,7 @@ export function ContactForm() {
       <div className="flex justify-between items-center w-full h-auto p-1 ">
         <input
           type="email"
-          name="email"
+          name="Email Address" // 🎯 Standard mapping for reply tracking
           required
           placeholder="Email"
           value={formData.email}
@@ -123,7 +79,7 @@ export function ContactForm() {
       <div className="flex justify-between items-center w-full h-auto p-1 ">
         <input
           type="text"
-          name="subject"
+          name="_subject" // 🎯 Tells Formspree to make this the actual Email Subject line
           required
           placeholder="Subject"
           value={formData.subject}
@@ -136,7 +92,7 @@ export function ContactForm() {
       </div>
       <div className="flex items-center w-full h-auto p-1 ">
         <textarea
-          name="message"
+          name="Message"
           required
           placeholder="Message"
           value={formData.message}
@@ -157,31 +113,23 @@ export function ContactForm() {
         />
       </div>
 
-      {/* 🎯 CONTEXT STATUS NOTIFIER ALERTS */}
-      {status === "SUCCESS" && (
-        <p className="text-xs text-green-400 font-light tracking-wide text-center my-2">
-          Your message has been sent successfully! I will get back to you
-          shortly.
-        </p>
-      )}
-      {status === "ERROR" && (
-        <p className="text-xs text-red-400 font-light tracking-wide text-center my-2">
-          Something went wrong. Please check your network connection and try
-          again.
-        </p>
-      )}
+      {/* 🎯 AUTOMATIC REDIRECT: Once they send, Formspree handles the success page 
+          and bounces them right back to your portfolio link automatically */}
+      <input
+        type="hidden"
+        name="_next"
+        value="https://portfolio-tapash.vercel.app"
+      />
 
       <div className="flex justify-center items-center w-full h-auto p-1">
         <button
           type="submit"
-          disabled={status === "PENDING"}
           className="
               bg-(--button-color) w-full sm:w-full md:w-auto px-0 md:px-5 py-2 
               rounded-sm text-(--foreground) shadow-none hover:shadow-(--box-shadow) 
-              disabled:opacity-50 disabled:cursor-not-allowed
-              transition text-sm font-light tracking-wider uppercase"
+              transition text-sm font-light tracking-wider uppercase cursor-pointer"
         >
-          {status === "PENDING" ? "Sending..." : "Send Message"}
+          Send Message
         </button>
       </div>
     </form>
