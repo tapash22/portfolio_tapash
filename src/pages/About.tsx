@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PiDesktop } from "react-icons/pi";
-import { ResponsiveTimeline } from "../componants/about-left/ResponsiveTimeline";
 import { Dialog } from "../componants/dialog/Dialog";
+import { ResponsiveTimeline } from "../componants/time-line/ResponsiveTimeline";
 import { TimeLineSIdeBarWithDot } from "../componants/time-line/TimeLineSIdeBarWithDot";
 import { blueprintData } from "../storage/data/blueprient-data";
 
