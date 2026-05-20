@@ -79,9 +79,14 @@ export const TimelineCard = ({
                 "drop-shadow(0 0 6px #00f2ff) drop-shadow(0 0 12px #22d3ee)",
             }}
           />
+          <circle
+            ref={localDotBottomRef}
+            r="0"
+            fill="none"
+            className="hidden"
+          />
         </svg>
       </div>
-      <div ref={localDotBottomRef} className="hidden" />
 
       {/* Header Info Data */}
       <div className="flex justify-between items-start relative z-20">
