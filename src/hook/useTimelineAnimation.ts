@@ -10,22 +10,31 @@ interface TimelineItem {
 }
 
 export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
+  // hold the ref of main timeline
   const containerRef = useRef<HTMLDivElement | null>(null);
+  // hold the image ref
   const imageDotRef = useRef<HTMLDivElement | null>(null);
 
+  // timeline each box
   const boxRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // svg ref start from image
   const pathRefs = useRef<(SVGPathElement | null)[]>([]);
+  // dot moving into svg path
   const dotRefs = useRef<(SVGCircleElement | null)[]>([]);
 
+  //svg shapes outline card
   const cardRectRefs = useRef<(SVGPathElement | null)[]>([]);
+  // refs svg circle to trace the border outline
   const localDotTopRefs = useRef<(SVGCircleElement | null)[]>([]);
-  // Look inside useTimelineAnimations.ts — it likely says this:
-  const localDotBottomRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  //path data strings calculated dynamically based on screen layout coordinates
   const [pathStrings, setPathStrings] = useState<string[]>([]);
+  //Component-controlled track numbers indicating which cards are open
   const [expandedIndex, setExpandedIndex] = useState<number>(-1);
+  //Component-controlled track numbers indicating which cards are open hoverIndex
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
+  //Stores the master looping GSAP timeline instance so it can potentially be paused, resumed, or cleared elsewhere.
   const loopTimelineInstance = useRef<gsap.core.Timeline | null>(null);
 
   const updatePaths = () => {
@@ -43,8 +52,8 @@ export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
       const bRect = box.getBoundingClientRect();
 
       if (isMobile) {
-        const targetX = bRect.left - containerRect.left;
-        const targetY = bRect.top - containerRect.top + bRect.height * 0.5;
+        const targetX = bRect.left - containerRect.left + bRect.width * 0.5;
+        const targetY = bRect.top - containerRect.top;
 
         const midY = startY + (targetY - startY) * 0.5;
 
@@ -92,7 +101,7 @@ export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
       ease: "power3.out",
     });
 
-    const masterLoop = gsap.timeline({ repeat: -1, repeatDelay: 1.5 });
+    const masterLoop = gsap.timeline({ repeat: -1, repeatDelay: 2 });
     loopTimelineInstance.current = masterLoop;
 
     const state = { progress: 0 };
@@ -101,7 +110,7 @@ export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
       state,
       {
         progress: 1,
-        duration: 1.4,
+        duration: 1.8,
         ease: "power2.inOut",
         onStart: () => {
           gsap.set(validDots, { opacity: 1 });
@@ -190,7 +199,6 @@ export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
     dotRefs,
     cardRectRefs,
     localDotTopRefs,
-    localDotBottomRefs,
     pathStrings,
     expandedIndex,
     setExpandedIndex,

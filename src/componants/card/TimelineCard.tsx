@@ -18,7 +18,6 @@ interface TimelineCardProps {
   boxRef: (el: HTMLDivElement | null) => void;
   cardRectRef: (el: SVGPathElement | null) => void;
   localDotTopRef: (el: SVGCircleElement | null) => void;
-  localDotBottomRef: (el: SVGCircleElement | null) => void;
 }
 
 export const TimelineCard = ({
@@ -30,7 +29,6 @@ export const TimelineCard = ({
   boxRef,
   cardRectRef,
   localDotTopRef,
-  localDotBottomRef,
 }: TimelineCardProps) => {
   return (
     <div
@@ -86,12 +84,6 @@ export const TimelineCard = ({
               By using (el: any), we override TypeScript's element checking. 
               This allows your layout hook to register the element node safely 
               without throwing a build error. */}
-          <circle
-            ref={(el: any) => localDotBottomRef(el)}
-            r="0"
-            fill="none"
-            className="hidden"
-          />
         </svg>
       </div>
 

@@ -12,7 +12,6 @@ export const ResponsiveTimeline = () => {
     dotRefs,
     cardRectRefs,
     localDotTopRefs,
-    localDotBottomRefs,
     pathStrings,
     expandedIndex,
     setExpandedIndex,
@@ -79,9 +78,6 @@ export const ResponsiveTimeline = () => {
             }}
             localDotTopRef={(el) => {
               localDotTopRefs.current[index] = el;
-            }}
-            localDotBottomRef={(el) => {
-              localDotBottomRefs.current[index] = el;
             }}
           />
         ))}
