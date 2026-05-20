@@ -19,7 +19,8 @@ export const useTimelineAnimations = (timelineData: TimelineItem[]) => {
 
   const cardRectRefs = useRef<(SVGPathElement | null)[]>([]);
   const localDotTopRefs = useRef<(SVGCircleElement | null)[]>([]);
-  const localDotBottomRefs = useRef<(SVGCircleElement | null)[]>([]);
+  // Look inside useTimelineAnimations.ts — it likely says this:
+  const localDotBottomRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const [pathStrings, setPathStrings] = useState<string[]>([]);
   const [expandedIndex, setExpandedIndex] = useState<number>(-1);
