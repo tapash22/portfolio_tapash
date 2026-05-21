@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { AnimatedWaves } from "../componants/landing/AnimatedWaves";
-import BackgroundGrid from "../componants/landing/BackgroundGrid";
 
 import { useWaveSystem } from "../hook/useWaveSystem";
 import image from "/images/home.png";
@@ -24,17 +23,40 @@ export default function Home() {
     boxRef,
   });
 
+  const glowRef = useRef<HTMLDivElement | null>(null);
+
+  // 2. Add this mouse-tracking event handler to your page
+  useGSAP(
+    () => {
+      if (!glowRef.current) return;
+
+      // Create an infinite, automated floating loop for the glow ring
+      gsap.to(glowRef.current, {
+        x: "+=25",
+        y: "-=50",
+        duration: 4,
+        repeat: -1, // Runs infinitely
+        yoyo: true, // Reverses direction smoothly back to origin point
+        ease: "sine.inOut", // Soft, non-linear drifting acceleration curve
+      });
+    },
+    { scope: containerRef },
+  );
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[90vh] overflow-hidden bg-zinc-950 flex"
+      className="relative w-full h-[90vh] overflow-hidden flex"
     >
       {/* BACKGROUND GRAPHIC CANVAS LAYERS (Seated safely at z-0) */}
-      <BackgroundGrid />
+      {/* <BackgroundGrid /> */}
       <AnimatedWaves />
 
       {/* STATIC DECORATIVE AMBIENT GLOW */}
-      <div className="hidden md:block absolute right-16 bottom-0 -translate-y-1/2 w-80 h-80 rounded-full bg-linear-to-br from-cyan-400/30 via-cyan-400/5 to-transparent blur-3xl shadow-[0_0_120px_rgba(34,211,238,0.3)] pointer-events-none z-0" />
+      <div
+        ref={glowRef}
+        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl shadow-[0_0_50px_rgba(34,255,255,0.5)] pointer-events-none z-0 will-change-transform opacity-50"
+      />
 
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
@@ -54,11 +76,11 @@ export default function Home() {
               y="70%"
               dominantBaseline="middle"
               // Centers the text anchor point on mobile, resets to left-aligned on desktop
-              textAnchor="middle"
+              textAnchor="end"
               className="text-4xl font-bold"
               fill="transparent"
-              stroke="#00FF66"
-              strokeWidth="1.2"
+              stroke="#ffffff"
+              strokeWidth="0.6"
               style={{
                 fontFamily: "inherit",
                 letterSpacing: "0.1em",

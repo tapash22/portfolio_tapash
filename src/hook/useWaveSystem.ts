@@ -203,7 +203,7 @@ export function useWaveSystem({
             )
           : [];
 
-        const introTl = gsap.timeline({ delay: 0.8 });
+        const introTl = gsap.timeline({ delay: 0.4 });
 
         if (svgText.length) {
           introTl
@@ -215,10 +215,10 @@ export function useWaveSystem({
             .to(
               svgText,
               {
-                fill: "#00FF66",
-                duration: 0.5,
+                fill: "#ffffff",
+                duration: 1.5,
               },
-              "-=0.3",
+              "-=0.5",
             );
         }
 
