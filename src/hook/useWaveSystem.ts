@@ -1,5 +1,9 @@
 import gsap from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { useEffect } from "react";
+
+// Register premium GSAP engine features
+gsap.registerPlugin(DrawSVGPlugin);
 
 type WaveDirection = "x" | "y";
 
@@ -16,18 +20,17 @@ export function useWaveSystem({
 }: UseWaveSystemProps) {
   useEffect(() => {
     const mm = gsap.matchMedia();
+    const container = containerRef.current;
+    if (!container) return;
 
-    let isMounted = true;
+    // ================= GRID BACKGROUND ANIMATION =================
+    let gridTween: gsap.core.Tween | null = null;
 
-    // ================= GRID ANIMATION =================
     if (boxesRef.current?.length) {
       const validBoxes = boxesRef.current.filter(Boolean);
-
-      gsap.fromTo(
+      gridTween = gsap.fromTo(
         validBoxes,
-        {
-          opacity: 0.05,
-        },
+        { opacity: 0.05 },
         {
           opacity: 0.15,
           duration: 2,
@@ -42,19 +45,16 @@ export function useWaveSystem({
       );
     }
 
-    // ================= CORE WAVE =================
+    // ================= CORE WAVE CREATION ENGINE =================
     const createWave = (direction: WaveDirection, isMobile: boolean) => {
-      const container = containerRef.current;
+      const currentContainer = containerRef.current;
+      if (!currentContainer) return;
 
-      if (!container) return;
-
-      // ================= CREATE ELEMENTS =================
       const wave = document.createElement("div");
       const head = document.createElement("div");
-
       wave.className = "wave-system";
 
-      // ================= WAVE STYLE =================
+      // Base Wave Node Formatting
       Object.assign(wave.style, {
         position: "absolute",
         pointerEvents: "none",
@@ -63,23 +63,31 @@ export function useWaveSystem({
         willChange: "transform",
       });
 
-      // ================= MOBILE =================
+      // Directional Structural Layouts
       if (direction === "y") {
-        wave.style.bottom = "0%";
-        wave.style.left = "0%";
-        wave.style.width = "4px";
-        wave.style.height = "100%";
+        // MOBILE ONLY: Fixed to horizontal center, originating flat at the absolute bottom
+        Object.assign(wave.style, {
+          bottom: "0%",
+          left: isMobile ? "50%" : "0%",
+          width: "4px",
+          height: "100%",
+        });
+
+        // Ensure the absolute pixel coordinate stays mathematically centered on mobile tracks
+        if (isMobile) {
+          gsap.set(wave, { xPercent: -50 });
+        }
+      } else {
+        // DESKTOP ONLY
+        Object.assign(wave.style, {
+          top: "50%",
+          right: "0%",
+          width: "100%",
+          height: "6px",
+        });
       }
 
-      // ================= DESKTOP =================
-      else {
-        wave.style.top = "50%";
-        wave.style.right = "0%";
-        wave.style.width = "100%";
-        wave.style.height = "6px";
-      }
-
-      // ================= HEAD STYLE =================
+      // Glow Lens Styles
       Object.assign(head.style, {
         position: "absolute",
         width: "140px",
@@ -88,139 +96,171 @@ export function useWaveSystem({
         backdropFilter: "blur(15px)",
         background:
           "radial-gradient(circle, rgba(34,211,238,0.18), rgba(34,211,238,0.08), transparent 70%)",
-        filter: window.innerWidth < 768 ? "blur(6px)" : "blur(14px)",
-
+        filter: isMobile ? "blur(8px)" : "blur(14px)",
         boxShadow: "0 0 50px rgba(34,211,238,0.6)",
-        opacity: "0.9",
+        willChange: "transform, opacity",
       });
 
-      // ================= HEAD POSITION =================
       if (direction === "y") {
-        head.style.bottom = "30px";
-        head.style.left = "-70px";
+        head.style.bottom = "0px"; // Pin trace directly to bottom start
+        head.style.left = "-70px"; // Centers the 140px wide circle on the line midpoint
       } else {
         head.style.right = "0px";
         head.style.top = "-70px";
       }
 
-      // ================= APPEND =================
       wave.appendChild(head);
-      container.appendChild(wave);
+      currentContainer.appendChild(wave);
 
-      const state = {
-        progress: 0,
-        start: performance.now(),
-      };
+      // Animation Timeline
+      const waveTl = gsap.timeline({
+        onComplete: () => wave.remove(),
+      });
 
-      const duration = 6000;
+      const duration = 6;
+      const baseOpacity = isMobile ? 0.4 : 0.6;
 
-      // ================= ANIMATION LOOP =================
-      const animate = (time: number) => {
-        if (!isMounted) return;
+      if (direction === "y") {
+        // Shoots straight upward towards the top viewport limits
+        waveTl.to(
+          wave,
+          {
+            y: () => -1.1 * window.innerHeight,
+            duration: duration,
+            ease: "none",
+          },
+          0,
+        );
 
-        const elapsed = time - state.start;
+        // Subtle side-to-side snaking sway behavior
+        waveTl.to(
+          wave,
+          {
+            x: isMobile ? "+=15" : "+=30", // Tighter oscillation on narrow viewports
+            duration: duration / 6,
+            repeat: 5,
+            yoyo: true,
+            ease: "sine.inOut",
+          },
+          0,
+        );
+      } else {
+        // Desktop horizontal sweep animation parameters
+        waveTl.to(
+          wave,
+          {
+            x: () => -1.4 * window.innerWidth,
+            duration: duration,
+            ease: "none",
+          },
+          0,
+        );
 
-        state.progress = elapsed / duration;
+        waveTl.to(
+          wave,
+          {
+            y: "+=30",
+            duration: duration / 6,
+            repeat: 5,
+            yoyo: true,
+            ease: "sine.inOut",
+          },
+          0,
+        );
+      }
 
-        // ================= REMOVE AFTER END =================
-        if (state.progress >= 1) {
-          wave.remove();
-          return;
-        }
-
-        // ================= SINE MOVEMENT =================
-        const sine = Math.sin(state.progress * Math.PI * 6) * 30;
-
-        // ================= GLOW SCALE =================
-        const scale = 0.4 + state.progress * 2;
-
-        // ================= MOBILE MOVE =================
-        if (direction === "y") {
-          const y = (-70 * state.progress * window.innerHeight) / 100 + sine;
-
-          gsap.set(wave, { y });
-        }
-
-        // ================= DESKTOP MOVE =================
-        else {
-          const x = (-140 * state.progress * window.innerWidth) / 100 + sine;
-
-          gsap.set(wave, { x });
-        }
-
-        // ================= GLOW EFFECT =================
-        const baseOpacity = isMobile ? 0.3 : 0.6;
-
-        gsap.set(head, {
-          scale,
-          opacity: baseOpacity + scale * 0.2,
-        });
-
-        requestAnimationFrame(animate);
-      };
-
-      requestAnimationFrame(animate);
+      waveTl.fromTo(
+        head,
+        { scale: 0.4, opacity: baseOpacity },
+        {
+          scale: 2.2,
+          opacity: baseOpacity + 0.3,
+          duration: duration,
+          ease: "power1.inOut",
+        },
+        0,
+      );
     };
 
-    // ================= RESPONSIVE =================
+    // ================= RESPONSIVE ENVIRONMENT =================
     mm.add(
       {
         isDesktop: "(min-width: 769px)",
         isMobile: "(max-width: 768px)",
       },
-      (context) => {
-        const { isMobile } = context.conditions as {
-          isMobile: boolean;
-        };
+      (config) => {
+        const conditions = config.conditions || { isMobile: false };
+        const isMobile = !!conditions.isMobile;
+        const activeDirection = isMobile ? "y" : "x";
 
-        const container = containerRef.current;
+        const svgText = container.querySelectorAll("svg text");
+        const currentBox = boxRef.current;
 
-        if (!container) return;
+        const textElements = currentBox
+          ? Array.from(currentBox.children).filter(
+              (el) =>
+                el.tagName.toLowerCase() !== "div" || !el.querySelector("svg"),
+            )
+          : [];
 
-        // ================= TEXT ANIMATION =================
-        const children = Array.from(boxRef.current?.children || []);
+        const introTl = gsap.timeline({ delay: 0.8 });
 
-        if (children.length) {
-          gsap.fromTo(
-            children,
+        if (svgText.length) {
+          introTl
+            .from(svgText, {
+              drawSVG: "0%",
+              duration: 1.5,
+              ease: "power3.inOut",
+            })
+            .to(
+              svgText,
+              {
+                fill: "#00FF66",
+                duration: 0.5,
+              },
+              "-=0.3",
+            );
+        }
+
+        if (textElements.length) {
+          introTl.fromTo(
+            textElements,
             {
               opacity: 0,
-              x: isMobile ? 200 : -100,
-              y: isMobile ? 0 : 0,
+              x: isMobile ? 40 : -25,
+              y: isMobile ? 5 : 0,
             },
             {
               opacity: 1,
               x: 0,
               y: 0,
-              duration: 0.8,
-              stagger: 0.18,
-              ease: "power3.out",
+              duration: 0.5,
+              stagger: 0.08,
+              ease: "power2.out",
+              force3D: true,
             },
+            "-=0.4",
           );
         }
 
-        // ================= REPEATING WAVES =================
-        const interval = setInterval(() => {
-          createWave(isMobile ? "y" : "x", isMobile);
-        }, 2000);
+        createWave(activeDirection, isMobile);
 
-        // ================= INITIAL WAVE =================
-        createWave(isMobile ? "y" : "x", isMobile);
+        const waveSpawner = gsap.delayedCall(2.5, function repeat() {
+          createWave(activeDirection, isMobile);
+          waveSpawner.restart(true);
+        });
 
-        // ================= CLEANUP =================
         return () => {
-          clearInterval(interval);
-
-          const waves = container.querySelectorAll(".wave-system");
-
-          waves.forEach((wave) => wave.remove());
+          waveSpawner.kill();
+          introTl.kill();
+          const activeWaves = container.querySelectorAll(".wave-system");
+          activeWaves.forEach((w) => w.remove());
         };
       },
     );
 
-    // ================= MAIN CLEANUP =================
     return () => {
-      isMounted = false;
+      gridTween?.kill();
       mm.revert();
     };
   }, [containerRef, boxesRef, boxRef]);

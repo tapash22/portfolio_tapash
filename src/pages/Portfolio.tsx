@@ -3,6 +3,8 @@ import { PortfolioCard } from "../componants/card/PortfolioCard";
 import { PricingCard } from "../componants/card/PricingCard";
 import { Dialog } from "../componants/dialog/Dialog";
 import { GithubHeatmap } from "../componants/github-calendar/GithubHeatmap";
+import { Hero } from "../componants/svg/Hero";
+import { StockLine } from "../componants/svg/StockLine";
 import { pricingPlans, protFolioDeatils } from "../storage/data/portfolio-data";
 import type { PortfolioType } from "../storage/type/data-type";
 
@@ -95,6 +97,9 @@ export default function Projects() {
 
           {/* pricing body end */}
         </div>
+        <Hero />
+
+        <StockLine />
 
         {/* pricing section end*/}
       </div>

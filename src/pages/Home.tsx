@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import AnimatedWaves from "../componants/landing/AnimatedWaves";
+import { AnimatedWaves } from "../componants/landing/AnimatedWaves";
 import BackgroundGrid from "../componants/landing/BackgroundGrid";
 
 import { useWaveSystem } from "../hook/useWaveSystem";
@@ -14,66 +14,97 @@ gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const boxRef = useRef<HTMLDivElement | null>(null);
-  const container = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const boxesRef = useRef<HTMLDivElement[]>([]);
+  const navigate = useNavigate();
+
   useWaveSystem({
-    containerRef: container,
+    containerRef: containerRef,
     boxesRef,
     boxRef,
   });
 
-  const navigate = useNavigate();
-
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden bg-black/8 flex">
+    <div
+      ref={containerRef}
+      className="relative w-full h-[90vh] overflow-hidden bg-zinc-950 flex"
+    >
+      {/* BACKGROUND GRAPHIC CANVAS LAYERS (Seated safely at z-0) */}
       <BackgroundGrid />
       <AnimatedWaves />
 
-      {/* STATIC DECORATION */}
-      <div className="hidden md:block absolute right-16 bottom-0 -translate-y-1/2 w-80 h-80 rounded-full bg-linear-to-br from-cyan-400/50 via-cyan-400/10 to-transparent blur-2xl shadow-[0_0_120px_rgba(34,211,238,0.4)]" />
+      {/* STATIC DECORATIVE AMBIENT GLOW */}
+      <div className="hidden md:block absolute right-16 bottom-0 -translate-y-1/2 w-80 h-80 rounded-full bg-linear-to-br from-cyan-400/30 via-cyan-400/5 to-transparent blur-3xl shadow-[0_0_120px_rgba(34,211,238,0.3)] pointer-events-none z-0" />
 
-      {/* CONTENT AREA */}
+      {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-0 md:space-y-3 px-5 md:px-10 py-10 md:py-0 z-10 relative"
+        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--background)/20 md:bg-transparent"
       >
-        <h1 className="text-xl md:text-2xl font-bold text-center md:text-start text-(--foreground) tracking-wider opacity-80">
-          I am Tapash Paul
-        </h1>
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center md:text-start tracking-wide text-(--foreground)">
+        <div className="w-70 h-12.5 sm:w-85 sm:h-15 md:w-120 md:h-18 flex items-center justify-center md:justify-start overflow-hidden select-none pointer-events-none mx-auto md:mx-0">
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 480 75"
+            className="will-change-transform transform-gpu"
+          >
+            <text
+              // Starts at 50% width on mobile, returns to 0 on desktop viewports
+              x="50%"
+              y="70%"
+              dominantBaseline="middle"
+              // Centers the text anchor point on mobile, resets to left-aligned on desktop
+              textAnchor="middle"
+              className="text-4xl font-bold"
+              fill="transparent"
+              stroke="#00FF66"
+              strokeWidth="1.2"
+              style={{
+                fontFamily: "inherit",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Tapash Paul
+            </text>
+          </svg>
+        </div>
+
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center md:text-start tracking-wide text-(--foreground) will-change-transform transform-gpu">
           Front End Developer
         </h1>
-        <p className="text-sm hidden md:block text-(--muted) tracking-wide">
+
+        <p className="text-sm hidden md:block text-(--muted) tracking-wide max-w-md leading-relaxed will-change-transform transform-gpu">
           I build modern, responsive and animated web experiences...
         </p>
-        <div className="flex flex-col md:flex-row gap-2 md:gap-5 p-2">
+
+        <div className="flex flex-col sm:flex-row gap-3 p-2 md:gap-5 pt-4 will-change-transform transform-gpu">
           <button
             onClick={() => navigate("/contact")}
-            className="bg-(--button-color) text-(--foreground) text-sm px-10 py-3 rounded-full uppercase hover:scale-105 transition-transform"
+            className="bg-(--button-color) text-(--foreground) border-2 border-(--border) shadow-(--shadoe-footer) text-sm px-10 py-3 rounded-full font-semibold uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer z-30 relative"
           >
             Contact Me
           </button>
           <a
             href="/cv/tapash-paul-cv.pdf"
             download
-            className="border-2 border-(--border) text-(--foreground) text-sm px-6 py-3 rounded-full text-center uppercase hover:bg-(--button-color) hover:scale-105 transition-all"
+            className="border-2 border-(--border) text-(--foreground) text-sm px-8 py-3 rounded-full text-center font-semibold uppercase hover:bg-(--button-color) hover:border-transparent hover:scale-105 active:scale-95 transition-all cursor-pointer z-30 relative"
           >
             Download CV
           </a>
         </div>
       </div>
 
-      {/* HERO IMAGES */}
-      <div className="absolute md:static w-full md:w-7/12 h-full flex justify-center items-start md:items-end z-0 px-5">
+      {/* HERO ILLUSTRATIONS (Isolated cleanly to mid-tier z-10 index on mobile structures) */}
+      <div className="absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full flex justify-center items-end md:items-end z-50 px-5 pointer-events-none ">
         <img
           src={image}
-          className="hidden md:block w-full"
-          alt="Desktop Hero"
+          className="hidden md:block w-full max-h-[85vh] object-contain object-bottom transform-gpu"
+          alt="Desktop Hero Layout"
         />
         <img
           src={mobile_image}
-          className="block md:hidden w-auto h-auto"
-          alt="Mobile Hero"
+          className="block md:hidden w-auto h-fit object-cover mb-0 opacity-70 transform-gpu"
+          alt="Mobile Hero Layout"
         />
       </div>
     </div>
