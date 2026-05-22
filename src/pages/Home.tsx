@@ -61,7 +61,7 @@ export default function Home() {
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--background)/20 md:bg-transparent"
+        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--sidebar)/10 rounded-tr-full rounded-br-full shadow-[0_0_70px_rgba(34,255,255,0.02)] "
       >
         <div className="w-70 h-12.5 sm:w-85 sm:h-15 md:w-120 md:h-18 flex items-center justify-center md:justify-start overflow-hidden select-none pointer-events-none mx-auto md:mx-0">
           <svg
@@ -99,17 +99,17 @@ export default function Home() {
           I build modern, responsive and animated web experiences...
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 p-2 md:gap-5 pt-4 will-change-transform transform-gpu">
+        <div className="flex flex-col sm:flex-row gap-3 p-3 md:gap-5  will-change-transform transform-gpu">
           <button
             onClick={() => navigate("/contact")}
-            className="bg-(--button-color) text-(--foreground) border-2 border-(--border) shadow-(--shadoe-footer) text-sm px-10 py-3 rounded-full font-semibold uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer z-30 relative"
+            className="bg-(--sidebar) text-(--foreground) border-2 border-(--border) shadow-(--shadoe-footer) text-sm px-10 py-3 rounded-full font-semibold uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer z-50 tracking-wider "
           >
             Contact Me
           </button>
           <a
             href="/cv/tapash-paul-cv.pdf"
             download
-            className="border-2 border-(--border) text-(--foreground) text-sm px-8 py-3 rounded-full text-center font-semibold uppercase hover:bg-(--button-color) hover:border-transparent hover:scale-105 active:scale-95 transition-all cursor-pointer z-30 relative"
+            className="bg-(--sidebar) border-2 border-(--border) md:border-0 md:bg-(sidebar) text-(--foreground) text-sm px-8 py-3 rounded-full text-center font-semibold uppercase hover:bg-(--button-color) hover:border-transparent hover:scale-105 active:scale-95 transition-all cursor-pointer z-50 tracking-wider shadow-(--shadow-footer) "
           >
             Download CV
           </a>
@@ -117,7 +117,7 @@ export default function Home() {
       </div>
 
       {/* HERO ILLUSTRATIONS (Isolated cleanly to mid-tier z-10 index on mobile structures) */}
-      <div className="absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full flex justify-center items-end md:items-end z-50 px-5 pointer-events-none ">
+      <div className="absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full flex justify-center items-end md:items-end z-30 px-5 pointer-events-none ">
         <img
           src={image}
           className="hidden md:block w-full max-h-[85vh] object-contain object-bottom transform-gpu"
