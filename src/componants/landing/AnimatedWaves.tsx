@@ -14,7 +14,7 @@ export const AnimatedWaves = forwardRef<HTMLDivElement, AnimatedWavesProps>(
       <div
         ref={ref}
         data-wave-layer="true"
-        className={`wave-portal absolute inset-0 z-0 overflow-hidden pointer-events-none ${className}`}
+        className={`wave-portal pointer-events-none absolute inset-0 z-0 overflow-hidden ${className}`}
         style={{ willChange: "transform" }}
       />
     );

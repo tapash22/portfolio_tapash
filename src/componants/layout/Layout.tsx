@@ -66,24 +66,24 @@ export function Layout() {
   };
 
   return (
-    <div className="h-screen w-full flex overflow-hidden bg-(--background) relative">
+    <div className="relative flex h-screen w-full overflow-hidden bg-(--background)">
       {/* Absolute high-z overlay loader layer */}
 
       <SideBar handleNavigation={handleNavigation} />
 
       {/* RIGHT SIDE */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
+      <div className="flex h-full flex-1 flex-col overflow-hidden">
         {isChangingRoute && <GsapLoader />}
 
         {/* ✅ MOBILE HEADER SPACE (GLOBAL FIX) */}
-        <div className="h-14 md:hidden shrink-0" />
+        <div className="h-14 shrink-0 md:hidden" />
 
         {/* PAGE AREA */}
         <div
           ref={scrollRef}
-          className={`flex-1 overflow-y-auto overflow-x-hidden scrollbar-thin h-full`}
+          className={`scrollbar-thin h-full flex-1 overflow-x-hidden overflow-y-auto`}
         >
-          <div ref={pageRef} className="w-full min-h-full flex items-center">
+          <div ref={pageRef} className="flex min-h-full w-full items-center">
             <Outlet
               context={{
                 scrollRef,
@@ -93,7 +93,7 @@ export function Layout() {
         </div>
 
         {/* FOOTER */}
-        <div className="shrink-0 w-full">
+        <div className="w-full shrink-0">
           <SocialMediaList
             socailMediaItems={socialMediaLinkList}
             listDirection="row"

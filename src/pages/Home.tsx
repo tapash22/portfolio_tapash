@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[84vh] md:h-[90vh] overflow-hidden flex"
+      className="relative flex h-[84vh] w-full overflow-hidden md:h-[90vh]"
     >
       {/* BACKGROUND GRAPHIC CANVAS LAYERS (Seated safely at z-0) */}
       {/* <BackgroundGrid /> */}
@@ -55,33 +55,20 @@ export default function Home() {
       {/* STATIC DECORATIVE AMBIENT GLOW */}
       <div
         ref={glowRef}
-        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 
-        rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl 
-        shadow-[0_0_100px_rgba(34,255,255,0.5)] pointer-events-none z-0
-        will-change-transform opacity-100"
+        className="pointer-events-none absolute top-1/4 left-2/3 z-0 hidden h-150 w-150 rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent opacity-100 shadow-[0_0_100px_rgba(34,255,255,0.5)] ring-8 blur-3xl will-change-transform md:block"
       />
 
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="
-        w-full h-full md:w-1/3 flex flex-col justify-end md:justify-center items-center 
-        space-y-0 md:space-y-3 px-5 md:px-10 py-0 md:py-0 z-40 relative transform-gpu 
-        bg-(--background)/40 shadow-[0_0_100px_rgba(34,255,255,0.09)] 
-        "
+        className="relative z-40 flex h-full w-full transform-gpu flex-col items-center justify-end space-y-0 bg-(--background)/40 px-5 py-0 shadow-[0_0_100px_rgba(34,255,255,0.09)] md:w-1/3 md:justify-center md:space-y-3 md:px-10 md:py-0"
       >
-        <div
-          className="
-          w-70 h-14 sm:w-85 sm:h-14 md:w-120 md:h-18 flex items-center justify-end 
-          md:justify-start overflow-hidden select-none pointer-events-none mx-auto 
-          md:mx-0 
-          "
-        >
+        <div className="pointer-events-none mx-auto flex h-14 w-70 items-center justify-end overflow-hidden select-none sm:h-14 sm:w-85 md:mx-0 md:h-18 md:w-120 md:justify-start">
           <svg
             width="100%"
             height="100%"
             viewBox="0 0 480 75"
-            className="will-change-transform transform-gpu"
+            className="transform-gpu will-change-transform"
           >
             <text
               // Starts at 50% width on mobile, returns to 0 on desktop viewports
@@ -104,49 +91,27 @@ export default function Home() {
           </svg>
         </div>
 
-        <h1
-          className="
-        text-2xl md:text-4xl font-bold text-center md:text-start tracking-wide 
-        text-(--foreground) will-change-transform transform-gpu"
-        >
+        <h1 className="transform-gpu text-center text-2xl font-bold tracking-wide text-(--foreground) will-change-transform md:text-start md:text-4xl">
           Front End Developer
         </h1>
 
-        <p
-          className="
-          text-sm font-normal hidden md:block text-center  text-(--muted) tracking-wide
-          max-w-lg leading-relaxed will-change-transform transform-gpu p-3
-          ring-1 ring-(--border) bg-(--background)/50 shadow-(--shadow-footer) rounded-xl
-          drop-shadow-sm"
-        >
+        <p className="hidden max-w-lg transform-gpu border-r-4 border-l-4 border-(--border) bg-(--background)/50 p-3 text-center text-sm leading-relaxed font-normal tracking-wider text-wrap text-(--muted) will-change-transform md:block">
           Build responsive, and interactive web applications with modern
           frontend technologies, focusing on smooth user experience and clean UI
           architecture
         </p>
 
-        <div
-          className="
-          flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-5 py-3 md::py-0
-          will-change-transform transform-gpu h-auto"
-        >
+        <div className="md::py-0 flex h-auto transform-gpu flex-col space-y-3 py-3 will-change-transform md:flex-row md:space-y-0 md:space-x-5">
           <button
             onClick={() => navigate("/contact")}
-            className="
-            bg-(--sidebar)/30 md:bg-(--sidebar) text-(--foreground) border-2 border-(--border) 
-            shadow-(--shadoe-footer) text-sm px-8 py-2 rounded-sm md:rounded-full font-semibold
-            uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer 
-            z-50 tracking-wider h-full whitespace-nowrap "
+            className="z-50 h-full cursor-pointer rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-2 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
           >
             Contact Me
           </button>
           <a
             href="/cv/tapash-paul-cv.pdf"
             download
-            className="
-            bg-(--sidebar)/30 md:bg-(--sidebar) text-(--foreground) border-2 border-(--border) 
-            shadow-(--shadoe-footer) text-sm px-8 py-2 rounded-sm md:rounded-full  font-semibold
-            uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer 
-            z-50 tracking-wider flex justify-center items-center whitespace-nowrap"
+            className="z-50 flex cursor-pointer items-center justify-center rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-2 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
           >
             Download CV
           </a>
@@ -154,20 +119,15 @@ export default function Home() {
       </div>
 
       {/* HERO ILLUSTRATIONS (Isolated cleanly to mid-tier z-10 index on mobile structures) */}
-      <div
-        className="
-        absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full 
-        flex justify-center items-end md:items-end z-30 px-5 pointer-events-none
-        "
-      >
+      <div className="pointer-events-none absolute inset-0 z-30 flex h-full w-full items-end justify-center px-5 md:static md:inset-auto md:w-7/12 md:items-end">
         <img
           src={image}
-          className="hidden md:block w-full max-h-[85vh] object-contain object-bottom transform-gpu"
+          className="hidden max-h-[85vh] w-full transform-gpu object-contain object-bottom md:block"
           alt="Desktop Hero Layout"
         />
         <img
           src={mobile_image}
-          className="block md:hidden w-full h-full object-cover mb-0 opacity-70 transform-gpu"
+          className="mb-0 block h-full w-full transform-gpu object-cover opacity-70 md:hidden"
           alt="Mobile Hero Layout"
         />
       </div>
