@@ -163,9 +163,9 @@ export const ResponsiveTimeline = () => {
   return (
     <div
       ref={containerRef}
-      className="relative flex flex-col md:flex-row gap-12 items-center p-6 md:p-10 bg-black text-white overflow-hidden min-h-screen md:min-h-175"
+      className="relative flex min-h-screen flex-col items-center gap-12 overflow-hidden bg-black p-6 text-white md:min-h-175 md:flex-row md:p-10"
     >
-      <svg className="absolute inset-0 w-full h-full pointer-events-none z-10">
+      <svg className="pointer-events-none absolute inset-0 z-10 h-full w-full">
         {pathStrings.map((d, i) => (
           <g key={i}>
             <path
@@ -191,23 +191,23 @@ export const ResponsiveTimeline = () => {
         ))}
       </svg>
 
-      <div className="w-full max-w-95 md:w-1/2 z-20">
-        <div className="relative p-1.5 ring-1 ring-(--border) rounded-2xl bg-(--background)/40 shadow-(--shadow)">
+      <div className="z-20 w-full max-w-95 md:w-1/2">
+        <div className="relative rounded-2xl bg-(--background)/40 p-1.5 shadow-(--shadow) ring-1 ring-(--border)">
           <img
             src={image}
             alt="Profile"
-            className="object-cover rounded-xl w-full h-auto"
+            className="h-auto w-full rounded-xl object-cover"
           />
           <div
             ref={imageDotRef}
-            className="absolute left-1/2 -bottom-1.5 md:left-auto md:top-1/2 md:-right-1.5 -translate-x-1/2 md:translate-x-0 md:-translate-y-1/2 w-3.5 h-3.5 rounded-full bg-cyan-400 shadow-[0_0_15px_#06b6d4] z-30"
+            className="absolute -bottom-1.5 left-1/2 z-30 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-cyan-400 shadow-[0_0_15px_#06b6d4] md:top-1/2 md:-right-1.5 md:left-auto md:translate-x-0 md:-translate-y-1/2"
           />
         </div>
       </div>
 
-      <div className="hidden md:block w-1/12" />
+      <div className="hidden w-1/12 md:block" />
 
-      <div className="flex flex-col gap-5 w-full md:w-1/2 z-20">
+      <div className="z-20 flex w-full flex-col gap-5 md:w-1/2">
         {timelineData.map((item, index) => (
           <div
             key={index}
@@ -219,10 +219,10 @@ export const ResponsiveTimeline = () => {
             }
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(-1)}
-            className="p-6 bg-[#0c0c0e] rounded-3xl relative cursor-pointer border border-gray-900 transition-all duration-500"
+            className="relative cursor-pointer rounded-3xl border border-gray-900 bg-[#0c0c0e] p-6 transition-all duration-500"
           >
             <svg
-              className="absolute inset-0 w-full h-full pointer-events-none rounded-xl"
+              className="pointer-events-none absolute inset-0 h-full w-full rounded-xl"
               viewBox="0 0 100 100"
               preserveAspectRatio="none"
             >
@@ -265,12 +265,12 @@ export const ResponsiveTimeline = () => {
               />
             </svg>
 
-            <div className="flex justify-between items-start relative z-10">
+            <div className="relative z-10 flex items-start justify-between">
               <div className="space-y-1">
-                <span className="text-[10px] text-gray-500 uppercase font-bold tracking-[0.2em]">
+                <span className="text-[10px] font-bold tracking-[0.2em] text-gray-500 uppercase">
                   {item.year}
                 </span>
-                <h3 className="text-lg font-bold text-white leading-tight">
+                <h3 className="text-lg leading-tight font-bold text-white">
                   {item.title}
                 </h3>
                 <h4 className="text-sm font-medium text-cyan-400/80">
@@ -278,15 +278,15 @@ export const ResponsiveTimeline = () => {
                 </h4>
               </div>
               <FaChevronDown
-                className={`text-gray-600 mt-2 transition-transform duration-500 ${expandedIndex === index ? "rotate-180 text-cyan-400" : ""}`}
+                className={`mt-2 text-gray-600 transition-transform duration-500 ${expandedIndex === index ? "rotate-180 text-cyan-400" : ""}`}
               />
             </div>
 
             <div
-              className={`grid transition-all duration-500 ease-in-out ${expandedIndex === index ? "grid-rows-[1fr] mt-4 opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+              className={`grid transition-all duration-500 ease-in-out ${expandedIndex === index ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
               <div className="overflow-hidden">
-                <p className="text-xs md:text-sm text-gray-400 border-t border-gray-800 pt-4 leading-relaxed">
+                <p className="border-t border-gray-800 pt-4 text-xs leading-relaxed text-gray-400 md:text-sm">
                   {item.description}
                 </p>
               </div>

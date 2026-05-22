@@ -38,13 +38,13 @@ export function GsapLoader() {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 w-full h-dhv bg-zinc-950/95 backdrop-blur-md flex items-center justify-center z-9999 pointer-events-auto touch-none select-none"
+      className="pointer-events-auto absolute top-0 bottom-0 left-0 z-9999 flex h-fit w-full touch-none items-center justify-center bg-(--background)/60 backdrop-blur-md select-none md:left-1/4 md:h-[90vh] md:w-2/3"
     >
       <div className="flex flex-col items-center space-y-4">
         <div ref={dotsRef} className="flex gap-2.5">
-          <span className="w-3 h-3 bg-[#00FF66] rounded-full opacity-40 shadow-[0_0_10px_rgba(0,255,102,0.5)] will-change-transform transform-gpu" />
-          <span className="w-3 h-3 bg-[#00FF66] rounded-full opacity-40 shadow-[0_0_20px_rgba(0,255,102,0.5)] will-change-transform transform-gpu" />
-          <span className="w-3 h-3 bg-[#00FF66] rounded-full opacity-40 shadow-[0_0_20px_rgba(0,255,102,0.5)] will-change-transform transform-gpu" />
+          <span className="h-3 w-3 transform-gpu rounded-full bg-[#00FF66] opacity-40 shadow-[0_0_10px_rgba(0,255,102,0.5)] will-change-transform" />
+          <span className="h-3 w-3 transform-gpu rounded-full bg-[#00FF66] opacity-40 shadow-[0_0_20px_rgba(0,255,102,0.5)] will-change-transform" />
+          <span className="h-3 w-3 transform-gpu rounded-full bg-[#00FF66] opacity-40 shadow-[0_0_20px_rgba(0,255,102,0.5)] will-change-transform" />
         </div>
       </div>
     </div>
