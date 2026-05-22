@@ -32,7 +32,7 @@ export default function Home() {
 
       // Create an infinite, automated floating loop for the glow ring
       gsap.to(glowRef.current, {
-        x: "+=25",
+        x: "+=55",
         y: "-=50",
         duration: 4,
         repeat: -1, // Runs infinitely
@@ -61,7 +61,7 @@ export default function Home() {
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--sidebar)/10 rounded-tr-full rounded-br-full shadow-[0_0_70px_rgba(34,255,255,0.02)] "
+        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--sidebar)/10 rounded-tr-full rounded-br-full shadow-[0_0_50px_rgba(34,255,255,0.02)] "
       >
         <div className="w-70 h-12.5 sm:w-85 sm:h-15 md:w-120 md:h-18 flex items-center justify-center md:justify-start overflow-hidden select-none pointer-events-none mx-auto md:mx-0">
           <svg

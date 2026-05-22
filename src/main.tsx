@@ -1,8 +1,9 @@
-import { StrictMode } from "react";
+// import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css";
 // import App from "./App.tsx";
+import { LoadingProvider } from "./context/LoadingContext.tsx";
 import AppRoutes from "./routes/AppRoutes.tsx";
 
 if (import.meta.hot) {
@@ -13,10 +14,16 @@ if (import.meta.hot) {
 }
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
+  // <StrictMode>
+  <LoadingProvider>
     <BrowserRouter>
       <AppRoutes />
     </BrowserRouter>
-    {/* <App /> */}
-  </StrictMode>,
+  </LoadingProvider>,
 );
+{
+  /* <App /> */
+}
+{
+  /* </StrictMode>, */
+}
