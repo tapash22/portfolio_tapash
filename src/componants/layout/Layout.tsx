@@ -69,12 +69,12 @@ export function Layout() {
     <div className="h-screen w-full flex overflow-hidden bg-(--background) relative">
       {/* Absolute high-z overlay loader layer */}
 
-      {isChangingRoute && <GsapLoader />}
-
       <SideBar handleNavigation={handleNavigation} />
 
       {/* RIGHT SIDE */}
       <div className="flex-1 flex flex-col h-full overflow-hidden">
+        {isChangingRoute && <GsapLoader />}
+
         {/* ✅ MOBILE HEADER SPACE (GLOBAL FIX) */}
         <div className="h-14 md:hidden shrink-0" />
 
