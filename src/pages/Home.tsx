@@ -46,7 +46,7 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[90vh] overflow-hidden flex"
+      className="relative w-full h-[84vh] md:h-[90vh] overflow-hidden flex"
     >
       {/* BACKGROUND GRAPHIC CANVAS LAYERS (Seated safely at z-0) */}
       {/* <BackgroundGrid /> */}
@@ -55,13 +55,13 @@ export default function Home() {
       {/* STATIC DECORATIVE AMBIENT GLOW */}
       <div
         ref={glowRef}
-        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl shadow-[0_0_50px_rgba(34,255,255,0.5)] pointer-events-none z-0 will-change-transform opacity-50"
+        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl shadow-[0_0_100px_rgba(34,255,255,0.5)] pointer-events-none z-0 will-change-transform opacity-50"
       />
 
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="w-full md:w-1/2 flex flex-col justify-end md:justify-center space-y-2 px-5 md:px-10 py-10 md:py-0 z-20 relative transform-gpu bg-(--sidebar)/10 rounded-tr-full rounded-br-full shadow-[0_0_50px_rgba(34,255,255,0.02)] "
+        className="w-full h-full md:w-1/3 flex flex-col justify-end md:justify-center items-center space-y-2 md:space-y-4 px-5 md:px-10 py-0 md:py-0 z-20 relative transform-gpu bg-(--background)/40 shadow-[0_0_100px_rgba(34,255,255,0.09)] "
       >
         <div className="w-70 h-12.5 sm:w-85 sm:h-15 md:w-120 md:h-18 flex items-center justify-center md:justify-start overflow-hidden select-none pointer-events-none mx-auto md:mx-0">
           <svg
@@ -73,10 +73,10 @@ export default function Home() {
             <text
               // Starts at 50% width on mobile, returns to 0 on desktop viewports
               x="50%"
-              y="70%"
+              y="60%"
               dominantBaseline="middle"
               // Centers the text anchor point on mobile, resets to left-aligned on desktop
-              textAnchor="end"
+              textAnchor="middle"
               className="text-4xl font-bold"
               fill="transparent"
               stroke="#ffffff"
@@ -91,15 +91,17 @@ export default function Home() {
           </svg>
         </div>
 
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold text-center md:text-start tracking-wide text-(--foreground) will-change-transform transform-gpu">
+        <h1 className="text-2xl md:text-4xl font-bold text-center md:text-start tracking-wide text-(--foreground) will-change-transform transform-gpu">
           Front End Developer
         </h1>
 
-        <p className="text-sm hidden md:block text-(--muted) tracking-wide max-w-md leading-relaxed will-change-transform transform-gpu">
-          I build modern, responsive and animated web experiences...
+        <p className="text-sm font-normal hidden md:block text-center  text-(--muted) tracking-wide max-w-lg leading-relaxed will-change-transform transform-gpu p-2 border-l-4 bg-(--background)/50 border-r-4 border-(--border) shadow-xl">
+          Build responsive, and interactive web applications with modern
+          frontend technologies, focusing on smooth user experience and clean UI
+          architecture.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-3 p-3 md:gap-5  will-change-transform transform-gpu">
+        <div className="flex flex-col sm:flex-row space-y-3 md:space-x-5 p-0  will-change-transform transform-gpu">
           <button
             onClick={() => navigate("/contact")}
             className="bg-(--sidebar) text-(--foreground) border-2 border-(--border) shadow-(--shadoe-footer) text-sm px-10 py-3 rounded-full font-semibold uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer z-50 tracking-wider "
@@ -125,7 +127,7 @@ export default function Home() {
         />
         <img
           src={mobile_image}
-          className="block md:hidden w-auto h-fit object-cover mb-0 opacity-70 transform-gpu"
+          className="block md:hidden w-full h-full object-cover mb-0 opacity-70 transform-gpu"
           alt="Mobile Hero Layout"
         />
       </div>
