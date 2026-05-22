@@ -55,15 +55,28 @@ export default function Home() {
       {/* STATIC DECORATIVE AMBIENT GLOW */}
       <div
         ref={glowRef}
-        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl shadow-[0_0_100px_rgba(34,255,255,0.5)] pointer-events-none z-0 will-change-transform opacity-50"
+        className="hidden md:block absolute top-1/4 left-2/3 ring-8 w-150 h-150 
+        rounded-full bg-linear-to-br from-(--neon)/20 via-(--neon)/5 to-transparent blur-3xl 
+        shadow-[0_0_100px_rgba(34,255,255,0.5)] pointer-events-none z-0
+        will-change-transform opacity-100"
       />
 
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="w-full h-full md:w-1/3 flex flex-col justify-end md:justify-center items-center space-y-2 md:space-y-4 px-5 md:px-10 py-0 md:py-0 z-20 relative transform-gpu bg-(--background)/40 shadow-[0_0_100px_rgba(34,255,255,0.09)] "
+        className="
+        w-full h-full md:w-1/3 flex flex-col justify-end md:justify-center items-center 
+        space-y-0 md:space-y-3 px-5 md:px-10 py-0 md:py-0 z-40 relative transform-gpu 
+        bg-(--background)/40 shadow-[0_0_100px_rgba(34,255,255,0.09)] 
+        "
       >
-        <div className="w-70 h-12.5 sm:w-85 sm:h-15 md:w-120 md:h-18 flex items-center justify-center md:justify-start overflow-hidden select-none pointer-events-none mx-auto md:mx-0">
+        <div
+          className="
+          w-70 h-14 sm:w-85 sm:h-14 md:w-120 md:h-18 flex items-center justify-end 
+          md:justify-start overflow-hidden select-none pointer-events-none mx-auto 
+          md:mx-0 
+          "
+        >
           <svg
             width="100%"
             height="100%"
@@ -91,27 +104,49 @@ export default function Home() {
           </svg>
         </div>
 
-        <h1 className="text-2xl md:text-4xl font-bold text-center md:text-start tracking-wide text-(--foreground) will-change-transform transform-gpu">
+        <h1
+          className="
+        text-2xl md:text-4xl font-bold text-center md:text-start tracking-wide 
+        text-(--foreground) will-change-transform transform-gpu"
+        >
           Front End Developer
         </h1>
 
-        <p className="text-sm font-normal hidden md:block text-center  text-(--muted) tracking-wide max-w-lg leading-relaxed will-change-transform transform-gpu p-2 border-l-4 bg-(--background)/50 border-r-4 border-(--border) shadow-xl">
+        <p
+          className="
+          text-sm font-normal hidden md:block text-center  text-(--muted) tracking-wide
+          max-w-lg leading-relaxed will-change-transform transform-gpu p-3
+          ring-1 ring-(--border) bg-(--background)/50 shadow-(--shadow-footer) rounded-xl
+          drop-shadow-sm"
+        >
           Build responsive, and interactive web applications with modern
           frontend technologies, focusing on smooth user experience and clean UI
-          architecture.
+          architecture
         </p>
 
-        <div className="flex flex-col sm:flex-row space-y-3 md:space-x-5 p-0  will-change-transform transform-gpu">
+        <div
+          className="
+          flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-5 py-3 md::py-0
+          will-change-transform transform-gpu h-auto"
+        >
           <button
             onClick={() => navigate("/contact")}
-            className="bg-(--sidebar) text-(--foreground) border-2 border-(--border) shadow-(--shadoe-footer) text-sm px-10 py-3 rounded-full font-semibold uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer z-50 tracking-wider "
+            className="
+            bg-(--sidebar)/30 md:bg-(--sidebar) text-(--foreground) border-2 border-(--border) 
+            shadow-(--shadoe-footer) text-sm px-8 py-2 rounded-sm md:rounded-full font-semibold
+            uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer 
+            z-50 tracking-wider h-full whitespace-nowrap "
           >
             Contact Me
           </button>
           <a
             href="/cv/tapash-paul-cv.pdf"
             download
-            className="bg-(--sidebar) border-2 border-(--border) md:border-0 md:bg-(sidebar) text-(--foreground) text-sm px-8 py-3 rounded-full text-center font-semibold uppercase hover:bg-(--button-color) hover:border-transparent hover:scale-105 active:scale-95 transition-all cursor-pointer z-50 tracking-wider shadow-(--shadow-footer) "
+            className="
+            bg-(--sidebar)/30 md:bg-(--sidebar) text-(--foreground) border-2 border-(--border) 
+            shadow-(--shadoe-footer) text-sm px-8 py-2 rounded-sm md:rounded-full  font-semibold
+            uppercase hover:scale-105 active:scale-95 transition-transform cursor-pointer 
+            z-50 tracking-wider flex justify-center items-center whitespace-nowrap"
           >
             Download CV
           </a>
@@ -119,7 +154,12 @@ export default function Home() {
       </div>
 
       {/* HERO ILLUSTRATIONS (Isolated cleanly to mid-tier z-10 index on mobile structures) */}
-      <div className="absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full flex justify-center items-end md:items-end z-30 px-5 pointer-events-none ">
+      <div
+        className="
+        absolute md:static inset-0 md:inset-auto w-full md:w-7/12 h-full 
+        flex justify-center items-end md:items-end z-30 px-5 pointer-events-none
+        "
+      >
         <img
           src={image}
           className="hidden md:block w-full max-h-[85vh] object-contain object-bottom transform-gpu"

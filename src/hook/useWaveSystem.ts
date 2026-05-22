@@ -218,7 +218,7 @@ export function useWaveSystem({
                 fill: "#ffffff",
                 duration: 1.5,
               },
-              "-=0.5",
+              "-=0.3",
             );
         }
 
@@ -233,7 +233,7 @@ export function useWaveSystem({
             {
               opacity: 1,
               x: 0,
-              y: 0,
+              y: -10,
               duration: 0.5,
               stagger: 0.08,
               ease: "power2.out",
