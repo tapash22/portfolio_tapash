@@ -61,7 +61,7 @@ export default function Home() {
       {/* INTERACTIVE TEXT CONTENT AREA (Raised safely to z-20) */}
       <div
         ref={boxRef}
-        className="relative z-40 flex h-full w-full transform-gpu flex-col items-center justify-end space-y-0 bg-(--background)/40 px-5 py-0 shadow-[0_0_100px_rgba(34,255,255,0.09)] md:w-1/3 md:justify-center md:space-y-3 md:px-10 md:py-0"
+        className="relative z-40 flex h-full w-full transform-gpu flex-col items-center justify-end space-y-0 bg-(--background)/10 px-5 py-0 shadow-[0_0_20px_rgba(34,255,255,0.09)] md:w-1/3 md:justify-center md:space-y-3 md:px-10 md:py-0"
       >
         <div className="pointer-events-none mx-auto flex h-14 w-70 items-center justify-end overflow-hidden select-none sm:h-14 sm:w-85 md:mx-0 md:h-18 md:w-120 md:justify-start">
           <svg
@@ -91,35 +91,37 @@ export default function Home() {
           </svg>
         </div>
 
-        <h1 className="transform-gpu text-center text-2xl font-bold tracking-wide text-(--foreground) will-change-transform md:text-start md:text-4xl">
-          Front End Developer
-        </h1>
+        <div className="flex flex-col items-center justify-center space-y-2 md:space-y-3">
+          <h1 className="transform-gpu text-center text-3xl font-bold tracking-wide text-(--foreground) will-change-transform md:text-start md:text-4xl">
+            Front End Developer
+          </h1>
 
-        <p className="hidden max-w-lg transform-gpu border-r-4 border-l-4 border-(--border) bg-(--background)/50 p-3 text-center text-sm leading-relaxed font-normal tracking-wider text-wrap text-(--muted) will-change-transform md:block">
-          Build responsive, and interactive web applications with modern
-          frontend technologies, focusing on smooth user experience and clean UI
-          architecture
-        </p>
+          <p className="hidden max-w-lg transform-gpu border-r-4 border-l-4 border-(--border) bg-(--background)/50 p-3 text-center text-sm leading-relaxed font-normal tracking-wider text-wrap text-(--muted) shadow-[0_0_5px_rgba(34,255,255,0.09)] will-change-transform md:block">
+            Build responsive, and interactive web applications with modern
+            frontend technologies, focusing on smooth user experience and clean
+            UI architecture
+          </p>
 
-        <div className="md::py-0 flex h-auto transform-gpu flex-col space-y-3 py-3 will-change-transform md:flex-row md:space-y-0 md:space-x-5">
-          <button
-            onClick={() => navigate("/contact")}
-            className="z-50 h-full cursor-pointer rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-2 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
-          >
-            Contact Me
-          </button>
-          <a
-            href="/cv/tapash-paul-cv.pdf"
-            download
-            className="z-50 flex cursor-pointer items-center justify-center rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-2 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
-          >
-            Download CV
-          </a>
+          <div className="md::py-0 flex h-auto transform-gpu flex-col space-y-2 py-1 will-change-transform md:flex-row md:space-y-0 md:space-x-5">
+            <button
+              onClick={() => navigate("/contact")}
+              className="z-50 h-full cursor-pointer rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-3 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
+            >
+              Contact Me
+            </button>
+            <a
+              href="/cv/tapash-paul-cv.pdf"
+              download
+              className="z-50 flex h-full cursor-pointer items-center justify-center rounded-sm border-2 border-(--border) bg-(--sidebar)/30 px-8 py-3 text-sm font-semibold tracking-wider whitespace-nowrap text-(--foreground) uppercase shadow-(--shadoe-footer) transition-transform hover:scale-105 active:scale-95 md:rounded-full md:bg-(--sidebar)"
+            >
+              Download CV
+            </a>
+          </div>
         </div>
       </div>
 
       {/* HERO ILLUSTRATIONS (Isolated cleanly to mid-tier z-10 index on mobile structures) */}
-      <div className="pointer-events-none absolute inset-0 z-30 flex h-full w-full items-end justify-center px-5 md:static md:inset-auto md:w-7/12 md:items-end">
+      <div className="pointer-events-none absolute inset-0 z-30 flex h-full w-full items-end justify-center px-5 md:static md:inset-auto md:w-8/12 md:items-end">
         <img
           src={image}
           className="hidden max-h-[85vh] w-full transform-gpu object-contain object-bottom md:block"
