@@ -38,7 +38,7 @@ export function GsapLoader() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-auto absolute top-0 bottom-0 left-0 z-9999 flex h-fit w-full touch-none items-center justify-center bg-(--background)/60 backdrop-blur-md select-none md:left-1/4 md:h-[90vh] md:w-2/3"
+      className="pointer-events-auto absolute top-1/2 left-0 z-9999 flex h-fit w-full touch-none items-center justify-center overflow-hidden bg-(--background)/60 backdrop-blur-md select-none md:top-0 md:bottom-0 md:left-1/4 md:h-[90vh] md:w-2/3"
     >
       <div className="flex flex-col items-center space-y-4">
         <div ref={dotsRef} className="flex gap-2.5">
