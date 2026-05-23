@@ -50,26 +50,18 @@ export function SideBar({ handleNavigation }: Props) {
     if (!open) return;
 
     // OPEN ANIMATION
-    gsap.fromTo(
-      overlayRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.3 },
-    );
+    gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.3 });
 
-    gsap.fromTo(
-      drawerRef.current,
-      { x: "-100%" },
-      { x: "0%", duration: 0.5, ease: "power3.out" },
-    );
+    gsap.fromTo(drawerRef.current, { x: "-100%" }, { x: "0%", duration: 0.5, ease: "power3.out" });
   }, [open]);
 
   return (
     <>
       {/* ================= MOBILE TOP BAR ================= */}
-      <div className="lg:hidden fixed top-0 left-0 w-full h-16 flex items-center justify-between px-4 bg-(--sidebar)/20 z-50 shadow-(--shadow) backdrop-blur-xl">
+      <div className="fixed top-0 left-0 z-50 flex h-16 w-full items-center justify-between bg-(--sidebar)/20 px-4 shadow-(--shadow) backdrop-blur-xl lg:hidden">
         <img
           src={portfolio_icon1}
-          className="w-12 h-12 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
+          className="h-12 w-12 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
         />
 
         <button onClick={openDrawer}>
@@ -78,23 +70,18 @@ export function SideBar({ handleNavigation }: Props) {
       </div>
 
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <div
-        className="hidden lg:flex w-72 h-screen flex-col justify-center bg-(--sidebar)/20 z-50 backdrop-blur-xl 
-                  border-r border-(--border)
-                  shadow-(--shadow) 
-                  space-y-5 relative"
-      >
+      <div className="relative z-50 hidden h-screen w-72 flex-col justify-center space-y-5 border-r border-(--border) bg-(--sidebar)/20 shadow-(--shadow) backdrop-blur-xl lg:flex">
         {/* LOGO */}
 
-        <div className="px-5 py-3 w-full rounded-full flex justify-start items-center">
+        <div className="flex w-full items-center justify-start rounded-full px-5 py-3">
           <img
             src={portfolio_icon1}
-            className="w-28 h-28 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
+            className="h-28 w-28 rounded-full p-1 shadow-(--shadow-footer) ring-4 ring-(--neon)/5"
           />
         </div>
 
         {/* MENU */}
-        <ul className="flex flex-col space-y-3 w-fit px-10 ">
+        <ul className="flex w-fit flex-col space-y-3 px-10">
           {routeConfig.map((route, i) => {
             const to = route.index ? "/" : `/${route.path}`;
 
@@ -102,10 +89,8 @@ export function SideBar({ handleNavigation }: Props) {
               <button
                 key={i}
                 onClick={() => handleNavigation(to)}
-                className={`link text-left transition-colors text-lg ${
-                  isActiveRoute(to)
-                    ? "text-(--foreground) active-link"
-                    : "text-(--muted) hover:text-(--neon)"
+                className={`link text-left text-lg transition-colors ${
+                  isActiveRoute(to) ? "active-link text-(--foreground)" : "text-(--muted) hover:text-(--neon)"
                 }`}
               >
                 {route.title}
@@ -117,34 +102,27 @@ export function SideBar({ handleNavigation }: Props) {
 
       {/* ================= MOBILE DRAWER ================= */}
       {open && (
-        <div className="fixed lg:hidden inset-0 z-50">
+        <div className="fixed inset-0 z-50 lg:hidden">
           {/* OVERLAY */}
           <div
             ref={overlayRef}
             onClick={closeDrawer}
-            className="absolute inset-0 bg-(--background)/40 backdrop-blur-md "
+            className="absolute inset-0 bg-(--background)/40 backdrop-blur-md"
           />
 
           {/* DRAWER */}
-          <div className="absolute left-0 top-0 h-full w-72 flex">
+          <div className="absolute top-0 left-0 flex h-full w-72">
             <div
               ref={drawerRef}
-              className="
-                w-72 h-screen
-                flex flex-col
- 
-                border-r-2 border-(--border)
-                  shadow-(--shadow)
-                overflow-hidden
-              "
+              className="flex h-screen w-72 flex-col overflow-hidden border-r-2 border-(--border) shadow-(--shadow)"
             >
               {/* LOGO */}
-              <div className="p-3 border-b-2 border-(--border) shadow-(--shadow-footer) flex items-center">
-                <img src={portfolio_icon1} className="w-14 h-14" />
+              <div className="flex items-center border-b-2 border-(--border) p-3 shadow-(--shadow-footer)">
+                <img src={portfolio_icon1} className="h-14 w-14" />
               </div>
 
               {/* MENU */}
-              <ul className="flex flex-col space-y-3 flex-1 px-6 py-6">
+              <ul className="flex flex-1 flex-col space-y-3 px-6 py-6">
                 {routeConfig.map((route, i) => {
                   const to = route.index ? "/" : `/${route.path}`;
 
@@ -153,9 +131,7 @@ export function SideBar({ handleNavigation }: Props) {
                       key={i}
                       onClick={() => handleClick(to)}
                       className={`text-left transition-colors ${
-                        isActiveRoute(to)
-                          ? "text-(--foreground)"
-                          : "text-(--muted) hover:text-(--foreground)"
+                        isActiveRoute(to) ? "text-(--foreground)" : "text-(--muted) hover:text-(--foreground)"
                       }`}
                     >
                       {route.title}
@@ -167,13 +143,7 @@ export function SideBar({ handleNavigation }: Props) {
               {/* CLOSE BUTTON */}
               <button
                 onClick={closeDrawer}
-                className="
-                  absolute top-4 right-4
-                  w-12 h-12 flex items-center justify-center
-                  rounded-full bg-(--background)
-                  border-4 border-(--border)/20
-                  hover:scale-110 transition
-                "
+                className="absolute top-4 right-4 flex h-12 w-12 items-center justify-center rounded-full border-4 border-(--border)/20 bg-(--background) transition hover:scale-110"
               >
                 <FiX size={24} className="text-(--foreground)" />
               </button>
